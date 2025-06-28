@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Redirigiendo según idioma...</title>
+  <script>
+    window.onload = function() {
+      const lang = navigator.language || navigator.userLanguage;
+      const langCode = lang.substring(0, 2).toLowerCase();
+
+      if (langCode === 'es') {
+        window.location.href = "https://anxolo.github.io/es/contactme";
+      } else if (langCode === 'gl') {
+        window.location.href = "https://anxolo.github.io/gl/contactme";
+      } else {
+        window.location.href = "https://anxolo.github.io/en/contactme";
+      }
+    };
+  </script>
+</head>
+</html>
