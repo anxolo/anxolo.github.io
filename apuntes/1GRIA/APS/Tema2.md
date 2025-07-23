@@ -1,5 +1,13 @@
 
 ## T2: Acondicionamiento de Señal y Conversión Analógico-Digital
+*1.º Grado en Inteligencia Artificial*
+
+*Anxo López Rodríguez*
+
+*Escuela Superior de Ingeniería Informática - Universidade de Vigo*
+
+---
+
 ### Aplicación de Filtrado
 El filtrado consiste en limitar las frecuencias de una señal a un umbral establecido.
 
