@@ -1,3 +1,3 @@
 # Este es un título de ejemplo
-## ESte un subtítulo
+## Este un subtítulo
 Esto es texto
