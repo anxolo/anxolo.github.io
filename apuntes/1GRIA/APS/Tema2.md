@@ -54,11 +54,11 @@ Es el proceso que permite el tratamiento digital de las señales analógicas.
 
 **Fases de la conversión A/D:**
 
-1.  **Muestreo:** Una señal continua se convierte en una serie de valores discretos. La frecuencia de muestreo ($f_s$) debe ser, como mínimo, el doble de la frecuencia máxima de la señal ($f_{max}$), según el Teorema de Nyquist-Shannon: $f_s \ge 2 \cdot f_{max}$
+1.  **Muestreo:** Una señal continua se convierte en una serie de valores discretos. La frecuencia de muestreo ($f_s$) debe ser, como mínimo, el doble de la frecuencia máxima de la señal ($f_{max}$), según el Teorema de Nyquist-Shannon: $f_s \\ge 2 \\cdot f_{max}$
 
 2.  **Cuantización:** Cada valor muestreado se aproxima a un valor discreto dentro de un rango definido. El tamaño del paso de cuantización (Q), o resolución, se calcula como:
-    $Q  = \frac{V_{max} - V_{min}}{2^n}$ 
-    donde *n* es el número de bits del conversor, y $V_{max} - V_{min}$ es el rango de voltaje de la señal. El error máximo de cuantización es la mitad de este paso, es decir, $\pm \frac{Q}{2}$.
+    $Q  = \\frac{V_{max} - V_{min}}{2^n}$ 
+    donde *n* es el número de bits del conversor, y $V_{max} - V_{min}$ es el rango de voltaje de la señal. El error máximo de cuantización es la mitad de este paso, es decir, $\\pm \\frac{Q}{2}$.
 3.  **Codificación:** Los valores cuantizados se convierten a formato binario.
 
 #### Impacto en la Inteligencia Artificial
@@ -102,7 +102,7 @@ La teoria de señales se puede aplicar en numerosos ámbitos:
 * **Tipos de Transformada de Fourier:**
     * **Continua (FT):** Para señales continuas y no periódicas.
     * **Discreta (DFT):** Para señales discretas. Es la base para algoritmos computacionales, especialmente la FFT.
-* **Transformada Rápida de Fourier (FFT):** Es un algoritmo muy eficiente para calcular la DFT. Mientras que un cálculo directo tiene una complejidad computacional de $O(N^2)$, la FFT la reduce a $O(N \log N)$, siendo mucho más rápida para conjuntos de datos grandes.
+* **Transformada Rápida de Fourier (FFT):** Es un algoritmo muy eficiente para calcular la DFT. Mientras que un cálculo directo tiene una complejidad computacional de $O(N^2)$, la FFT la reduce a $O(N \\log N)$, siendo mucho más rápida para conjuntos de datos grandes.
 * **Transformada de Fourier de Tiempo Corto (STFT):** Una extensión que permite analizar la variación del contenido espectral a lo largo del tiempo, aplicando la transformada de Fourier a pequeños segmentos de la señal.
 #### Principios básicos del DSP
 - Digitalización de señales: Conversión de señal analógica a digital mediante muestreo y cuantificación
