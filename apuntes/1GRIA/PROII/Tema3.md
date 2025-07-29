@@ -1,3 +1,9 @@
+---
+layout: default
+use_math: true
+---
+
+
 # Tema 3 - Eficiencia
 *Programación II - 1º Grao en Inteligencia Artificial*
 
