@@ -1,3 +1,6 @@
+---
+layout: default
+---
 
 # T1: Adquisición y Procesamiento de la Señal
 *1.º Grado en Inteligencia Artificial*
