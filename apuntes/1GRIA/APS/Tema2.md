@@ -1,6 +1,8 @@
 ---
 layout: default
+use_math: true
 ---
+
 
 # T2: Acondicionamiento de Señal y Conversión Analógico-Digital
 *APS - 1.º Grado en Inteligencia Artificial*

@@ -1,5 +1,6 @@
 ---
 layout: default
+use_math: true
 ---
 
 # T1: Adquisición y Procesamiento de la Señal
