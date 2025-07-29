@@ -1,2 +1,4 @@
-theme: jekyll-theme-cayman
-title: ""
+markdown: kramdown
+kramdown:
+  input: GFM
+  math_engine: mathjax
