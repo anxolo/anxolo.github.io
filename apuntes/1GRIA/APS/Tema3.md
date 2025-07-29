@@ -1,3 +1,6 @@
+---
+layout: default
+---
 
 # T3: Muestreo, Cuantización y Reconstrucción
 *APS - 1.º Grado en Inteligencia Artificial*
