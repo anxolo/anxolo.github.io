@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apuntes 📒 - Anxo López Rodríguez</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+            padding-top: 80px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #667eea;
+        }
+
+        .nav-center {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-center a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: 0.5rem 0;
+        }
+
+        .nav-center a:hover {
+            color: #667eea;
+        }
+
+        .nav-center a.active {
+            color: #667eea;
+            font-weight: 600;
+        }
+
+        /* Language Selector */
+        .language-selector {
+            position: relative;
+        }
+
+        .language-button {
+            background: none;
+            border: 2px solid #667eea;
+            color: #667eea;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .language-button:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        .language-dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            min-width: 120px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            z-index: 1000;
+            padding: 0.5rem 0;
+            margin-top: 0.5rem;
+        }
+
+        .language-selector:hover .language-dropdown {
+            display: block;
+        }
+
+        .language-dropdown button {
+            width: 100%;
+            padding: 0.8rem 1.5rem;
+            background: none;
+            border: none;
+            color: #333;
+            cursor: pointer;
+            text-align: left;
+            transition: background-color 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .language-dropdown button:hover {
+            background-color: #f8f9fa;
+            color: #667eea;
+        }
+
+        .language-dropdown button.active {
+            background-color: #667eea;
+            color: white;
+        }
+
+        /* Main Content */
+        main {
+            min-height: calc(100vh - 200px);
+            padding: 2rem 0;
+        }
+
+        .page-title {
+            text-align: center;
+            font-size: 3rem;
+            color: #333;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .intro-box {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .intro-box b {
+            color: #667eea;
+        }
+
+        /* Course Sections */
+        .course-year {
+            background: white;
+            border-radius: 15px;
+            margin: 2rem 0;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .year-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.5rem;
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+
+        .subjects-grid {
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .subject {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 1.5rem;
+            border-left: 4px solid;
+        }
+
+        .subject h3 {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .subject a {
+            display: block;
+            color: #667eea;
+            text-decoration: none;
+            margin-bottom: 0.5rem;
+            padding: 0.3rem 0;
+            transition: all 0.3s ease;
+            border-radius: 5px;
+            padding-left: 0.5rem;
+        }
+
+        .subject a:hover {
+            background: rgba(102, 126, 234, 0.1);
+            transform: translateX(5px);
+        }
+
+        /* Subject Colors */
+        .subject.ic {
+            border-left-color: #d2691e;
+        }
+        .subject.ic h3 {
+            color: #d2691e;
+        }
+
+        .subject.md {
+            border-left-color: #9932cc;
+        }
+        .subject.md h3 {
+            color: #9932cc;
+        }
+
+        .subject.prog1 {
+            border-left-color: #7fff00;
+        }
+        .subject.prog1 h3 {
+            color: #228b22;
+        }
+
+        .subject.logica {
+            border-left-color: #5f9ea0;
+        }
+        .subject.logica h3 {
+            color: #5f9ea0;
+        }
+
+        .subject.aps {
+            border-left-color: #006400;
+        }
+        .subject.aps h3 {
+            color: #006400;
+        }
+
+        .subject.prog2 {
+            border-left-color: #daa520;
+        }
+        .subject.prog2 h3 {
+            color: #daa520;
+        }
+
+        .subject.estadistica {
+            border-left-color: #556b2f;
+        }
+        .subject.estadistica h3 {
+            color: #556b2f;
+        }
+
+        .coming-soon {
+            background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
+            border: none !important;
+            text-align: center;
+            color: #2d3436;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100px;
+        }
+
+        .empty-subject {
+            border-left-color: #ddd;
+            background: #fafafa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100px;
+            color: #999;
+            font-style: italic;
+        }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            padding: 3rem 0 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-info h3 {
+            margin-bottom: 1rem;
+            color: #667eea;
+        }
+
+        .footer-info p {
+            color: #ccc;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-info {
+            text-align: right;
+        }
+
+        .contact-info h3 {
+            margin-bottom: 1rem;
+            color: #667eea;
+        }
+
+        .contact-item {
+            display: block;
+            color: #ccc;
+            text-decoration: none;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item:hover {
+            color: #667eea;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #555;
+            color: #999;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+            }
+
+            .nav-center {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .language-selector {
+                order: -1;
+            }
+
+            .page-title {
+                font-size: 2rem;
+            }
+
+            .subjects-grid {
+                grid-template-columns: 1fr;
+                padding: 1rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                text-align: center;
+            }
+
+            .contact-info {
+                text-align: center;
+            }
+
+            body {
+                padding-top: 120px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Anxo López Rodríguez</div>
+            <ul class="nav-center">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="/Es/apuntes" class="active">Apuntes</a></li>
+            </ul>
+            <div class="language-selector">
+                <button class="language-button" id="currentLang">
+                    🌐 <span id="langText">ES</span>
+                </button>
+                <div class="language-dropdown">
+                    <button onclick="window.location.href='/Es/apuntes'" class="lang-option active" id="lang-es">Español</button>
+                    <button onclick="window.location.href='/En/notes'" class="lang-option" id="lang-en">English</button>
+                    <button onclick="window.location.href='/Gl/apuntamentos'" class="lang-option" id="lang-gl">Galego</button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <h1 class="page-title">Apuntes</h1>
+            
+            <div class="intro-box">
+                <p><b>Si estas aquí es muy probable que sea porque:</b></p>
+                <p>a) Eres una persona que está buscando apuntes para la carrera 🤓</p>
+                <p>b) Eres un compi que está cotilleando un poco sobre lo que hago 👀</p>
+                <p><b>Seas quien seas, si ves algo mal o tienes alguna sugerencia no dudes en contactarme ;)</b></p>
+            </div>
+
+            <div class="course-year">
+                <div class="year-header">1er curso - GRIA</div>
+                <div class="subjects-grid">
+                    <div class="subject ic">
+                        <h3>Introducción a las computadoras</h3>
+                        <a href="https://anxolo.github.io/apuntes/1GRIA/IC/Tema1">T1 - Introducción a las computadoras</a>
+                        <a href="https://anxolo.github.io/apuntes/1GRIA/IC/Tema2">T2 - Sistemas de numeración</a>
+                        <a href="https://anxolo.github.io/apuntes/1GRIA/IC/Tema3">T3 - Hardware</a>
+                        <a href="https://anxolo.github.io/apuntes/1GRIA/IC/Tema4">T4 - Procesos</a>
+                        <a href="https://anxolo.github.io/apuntes/1GRIA/IC/Tema6">T6 - Manejo de procesos</a>
+                        <a href="https://wuolah.com/apuntes/introduccion-a-los-ordenadores/apuntes-ic-t-8-pdf-11656351?utm_source=wuolah&utm_medium=referral&utm_campaign=file-sharefile&referral=Anxolo_0">T8 - Virtualización</a>
+                    </div>
+
+                    <div class="subject md">
+                        <h3>Matemática discreta</h3>
+                        <a href="https://wuolah.com/apuntes/matematica-discreta/apuntes-razoamento-matematico-induccion-t-1-pdf-11508175?utm_source=wuolah&utm_medium=referral&utm_campaign=file-sharefile&referral=Anxolo_0">T1 - Razoamento matemático e inducción</a>
+                        <a href="https://wuolah.com/apuntes/matematica-discreta/apuntes-introducion-teoria-conxuntos-t-2-pdf-11508419?utm_source=wuolah&utm_medium=referral&utm_campaign=file-sharefile&referral=Anxolo_0">T2 - Introducción a teoría de conxuntos</a>
+                        <a href="https://wuolah.com/apuntes/matematica-discreta/apuntes-conxuntos-relevantes-md-t-3-pdf-11508445?utm_source=wuolah&utm_medium=referral&utm_campaign=file-sharefile&referral=Anxolo_0">T3 - Conxuntos relevantes na matemática discreta</a>
+                        <a href="https://wuolah.com/apuntes/matematica-discreta/apuntes-algoritmos-numeros-t-4-pdf-11508444?utm_source=wuolah&utm_medium=referral&utm_campaign=file-sharefile&referral=Anxolo_0">T4 - Algoritmos e Números</a>
+                        <a href="https://wuolah.com/apuntes/matematica-discreta/apuntes-principios-basicos-combinatoria-t-5-pdf-11508446?utm_source=wuolah&utm_medium=referral&utm_campaign=file-sharefile&referral=Anxolo_0">T5 - Principios básicos en combinatoria</a>
+                    </div>
+
+                    <div class="subject prog1">
+                        <h3>Programación I</h3>
+                        <div class="empty-subject">Sin contenido disponible</div>
+                    </div>
+
+                    <div class="subject logica">
+                        <h3>Lógica</h3>
+                        <div class="empty-subject">Sin contenido disponible</div>
+                    </div>
+
+                    <div class="subject aps">
+                        <h3>Aplicación y procesamiento de la señal</h3>
+                        <a href="https://anxolo.github.io/apuntes/1GRIA/APS/Tema1">Introducción a la aplicación y procesamiento de señales</a>
+                        <a href="https://anxolo.github.io/apuntes/1GRIA/APS/Tema2">Acondicionamiento de la señal y conversión analógico-digital</a>
+                        <a href="https://anxolo.github.io/apuntes/1GRIA/APS/Tema3">Muestreo y cuantización</a>
+                    </div>
+
+                    <div class="subject prog2">
+                        <h3>Programación II</h3>
+                        <a href="https://anxolo.github.io/apuntes/1GRIA/PROII/Tema3">Eficiencia de algoritmos - Conocimientos básicos</a>
+                    </div>
+
+                    <div class="subject estadistica">
+                        <h3>Estadística</h3>
+                        <div class="empty-subject">Sin contenido disponible</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="course-year">
+                <div class="year-header">2º curso - GRIA</div>
+                <div class="subjects-grid">
+                    <div class="coming-soon">
+                        <div>
+                            <h3>📚 Próximamente</h3>
+                            <p>Los apuntes de 2º curso estarán disponibles próximamente 👀🔜</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>Anxo López Rodríguez</h3>
+                    <p>Estudiante de GRIA en ESEI - Universidade de Vigo</p>
+                    <p>&copy; Anxo López Rodríguez. Todos los derechos reservados.</p>
+                </div>
+                <div class="contact-info">
+                    <h3>Contacto</h3>
+                    <a href="mailto:lopezrodriguezanxo@gmail.com" class="contact-item">lopezrodriguezanxo@gmail.com</a>
+                    <a href="https://github.com/anxolo" class="contact-item">GitHub</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                Desarrollado con ❤️ y mucho café.
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
