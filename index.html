@@ -1,42 +1,80 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="es" data-theme="dark">
 <head>
-<style>
-    p { color: black; font-family: Calibri; }
-
-    .pc {
-        color: black; 
-        font-family: Calibri; 
-        border: 2px solid grey; 
-        border-radius: 10px; 
-        padding: 10px; 
-        margin: 8px auto;
-        width: fit-content;
-        display: block; 
-        text-align: center;
-        text-decoration: none;
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Página en obras | Tu Nombre</title>
+  <meta name="description" content="Sitio personal en construcción. Vuelve pronto." />
+  <meta name="color-scheme" content="dark light" />
+  <style>
+    :root {
+      --bg-1: #0ea5e9;
+      --bg-2: #9333ea;
+      --bg-3: #22c55e;
+      --card: rgba(255, 255, 255, 0.08);
+      --border: rgba(255, 255, 255, 0.12);
+      --shadow: 0 10px 30px rgba(0, 0, 0, .35);
+      --radius: 18px;
     }
 
-    h1 {
-        color: darkslategray;
-        font-family: Calibri;
-        text-align: center;
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui;
+      color: #fff;
+      line-height: 1.6;
+      background: radial-gradient(1200px 800px at 10% 10%, var(--bg-1), transparent 60%),
+                  radial-gradient(1200px 800px at 90% 30%, var(--bg-2), transparent 60%),
+                  radial-gradient(1200px 800px at 50% 90%, var(--bg-3), transparent 60%),
+                  #0b1020;
+      background-size: 200% 200%;
+      animation: floatGradient 30s ease-in-out infinite alternate;
+      display: grid;
+      place-items: center;
     }
 
-    h3 {
-        color: dimgrey;
-        font-family: Calibri;
-        text-align: center;
+    @keyframes floatGradient {
+      from { background-position: 0% 0%, 100% 50%, 0% 100%; }
+      to   { background-position: 100% 50%, 0% 0%, 100% 100%; }
     }
-</style>
-<title>La mochila de Anxolo</title>
+
+    .card {
+      width: min(500px, 92vw);
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem;
+      box-shadow: var(--shadow);
+      backdrop-filter: saturate(1.2) blur(10px);
+      -webkit-backdrop-filter: saturate(1.2) blur(10px);
+      text-align: center;
+    }
+
+    h1 { font-size: clamp(2rem, 4vw, 3rem); margin: 0 0 1rem; }
+    p { margin: 0 0 1.5rem; }
+
+    .actions { display: flex; justify-content: center; gap: 1rem; }
+    .btn {
+      appearance: none; border: 1px solid var(--border); cursor: pointer;
+      padding: .75rem 1.2rem; border-radius: 14px; font-weight: 600;
+      background: rgba(255,255,255,.12); color: #fff; text-decoration: none;
+      transition: transform .06s ease, filter .2s ease;
+    }
+    .btn:hover { transform: translateY(-1px); filter: brightness(1.05); }
+    .btn.primary { background: linear-gradient(135deg, #22d3ee, #a78bfa); border-color: transparent; }
+  </style>
 </head>
 <body>
-    <h1>La mochila de Anxolo 🎒</h1>
-    <h3>Este es un sitio que voy haciendo en mis tiempos libres, aquí podrás encontrar alguna que otra frikada ;)</h3>
-    <p></p>
-    <a href="https://anxolo.github.io/apuntes" class="pc"> Acceso a apuntes 👀 </a>
-        <a href="https://anxolo.github.io/contactme-rrss" class="pc"> Sobre mi / Contacto 💁‍♂️ </a>
+  <section class="card">
+    <span style="display:block; margin-bottom:.5rem;">Anxo López Rodríguez</span>
+    <h1>🚧 Página en Obras</em>.</h1>
+    <p> ¡Hola! Esta página personal está en obras; muy pronto podrás ver el contenido completo.</p>
 
+    <div class="actions">
+      <a class="btn primary" href="/contactme">Contactar</a>
+      <a class="btn" href="/apuntes">Apuntes</a>
+    </div>
+  </section>
 </body>
 </html>
