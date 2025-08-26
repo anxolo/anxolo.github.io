@@ -1,115 +1,21 @@
 <!DOCTYPE html>
-<html lang="es" data-theme="dark">
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
   <title>Anxo López Rodríguez</title>
-  <meta name="description" content="Anxo López Rodríguez" />
-  <meta name="color-scheme" content="dark light" />
-  <style>
-    :root {
-      --bg-1: #0ea5e9;
-      --bg-2: #9333ea;
-      --bg-3: #22c55e;
-      --card: rgba(255, 255, 255, 0.08);
-      --border: rgba(255, 255, 255, 0.12);
-      --shadow: 0 10px 30px rgba(0, 0, 0, .35);
-      --radius: 18px;
-    }
+  <script>
+    window.onload = function() {
+      const lang = navigator.language || navigator.userLanguage;
+      const langCode = lang.substring(0, 2).toLowerCase();
 
-    * { box-sizing: border-box; }
-    html, body { height: 100%; }
-    body {
-      margin: 0;
-      font-family: Inter, ui-sans-serif, system-ui;
-      color: #fff;
-      line-height: 1.6;
-      background: radial-gradient(1200px 800px at 10% 10%, var(--bg-1), transparent 60%),
-                  radial-gradient(1200px 800px at 90% 30%, var(--bg-2), transparent 60%),
-                  radial-gradient(1200px 800px at 50% 90%, var(--bg-3), transparent 60%),
-                  #0b1020;
-      background-size: 200% 200%;
-      animation: floatGradient 30s ease-in-out infinite alternate;
-      display: grid;
-      place-items: center;
-    }
-
-    @keyframes floatGradient {
-      from { background-position: 0% 0%, 100% 50%, 0% 100%; }
-      to   { background-position: 100% 50%, 0% 0%, 100% 100%; }
-    }
-
-    .card {
-      width: min(500px, 92vw);
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 2rem;
-      box-shadow: var(--shadow);
-      backdrop-filter: saturate(1.2) blur(10px);
-      -webkit-backdrop-filter: saturate(1.2) blur(10px);
-      text-align: center;
-    }
-    
-    .profile-img {
-        width: 150px; 
-        height: 150px; 
-        border-radius: 50%; 
-        object-fit: cover; 
-        border: 2px solid #ccc;
-        margin-bottom: 1rem;
-    }
-
-    h1 { 
-        font-size: clamp(2rem, 4vw, 3rem); 
-        margin: 0 0 0.5rem; 
-    }
-    
-    h3 {
-        color: dimgrey;
-        font-family: Calibri;
-        text-align: center;
-        margin: 0 0 1rem;
-    }
-    
-    p { margin: 0 0 1.5rem; }
-
-    .actions { 
-        display: flex; 
-        flex-direction: column;
-        justify-content: center; 
-        gap: 1rem; 
-    }
-    .btn {
-      appearance: none; border: 1px solid var(--border); cursor: pointer;
-      padding: .75rem 1.2rem; border-radius: 14px; font-weight: 600;
-      background: rgba(255,255,255,.12); color: #fff; text-decoration: none;
-      transition: transform .06s ease, filter .2s ease;
-    }
-    .btn:hover { transform: translateY(-1px); filter: brightness(1.05); }
-    .btn.primary { background: linear-gradient(135deg, #22d3ee, #a78bfa); border-color: transparent; }
-  </style>
+      if (langCode === 'es') {
+        window.location.href = "https://anxolo.github.io/es/contactme-rrss";
+      } else if (langCode === 'gl') {
+        window.location.href = "https://anxolo.github.io/gl/contactme-rrss";
+      } else {
+        window.location.href = "https://anxolo.github.io/en/contactme-rrss";
+      }
+    };
+  </script>
 </head>
-<body>
-  <section class="card">
-    <img
-        src="https://avatars.githubusercontent.com/u/50779387?v=4"
-        alt="Foto de perfil"
-        class="profile-img"
-    >
-    <h1>Anxo López Rodríguez</h1>
-    <h3>Estudiante de IA | ESEI - UVigo</h3>
-    <p>Soy un estudiante (Algo friki, para que mentir) que de vez en cuando participa en temas bastante interesantes (Los puedes ver en mis redes).
-        <br> Si quieres hablar conmigo (Ya sea porque tienes una sugerencia, pregunta o demasiado tiempo libre) también tienes aquí mi información de contacto :)</p>
-
-    <div class="actions">
-      <a class="btn" href="https://www.x.com/anxolo_/"> X - Twitter 🐦 </a>
-      <a class="btn" href="https://bsky.app/profile/anxolo.bsky.social"> Bluesky 🦋 </a>
-      <a class="btn" href="https://es.linkedin.com/in/anxo-lopez-rodriguez"> LinkedIn 💼 </a>
-      <a class="btn" href="https://github.com/anxolo"> GitHub 💻 </a>
-      <a class="btn" href="https://instagram.com/anxolo_"> Instagram 📷 </a>
-      <a class="btn primary" href="mailto:lopezrodriguezanxo@gmail.com"> Email 📩 </a>
-    </div>
-  </section>
-</body>
 </html>
