@@ -417,14 +417,16 @@
 
         // Toggle mobile menu
         mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('open');
-            hamburgerIcon.classList.toggle('hidden');
-            closeIcon.classList.toggle('hidden');
+            mobileMenu.classList.remove('hidden'); // Show the menu
+            mobileMenu.classList.add('open'); // Apply transition
+            hamburgerIcon.classList.add('hidden');
+            closeIcon.classList.remove('hidden');
         });
 
         // Close mobile menu
         mobileMenuCloseButton.addEventListener('click', () => {
-            mobileMenu.classList.remove('open');
+            mobileMenu.classList.add('hidden'); // Hide the menu
+            mobileMenu.classList.remove('open'); // Remove transition
             hamburgerIcon.classList.remove('hidden');
             closeIcon.classList.add('hidden');
         });
