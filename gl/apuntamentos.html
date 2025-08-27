@@ -46,7 +46,7 @@
             </div>
 
             <div class="flex items-center space-x-4">
-                <div class="relative">
+                <div class="relative hidden md:block">
                     <button id="lang-button" class="flex items-center space-x-2 px-4 py-2 text-sm sm:text-base font-medium text-gray-700 bg-gray-100 rounded-full hover:bg-gray-200 transition-colors duration-200">
                         <svg class="w-5 h-5 text-gray-500" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
                             <path d="M10 20a10 10 0 110-20 10 10 0 010 20zm0-18a8 8 0 100 16 8 8 0 000-16zM6 9a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm0 4a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1z" clip-rule="evenodd" fill-rule="evenodd"></path>
@@ -256,21 +256,23 @@
             mobileMenu.classList.toggle('-translate-x-full');
         }
 
-        // Event listeners for desktop and mobile language selectors
-        langButton.addEventListener('click', () => toggleMenu(langMenu, langButton));
+        // Event listeners para los selectores de idioma de escritorio y móvil
+        if (langButton) {
+            langButton.addEventListener('click', () => toggleMenu(langMenu, langButton));
+        }
 
-        // Event listeners for the mobile full-screen menu
+        // Event listeners para el menú móvil de pantalla completa
         mobileMenuButton.addEventListener('click', toggleMobileMenu);
         closeMenuButton.addEventListener('click', toggleMobileMenu);
 
-        // Close the menus if the user clicks outside
+        // Cerrar los menús si el usuario hace clic fuera
         document.addEventListener('click', (event) => {
-            if (!langButton.contains(event.target) && !langMenu.contains(event.target)) {
+            if (langButton && !langButton.contains(event.target) && langMenu && !langMenu.contains(event.target)) {
                 langMenu.classList.add('hidden', 'opacity-0', 'scale-95');
                 const arrowSvg = langButton.querySelector('svg:last-of-type');
                 if (arrowSvg) arrowSvg.classList.remove('rotate-180');
             }
-            if (mobileLangButton && !mobileLangButton.contains(event.target) && !mobileLangMenu.contains(event.target)) {
+            if (mobileLangButton && !mobileLangButton.contains(event.target) && mobileLangMenu && !mobileLangMenu.contains(event.target)) {
                 mobileLangMenu.classList.add('hidden', 'opacity-0', 'scale-95');
                 const arrowSvg = mobileLangButton.querySelector('svg:last-of-type');
                 if (arrowSvg) arrowSvg.classList.remove('rotate-180');
