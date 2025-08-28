@@ -102,6 +102,28 @@
             border-radius: 0.5rem;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
+        /* Quitar marco/sombra a imágenes con esta clase */
+        .no-frame {
+            box-shadow: none !important;
+            border-radius: 0 !important;
+        }
+
+        /* Igualar alturas y adaptar imagen al texto en "Caso de uso" */
+        .case-row {
+            align-items: stretch; /* ambas columnas con la misma altura */
+        }
+        .metrics-row { align-items: stretch; }        /* columnas misma altura */
+        .metrics-illustration img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;                         /* sin recortes, sin hueco */
+        }
+
+        .case-illustration img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* sin recorte */
+        }
         /* Animación para a frecha de desprazamento */
         @keyframes bounce {
             0%, 20%, 50%, 80%, 100% {
@@ -327,23 +349,22 @@
 
                 <div class="container mx-auto px-4 space-y-16 mt-16" id="case-study">
 
-                        <section class="section-card">
-                <h2 class="text-3xl font-bold text-gray-800 mb-6">Caso de uso</h2>
-                <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-8">
-                    <div class="md:w-1/2">
-                        <img src="/pictures/glpi/viñeta1.png" alt="Información adicional" class="rounded-lg shadow-md mb-4 w-full h-auto">
-                        <ul class="list-disc list-inside text-gray-700 leading-relaxed">
-                                
-                                
-                        </ul>
-                    </div>
-                    <div class="md:w-1/2">
-                        <p class="text-gray-700 leading-relaxed">
-                            A xestión de incidencias, especialmente en departamentos de TI, require de tarefas que moitas veces son repetitivas como revisar wikis, documentación ou a execución de comandos como Ping a determinados servidores. GLPI AssistIA busca reducir toda esta carga cun informe previo da incidencia a tratar. Unha vez se rexistra unha incidencia no sistema, esta envíase a un servidor (GLPI AssistIA Server) que xera un informe con posíbeis solucións. Este informe estará visíbel para o axente que trate esta incidencia como unha nota privada no momento en que tome o caso, reducindo os tempos de resposta.
-                        </p>
-                    </div>
+            <section class="section-card">
+            <div class="flex flex-col md:flex-row md:space-x-8 space-y-4 md:space-y-0 case-row">
+                <div class="md:w-1/2 case-illustration">
+                <img src="/pictures/glpi/viñeta1.png" alt="Información adicional" class="no-frame w-full h-full">
                 </div>
+
+                <!-- Título y texto en la misma columna; el título queda centrado verticalmente con el texto -->
+                <div class="md:w-1/2 flex flex-col justify-center">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4 text-center md:text-left">Caso de uso</h2>
+                <p class="text-gray-700 leading-relaxed">
+                    A xestión de incidencias, especialmente en departamentos de TI, require de tarefas que moitas veces son repetitivas como revisar wikis, documentación ou a execución de comandos como Ping a determinados servidores. GLPI AssistIA busca reducir toda esta carga cun informe previo da incidencia a tratar. Unha vez se rexistra unha incidencia no sistema, esta envíase a un servidor (GLPI AssistIA Server) que xera un informe con posíbeis solucións. Este informe estará visíbel para o axente que trate esta incidencia como unha nota privada no momento en que tome o caso, reducindo os tempos de resposta.
+                </p>
+                </div>
+            </div>
             </section>
+
             
                         <section class="section-card">
                 <h2 class="text-3xl font-bold text-gray-800 mb-6">Evolución dos Axentes</h2>
@@ -387,7 +408,7 @@
                         <a href="https://github.com/ANFAIA/GLPI-AssistIA/blob/c5f26c8509f0ad0dc42c8a950288e8e3de0bfea6/docs/analisis_LLM_para_CrewAi.md" class="text-blue-600 hover:underline">Ver documento de análise completo</a>
                     </div>
                     <div class="md:w-1/2 flex flex-col items-center justify-center">
-                        <img src="/pictures/glpi/viñeta2.png" alt="Información LLM" class="rounded-lg shadow-md mb-4 w-full h-auto">
+                        <img src="/pictures/glpi/viñeta2.png" alt="Información LLM" class="no-frame w-full h-auto">
                         <ul class="list-disc list-inside text-gray-700 leading-relaxed">
                                 
                                 
@@ -403,7 +424,7 @@
                 </p>
                 <h3 class="text-2xl font-semibold text-gray-800 mt-8 mb-4">Fluxo de Traballo do Tícket</h3>
                 <div class="flex justify-center mb-8">
-                    <img src="https://raw.githubusercontent.com/ANFAIA/GLPI-AssistIA/c81ce359886bd2f5c9111d7a7446144947432ea3/docs/BigPicture%20V3.svg" alt="Diagrama de Arquitectura V3" class="w-full h-auto rounded-xl">
+                    <img src="https://raw.githubusercontent.com/ANFAIA/GLPI-AssistIA/b0f1cb55bdc569c4f83b0b36e34c96536fe1d644/docs/BigPicture_VersionActual.svg" alt="Diagrama de Arquitectura V3" class="w-full h-auto rounded-xl">
                 </div>
                 <ul class="list-decimal list-inside text-gray-700 leading-relaxed space-y-2">
                     <li>Entrada en GLPI: Un usuario ou técnico crea un tícket de incidencia.</li>
@@ -464,29 +485,27 @@
                 </div>
             </section>
 
-                        <section class="section-card">
-                <h2 class="text-3xl font-bold text-gray-800 mb-6">Métricas de Éxito</h2>
-                <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-8">
-                    <div class="md:w-1/2 flex flex-col items-center">
-                        <img src="/pictures/glpi/viñeta3.png" alt="Foto de Métricas de Éxito" class="rounded-lg shadow-md mb-4 w-full h-auto">
-                        <ul class="list-disc list-inside text-gray-700 leading-relaxed">
-                                
-                                
-                        </ul>
-                    </div>
-                    <div class="md:w-1/2">
-                        <p>O éxito do proxecto medirase pola consecución dos seguintes obxectivos:</p>
+            <section class="section-card">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">Métricas de Éxito</h2>
 
-                        <ul class="list-disc list-inside text-gray-700 leading-relaxed space-y-2">
-                            <li>Redución de máis do <strong>70%</strong> no tempo de primeira resposta.</li>
-                            <li>Precisión superior ao <strong>85%</strong> nas respostas automáticas xeradas.</li>
-                            <li>Redución de máis do <strong>50%</strong> nos tíckets que necesitan ser escalados manualmente.</li>
-                            <li>Redución de máis do <strong>40%</strong> no tempo medio de resolución de incidencias.</li>
-                            <li>Nivel de satisfacción do usuario superior a <strong>4.0/5.0</strong>.</li>
-                        </ul>
-                    </div>
+            <div class="flex flex-col md:flex-row md:space-x-8 space-y-4 md:space-y-0 metrics-row">
+                <div class="md:w-1/2 metrics-illustration">
+                <img src="/pictures/glpi/viñeta3.png" alt="Foto de Métricas de Éxito" class="no-frame w-full h-full">
                 </div>
+
+                <div class="md:w-1/2">
+                <p>O éxito do proxecto medirase pola consecución dos seguintes obxectivos:</p>
+                <ul class="list-disc list-inside text-gray-700 leading-relaxed space-y-2">
+                    <li>Redución de máis do <strong>70%</strong> no tempo de primeira resposta.</li>
+                    <li>Precisión superior ao <strong>85%</strong> nas respostas automáticas xeradas.</li>
+                    <li>Redución de máis do <strong>50%</strong> nos tíckets que necesitan ser escalados manualmente.</li>
+                    <li>Redución de máis do <strong>40%</strong> no tempo medio de resolución de incidencias.</li>
+                    <li>Nivel de satisfacción do usuario superior a <strong>4.0/5.0</strong>.</li>
+                </ul>
+                </div>
+            </div>
             </section>
+
 
                         <section class="section-card">
                 <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">Colaboración</h2>
@@ -497,9 +516,11 @@
                     <div class="w-28 h-auto">
                         <a href="https://anfaia.org"><img src="/pictures/glpi/anfaia.png" alt="Logo de ANFAIA" class="w-full h-auto"></a>
                     </div>
-                    <div class="w-28 h-auto">
-                        <a href="https://aitire.cloud"><img src="/pictures/glpi/aitire.png" alt="Logo de Aitire" class="w-full h-auto"></a>
-                    </div>
+
+
+
+
+                    
                 </div>
             </section>
 

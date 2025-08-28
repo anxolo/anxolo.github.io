@@ -5,21 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GLPI AssistIA</title>
         <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        /* Import the Inter font for a clean design */
+        <style>
+        /* Importa a fonte Inter para un deseño limpo */
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
         
-        /* Base styles for body and layout */
+        /* Estilos base para o corpo e o deseño */
         html, body {
             height: 100%;
             margin: 0;
             padding: 0;
             overflow-x: hidden;
-            scroll-behavior: smooth; /* Smooth scrolling for the "down" arrow */
+            scroll-behavior: smooth; /* Desprazamento suave para a frecha de "baixar" */
         }
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f7fafc; /* Base background color for the rest of the page */
+            background-color: #f7fafc; /* Cor de fondo base para o resto da páxina */
             color: #333;
         }
         .section-card {
@@ -102,7 +102,29 @@
             border-radius: 0.5rem;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-        /* Animation for the scroll arrow */
+        /* Quitar marco/sombra a imágenes con esta clase */
+        .no-frame {
+            box-shadow: none !important;
+            border-radius: 0 !important;
+        }
+
+        /* Igualar alturas y adaptar imagen al texto en "Caso de uso" */
+        .case-row {
+            align-items: stretch; /* ambas columnas con la misma altura */
+        }
+        .metrics-row { align-items: stretch; }        /* columnas misma altura */
+        .metrics-illustration img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;                         /* sin recortes, sin hueco */
+        }
+
+        .case-illustration img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* sin recorte */
+        }
+        /* Animación para a frecha de desprazamento */
         @keyframes bounce {
             0%, 20%, 50%, 80%, 100% {
                 transform: translateY(0);
@@ -118,7 +140,7 @@
             animation: bounce 2s infinite;
         }
 
-        /* Timeline styles */
+        /* Estilos da liña de tempo */
         .timeline-container {
             display: flex;
             flex-direction: column;
@@ -180,7 +202,7 @@
             z-index: 10;
         }
 
-        /* Timeline styles for mobile */
+        /* Estilos para a liña de tempo en móbiles */
         @media (max-width: 768px) {
             .timeline-container::before {
                 left: 2rem;
@@ -327,25 +349,30 @@
 
                 <div class="container mx-auto px-4 space-y-16 mt-16" id="case-study">
 
-                        <section class="section-card">
-                <h2 class="text-3xl font-bold text-gray-800 mb-6">Use Case</h2>
-                <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-8">
-                    <div class="md:w-1/2">
-                        <img src="/pictures/glpi/viñeta1.png" alt="Additional information" class="rounded-lg shadow-md mb-4 w-full h-auto">
-                        <ul class="list-disc list-inside text-gray-700 leading-relaxed">
-                                
-                                
-                        </ul>
-                    </div>
-                    <div class="md:w-1/2">
-                        <p class="text-gray-700 leading-relaxed">
-                            Incident management, especially in IT departments, often requires repetitive tasks like reviewing wikis, documentation, or executing commands such as Ping to specific servers. GLPI AssistIA aims to reduce this workload by providing a preliminary report on the incident to be handled. Once an incident is registered in the system, it's sent to a server (GLPI AssistIA Server) that generates a report with possible solutions. This report will be visible to the agent handling the incident as a private note the moment they take the case, thereby reducing response times.
-                        </p>
-                    </div>
-                </div>
+
+
+
             </section>
+
+            <section class="section-card">
+            <div class="flex flex-col md:flex-row md:space-x-8 space-y-4 md:space-y-0 case-row">
+                <div class="md:w-1/2 case-illustration">
+                <img src="/pictures/glpi/viñeta1.png" alt="Información adicional" class="no-frame w-full h-full">
+                </div>
+
+                <div class="md:w-1/2 flex flex-col justify-center">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4 text-center md:text-left">Use Case</h2>
+                <p class="text-gray-700 leading-relaxed">
+                    Incident management, especially in IT departments, often requires repetitive tasks like reviewing wikis, documentation, or executing commands such as Ping to specific servers. GLPI AssistIA aims to reduce this workload by providing a preliminary report on the incident to be handled. Once an incident is registered in the system, it's sent to a server (GLPI AssistIA Server) that generates a report with possible solutions. This report will be visible to the agent handling the incident as a private note the moment they take the case, thereby reducing response times.
+                </p>
+                </div>
+            </div>
+            </section>
+
+
             
-                        <section class="section-card">
+            
+            <section class="section-card">
                 <h2 class="text-3xl font-bold text-gray-800 mb-6">Evolution of the Agents</h2>
                 <div class="timeline-container">
                     
@@ -373,6 +400,8 @@
                 </div>
             </section>
 
+
+
                         <section class="section-card">
                 <h2 class="text-3xl font-bold text-gray-800 mb-6">LLM Model Analysis</h2>
                 <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-8">
@@ -384,10 +413,10 @@
                             The orchestration of the agents was carried out using the CrewAI library, which facilitates collaboration between different specialized agents. Both open-source and proprietary models were considered, with special attention paid to their flexibility for integration into the server. This analysis was crucial for optimizing the system's performance and efficiency in the GLPI environment.
                         </p>
                         <p class="text-gray-700 mt-4">For more details on this analysis, you can consult the full document in the project's repository.</p>
-                        <a href="https://github.com/ANFAIA/GLPI-AssistIA/blob/c5f26c8509f0ad0dc42c8a950288e8e3de0bfea6/docs/analisis_LLM_para_CrewAi.md" class="text-blue-600 hover:underline">View the full analysis document</a>
+                        <a href="https://github.com/ANFAIA/GLPI-AssistIA/blob/c5f26c8509f0ad0dc42c8a950288e8e3de0bfea6/docs/analisis_LLM_para_CrewAi.md" class="text-blue-600 hover:underline">See the full analysis document</a>
                     </div>
                     <div class="md:w-1/2 flex flex-col items-center justify-center">
-                        <img src="/pictures/glpi/viñeta2.png" alt="LLM Information" class="rounded-lg shadow-md mb-4 w-full h-auto">
+                        <img src="/pictures/glpi/viñeta2.png" alt="Información LLM" class="no-frame w-full h-auto">
                         <ul class="list-disc list-inside text-gray-700 leading-relaxed">
                                 
                                 
@@ -403,7 +432,7 @@
                 </p>
                 <h3 class="text-2xl font-semibold text-gray-800 mt-8 mb-4">Ticket Workflow</h3>
                 <div class="flex justify-center mb-8">
-                    <img src="https://raw.githubusercontent.com/ANFAIA/GLPI-AssistIA/c81ce359886bd2f5c9111d7a7446144947432ea3/docs/BigPicture%20V3.svg" alt="Architecture Diagram V3" class="w-full h-auto rounded-xl">
+                    <img src="https://raw.githubusercontent.com/ANFAIA/GLPI-AssistIA/b0f1cb55bdc569c4f83b0b36e34c96536fe1d644/docs/BigPicture_VersionActual.svg" alt="Architecture Diagram V3" class="w-full h-auto rounded-xl">
                 </div>
                 <ul class="list-decimal list-inside text-gray-700 leading-relaxed space-y-2">
                     <li>GLPI Entry: A user or technician creates an incident ticket.</li>
@@ -464,17 +493,15 @@
                 </div>
             </section>
 
-                        <section class="section-card">
+            <section class="section-card">
                 <h2 class="text-3xl font-bold text-gray-800 mb-6">Success Metrics</h2>
-                <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-8">
-                    <div class="md:w-1/2 flex flex-col items-center">
-                        <img src="/pictures/glpi/viñeta3.png" alt="Success Metrics Photo" class="rounded-lg shadow-md mb-4 w-full h-auto">
-                        <ul class="list-disc list-inside text-gray-700 leading-relaxed">
-                                
-                                
-                        </ul>
-                    </div>
-                    <div class="md:w-1/2">
+
+            <div class="flex flex-col md:flex-row md:space-x-8 space-y-4 md:space-y-0 metrics-row">
+                <div class="md:w-1/2 metrics-illustration">
+                <img src="/pictures/glpi/viñeta3.png" alt="Foto de Métricas de Éxito" class="no-frame w-full h-full">
+                </div>
+
+                <div class="md:w-1/2">
                         <p>The project’s success will be measured by achieving the following objectives:</p>
                         <ul class="list-disc list-inside text-gray-700 leading-relaxed space-y-2">
                             <li>Reduction of over <strong>70%</strong> in first response time.</li>
@@ -484,7 +511,7 @@
                             <li>User satisfaction level above <strong>4.0/5.0</strong>.</li>
                         </ul>
                     </div>
-                </div>
+            </div>
             </section>
 
                         <section class="section-card">
@@ -496,9 +523,7 @@
                     <div class="w-28 h-auto">
                         <a href="https://anfaia.org"><img src="/pictures/glpi/anfaia.png" alt="ANFAIA Logo" class="w-full h-auto"></a>
                     </div>
-                    <div class="w-28 h-auto">
-                        <a href="https://aitire.cloud"><img src="/pictures/glpi/aitire.png" alt="Aitire Logo" class="w-full h-auto"></a>
-                    </div>
+
                 </div>
             </section>
 
