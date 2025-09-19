@@ -1,17 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset 
-  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
   <url>
-    <loc>https://anxolo.github.io/</loc>
-    <priority>1.0</priority>
-    <changefreq>weekly</changefreq>
+    <loc>/index.html</loc>
+  </url>
+  <url>
+    <loc>/GLPI-AssistIA.html</loc>
+  </url>
+  <url>
+    <loc>/apuntes.html</loc>
+  </url>
+  <url>
+    <loc>/contactme.html</loc>
+  </url>
+  <url>
+    <loc>/en.html</loc>
+  </url>
+  <url>
+    <loc>/es.html</loc>
+  </url>
+  <url>
+    <loc>/gl.html</loc>
   </url>
 
+  <!-- EN -->
   <url>
-    <loc>https://anxolo.github.io/contactme</loc>
-    <priority>0.8</priority>
-    <changefreq>monthly</changefreq>
+    <loc>/en/aboutme.html</loc>
+  </url>
+  <url>
+    <loc>/en/contactme.html</loc>
+  </url>
+  <url>
+    <loc>/en/notes.html</loc>
+  </url>
+  <url>
+    <loc>/en/projects.html</loc>
+  </url>
+  <url>
+    <loc>/en/projects/GLPI-AssistIA.html</loc>
+  </url>
+
+  <!-- ES -->
+  <url>
+    <loc>/es/apuntes.html</loc>
+  </url>
+  <url>
+    <loc>/es/contactme.html</loc>
+  </url>
+  <url>
+    <loc>/es/proyectos.html</loc>
+  </url>
+  <url>
+    <loc>/es/sobre-mi.html</loc>
   </url>
 
 </urlset>
