@@ -22,7 +22,7 @@ El filtrado consiste en limitar las frecuencias de una señal a un umbral establ
 * **Paso banda:** Permiten que pase un rango determinado de frecuencias.
 * **Rechazo de banda:** Contrario al anterior, no permite que pase un rango determinado de frecuencias.
 
-![Tipos Filtrados](https://raw.githubusercontent.com/anxolo/anxolo.github.io/refs/heads/main/apuntes/1GRIA/APS/FILTRADOS%20-%20T2%20APS.png)
+![Tipos Filtrados](https://raw.githubusercontent.com/anxolo/anxolo.github.io/refs/heads/main/assets/apuntes/1GRIA/APS/FILTRADOS%20-%20T2%20APS.png)
 
 **Aplicaciones del filtrado:**
 
@@ -82,7 +82,7 @@ La conversión A/D permite que la IA interprete y analice señales del mundo rea
 
 Un ECG mide la actividad eléctrica del corazón. El acondicionamiento de la señal es vital para filtrar el ruido y mejorar su calidad. Debido a que son señales débiles, se amplifican y se aíslan para proteger tanto al paciente como al equipo de posibles descargas eléctricas.
 
-![Esquema](https://raw.githubusercontent.com/anxolo/anxolo.github.io/acfba18c49db4ce8658eea25699671a4257a123b/apuntes/1GRIA/APS/T2%20ESQUEMA%20ELECTRO.svg)
+![Esquema](https://raw.githubusercontent.com/anxolo/anxolo.github.io/acfba18c49db4ce8658eea25699671a4257a123b/assets/apuntes/1GRIA/APS/T2%20ESQUEMA%20ELECTRO.svg)
 
 #### Electroencefalogramas (EEG)
 
