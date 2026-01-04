@@ -1,29 +1,24 @@
 (function() {
-    // Detectar idioma basado en la URL y el atributo lang del HTML
     function detectLanguage() {
-        // Primero intentar detectar desde el atributo lang del HTML
         const htmlLang = document.documentElement.lang;
         if (htmlLang === 'gl' || htmlLang === 'es' || htmlLang === 'en') {
             return htmlLang;
         }
         
-        // Si no, detectar desde la URL
         const path = window.location.pathname;
         if (path.startsWith('/es/') || path === '/es') return 'es';
         if (path.startsWith('/gl/') || path === '/gl') return 'gl';
         if (path.startsWith('/en/') || path === '/en') return 'en';
         
-        // Como fallback, usar gallego
         return 'gl';
     }
 
-    // Configuración de textos por idioma (corregida)
     const texts = {
         es: {
             about: 'Sobre Mí',
             projects: 'Proyectos', 
             notes: 'Apuntes',
-            student: 'Estudiante de GRIA en ESEI - Universidade de Vigo',
+            student: 'Estudiante de GRIA en la ESEI - Universidade de Vigo',
             rights: 'Todos los derechos reservados. Desarrollado con ❤️'
         },
         en: {
@@ -42,7 +37,6 @@
         }
     };
 
-    // Enlaces por idioma (corregidos para gallego)
     const links = {
         es: {
             about: '/es/sobre-mi',
@@ -79,24 +73,19 @@
     function getCurrentPageInLang(targetLang) {
         const currentPath = window.location.pathname;
         
-        // Mapeo de páginas entre idiomas
         const pageMapping = {
-            // Páginas "sobre mí/about me"
             'sobre-mi': { es: '/es/sobre-mi', en: '/en/aboutme', gl: '/gl/sobre-min' },
             'aboutme': { es: '/es/sobre-mi', en: '/en/aboutme', gl: '/gl/sobre-min' },
             'sobre-min': { es: '/es/sobre-mi', en: '/en/aboutme', gl: '/gl/sobre-min' },
             
-            // Páginas de proyectos
             'proyectos': { es: '/es/proyectos', en: '/en/projects', gl: '/gl/proxectos' },
             'projects': { es: '/es/proyectos', en: '/en/projects', gl: '/gl/proxectos' },
             'proxectos': { es: '/es/proyectos', en: '/en/projects', gl: '/gl/proxectos' },
             
-            // Páginas de notas/apuntes
             'apuntes': { es: '/es/apuntes', en: '/en/notes', gl: '/gl/apuntamentos' },
             'notes': { es: '/es/apuntes', en: '/en/notes', gl: '/gl/apuntamentos' },
             'apuntamentos': { es: '/es/apuntes', en: '/en/notes', gl: '/gl/apuntamentos' },
             
-            // Proyecto GLPI AssistIA
             'GLPI-AssistIA': { 
                 es: '/es/proyectos/GLPI-AssistIA', 
                 en: '/en/projects/GLPI-AssistIA', 
@@ -104,14 +93,12 @@
             }
         };
 
-        // Detectar página actual
         for (const [key, mapping] of Object.entries(pageMapping)) {
             if (currentPath.includes(key)) {
                 return mapping[targetLang] || `/${targetLang}`;
             }
         }
 
-        // Para páginas principales (index)
         return `/${targetLang}`;
     }
 
@@ -250,7 +237,6 @@
     }
 
     function initializeMenuEvents() {
-        // Funciones del menú
         const langButton = document.getElementById('lang-button');
         const langMenu = document.getElementById('lang-menu');
         const mobileMenuButton = document.getElementById('mobile-menu-button');
@@ -302,7 +288,6 @@
         });
     }
 
-    // Función principal de inicialización
     function loadLayout() {
         const lang = detectLanguage();
         
@@ -317,13 +302,11 @@
             footerOutput.innerHTML = createFooter(lang);
         }
 
-        // Inicializar eventos después de que se cargue el HTML
         setTimeout(() => {
             initializeMenuEvents();
         }, 100);
     }
 
-    // Cargar cuando el DOM esté listo
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', loadLayout);
     } else {
