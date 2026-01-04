@@ -2,20 +2,28 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Anxo López Rodríguez</title>
+  
   <script>
-    window.onload = function() {
+    (function() {
       const lang = navigator.language || navigator.userLanguage;
       const langCode = lang.substring(0, 2).toLowerCase();
 
       if (langCode === 'es') {
-        window.location.href = "https://anxolo.github.io/es";
+        window.location.replace("./es/");
       } else if (langCode === 'gl') {
-        window.location.href = "https://anxolo.github.io/gl";
+        window.location.replace("./gl/");
       } else {
-        window.location.href = "https://anxolo.github.io/en";
+        window.location.replace("./en/");
       }
-    };
+    })();
   </script>
+
+  <noscript>
+    <meta http-equiv="refresh" content="0;url=./gl/">
+  </noscript>
 </head>
+<body style="background: #ffffff;">
+  </body>
 </html>
