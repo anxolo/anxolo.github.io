@@ -11,18 +11,46 @@
 <body>
     <nav class="main-nav">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex justify-between items-center">
-            <div class="text-lg sm:text-xl font-bold text-truncate max-w-[150px] sm:max-w-none">{{ site.title | default: "Anxo López" }}</div>
+            <a href="{{ '/' | relative_url }}" class="site-title text-lg sm:text-xl font-bold hover:text-indigo-500 transition-colors">Anxo López Rodríguez</a>
             
             <div class="hidden md:flex gap-6 lg:gap-8 items-center">
                 {% for item in site.data.navigation %}
                 <a href="{{ item.link }}" class="nav-link font-medium hover:text-indigo-500 transition-colors">{{ item.name }}</a>
                 {% endfor %}
+                
+                <!-- Language selector -->
+                <div class="relative language-selector">
+                    <button class="language-toggle flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-[var(--hover-bg)] transition-colors">
+                        <i class="fas fa-globe text-sm"></i>
+                        <span class="text-sm font-medium">GL</span>
+                        <i class="fas fa-chevron-down text-xs"></i>
+                    </button>
+                    <div class="language-dropdown absolute right-0 mt-2 py-2 w-32 bg-[var(--nav-bg)] rounded-lg shadow-lg border border-[var(--border-color)] opacity-0 invisible transition-all duration-200">
+                        <a href="/es/" class="block px-4 py-2 text-sm hover:bg-[var(--hover-bg)] transition-colors">🇪🇸 Español</a>
+                        <a href="/gl/" class="block px-4 py-2 text-sm hover:bg-[var(--hover-bg)] transition-colors">🇪🇸 Galego</a>
+                        <a href="/en/" class="block px-4 py-2 text-sm hover:bg-[var(--hover-bg)] transition-colors">🇺🇸 English</a>
+                    </div>
+                </div>
+                
                 <button id="theme-toggle" class="theme-btn">
                     <i class="fas fa-sun"></i>
                 </button>
             </div>
 
             <div class="md:hidden flex items-center gap-3">
+                <!-- Mobile language selector -->
+                <div class="relative language-selector">
+                    <button class="language-toggle flex items-center gap-1 px-2 py-1 rounded-lg hover:bg-[var(--hover-bg)] transition-colors">
+                        <i class="fas fa-globe text-sm"></i>
+                        <span class="text-xs font-medium">GL</span>
+                    </button>
+                    <div class="language-dropdown absolute right-0 mt-2 py-2 w-32 bg-[var(--nav-bg)] rounded-lg shadow-lg border border-[var(--border-color)] opacity-0 invisible transition-all duration-200">
+                        <a href="/es/" class="block px-4 py-2 text-sm hover:bg-[var(--hover-bg)] transition-colors">🇪🇸 Español</a>
+                        <a href="/gl/" class="block px-4 py-2 text-sm hover:bg-[var(--hover-bg)] transition-colors">🇪🇸 Galego</a>
+                        <a href="/en/" class="block px-4 py-2 text-sm hover:bg-[var(--hover-bg)] transition-colors">🇺🇸 English</a>
+                    </div>
+                </div>
+                
                 <button id="theme-toggle-mobile" class="theme-btn">
                     <i class="fas fa-sun"></i>
                 </button>
@@ -89,6 +117,22 @@
             link.addEventListener('click', () => {
                 mobileMenu.classList.remove('mobile-menu-open');
                 mobileBtn.querySelector('i').classList.replace('fa-times', 'fa-bars');
+            });
+        });
+
+        // Language selector functionality
+        document.querySelectorAll('.language-selector').forEach(selector => {
+            const toggle = selector.querySelector('.language-toggle');
+            const dropdown = selector.querySelector('.language-dropdown');
+            
+            toggle.addEventListener('click', (e) => {
+                e.stopPropagation();
+                dropdown.classList.toggle('language-dropdown-open');
+            });
+            
+            // Close dropdown when clicking outside
+            document.addEventListener('click', () => {
+                dropdown.classList.remove('language-dropdown-open');
             });
         });
 

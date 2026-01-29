@@ -60,6 +60,20 @@ body {
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     box-shadow: 0 1px 3px var(--shadow-light);
+    
+    .site-title {
+        text-decoration: none;
+        color: var(--text-color);
+        white-space: nowrap;
+        
+        @media (max-width: 640px) {
+            font-size: 1rem !important;
+        }
+        
+        @media (max-width: 480px) {
+            font-size: 0.9rem !important;
+        }
+    }
 }
 
 .nav-link {
@@ -95,6 +109,47 @@ body {
     
     i {
         font-size: 1rem;
+    }
+}
+
+.language-selector {
+    position: relative;
+}
+
+.language-toggle {
+    background: none;
+    border: none;
+    color: var(--text-color);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 0.5rem;
+    
+    &:hover {
+        background-color: var(--hover-bg);
+        color: var(--accent-color);
+    }
+}
+
+.language-dropdown {
+    background: var(--nav-bg);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 10px 25px var(--shadow-dark);
+    z-index: 50;
+    
+    &.language-dropdown-open {
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+    
+    a {
+        color: var(--text-color);
+        transition: all 0.2s ease;
+        text-decoration: none;
+        
+        &:hover {
+            background-color: var(--hover-bg);
+            color: var(--accent-color);
+        }
     }
 }
 
@@ -394,7 +449,28 @@ body {
         gap: 1rem;
         margin: 0;
         
-        a {
+        .social-icon {
+            color: var(--subtitle-color);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1.25rem;
+            width: 2.5rem;
+            height: 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0.5rem;
+            border: 2px solid transparent;
+            
+            &:hover {
+                color: var(--accent-color);
+                background: var(--hover-bg);
+                border-color: var(--accent-color);
+                transform: translateY(-2px);
+            }
+        }
+        
+        a:not(.social-icon) {
             color: var(--subtitle-color);
             text-decoration: none;
             transition: color 0.3s ease;
@@ -417,7 +493,7 @@ body {
     
     @media (max-width: 640px) {
         border-right-width: 2px;
-        animation: typing 4s steps(30, end), blink-caret 0.75s step-end infinite;
+        animation: typing 2s steps(20, end), blink-caret 0.75s step-end infinite;
     }
 }
 
