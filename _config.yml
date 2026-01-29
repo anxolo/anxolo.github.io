@@ -6,6 +6,8 @@ description: Anxo López Rodríguez
 defaults:
   - scope:
       path: "assets/apuntes"
+      type: "pages"
     values:
       layout: "apuntes"
       author: "Anxo López Rodríguez"
+      use_math: true

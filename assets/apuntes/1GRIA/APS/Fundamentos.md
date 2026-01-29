@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: apuntes
 use_math: true
 ---
 
