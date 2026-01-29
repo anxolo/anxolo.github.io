@@ -2,3 +2,34 @@
 ---
 
 @import 'jekyll-theme-cayman';
+
+:root {
+    --bg-color: #fafafa;
+    --text-color: #111827;
+    --card-bg: white;
+    --border-color: #e5e7eb;
+    --subtitle-color: #6b7280;
+}
+
+[data-theme="dark"] {
+    --bg-color: #111827;
+    --text-color: #f9fafb;
+    --card-bg: #1f2937;
+    --border-color: #374151;
+    --subtitle-color: #9ca3af;
+}
+
+body { 
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Actualiza tus clases existentes para usar las variables */
+.main-nav, .skill-card {
+    background: var(--card-bg) !important;
+    border-color: var(--border-color) !important;
+}
+
+.hero-title, .section-title { color: var(--text-color); }
+.hero-subtitle, .section-description { color: var(--subtitle-color); }
