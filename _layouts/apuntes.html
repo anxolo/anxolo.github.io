@@ -35,6 +35,17 @@
             --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
         
+        [data-theme="dark"] {
+            --bg-color: #1a202c;
+            --text-color: #e2e8f0;
+            --heading-color: #f7fafc;
+            --accent-color: #63b3ed;
+            --border-color: #4a5568;
+            --code-bg: #2d3748;
+            --blockquote-bg: #2c5282;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+        
         @media (prefers-color-scheme: dark) {
             :root {
                 --bg-color: #1a202c;
@@ -281,14 +292,12 @@
     
     <!-- Botones de acción -->
     <div class="action-buttons">
-        <button class="btn" onclick="window.print()">
-            <i class="fas fa-download"></i>
-            Descargar PDF
+        <button class="btn" onclick="window.print()" title="Descargar PDF">
+            <i class="fas fa-file-pdf"></i>
         </button>
-        <a href="{{ site.baseurl }}/" class="btn btn-secondary">
-            <i class="fas fa-home"></i>
-            Inicio
-        </a>
+        <button class="btn btn-secondary" onclick="toggleTheme()" id="theme-toggle" title="Cambiar tema">
+            <i class="fas fa-moon"></i>
+        </button>
     </div>
     
     <!-- Encabezado del documento -->
@@ -317,8 +326,36 @@
     </footer>
     
     <script>
+        // Función para cambiar tema
+        function toggleTheme() {
+            const html = document.documentElement;
+            const themeToggle = document.getElementById('theme-toggle');
+            const icon = themeToggle.querySelector('i');
+            
+            if (html.getAttribute('data-theme') === 'dark') {
+                html.removeAttribute('data-theme');
+                icon.className = 'fas fa-moon';
+                localStorage.setItem('theme', 'light');
+            } else {
+                html.setAttribute('data-theme', 'dark');
+                icon.className = 'fas fa-sun';
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+        
         // Mejoras de accesibilidad y funcionalidad
         document.addEventListener('DOMContentLoaded', function() {
+            // Aplicar tema guardado
+            const savedTheme = localStorage.getItem('theme');
+            const themeToggle = document.getElementById('theme-toggle');
+            const icon = themeToggle.querySelector('i');
+            
+            if (savedTheme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                icon.className = 'fas fa-sun';
+            } else {
+                icon.className = 'fas fa-moon';
+            }
             // Numeración automática de secciones si se especifica en front matter
             {% if page.numbered_sections %}
             let sectionCounter = 0;
