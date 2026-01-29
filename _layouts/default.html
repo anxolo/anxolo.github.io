@@ -6,331 +6,72 @@
     <title>{{ page.title | default: site.title }}</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body { 
-            font-family: 'Inter', sans-serif; 
-            background-color: #fafafa;
-            margin: 0;
-            padding: 0;
-        }
-
-        /* Header Navigation */
-        .main-nav {
-            background: white;
-            border-bottom: 1px solid #e5e7eb;
-            position: sticky;
-            top: 0;
-            z-index: 50;
-        }
-
-        /* Hero Section */
-        .hero-section {
-            min-height: 90vh;
-            display: flex;
-            align-items: center;
-            padding: 2rem 1rem;
-        }
-
-        /* Badge disponible */
-        .badge-available {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem 1rem;
-            background: #f3f4f6;
-            border-radius: 2rem;
-            font-size: 0.875rem;
-            font-weight: 500;
-            color: #374151;
-            margin-bottom: 2rem;
-        }
-
-        .badge-available::before {
-            content: '';
-            width: 8px;
-            height: 8px;
-            background: #10b981;
-            border-radius: 50%;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-        }
-
-        /* Typography */
-        .hero-title {
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
-            font-weight: 800;
-            line-height: 1.1;
-            color: #111827;
-            margin-bottom: 1.5rem;
-        }
-
-        .hero-subtitle {
-            font-size: clamp(1rem, 2vw, 1.25rem);
-            color: #6b7280;
-            line-height: 1.7;
-            margin-bottom: 2rem;
-            max-width: 600px;
-        }
-
-        .highlight {
-            font-weight: 700;
-            color: #111827;
-        }
-
-        /* Buttons */
-        .btn-primary {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 1rem 2rem;
-            background: #111827;
-            color: white;
-            border-radius: 0.75rem;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .btn-primary:hover {
-            background: #1f2937;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-        }
-
-        .btn-secondary {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 1rem 2rem;
-            background: white;
-            color: #111827;
-            border: 2px solid #e5e7eb;
-            border-radius: 0.75rem;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .btn-secondary:hover {
-            border-color: #111827;
-            transform: translateY(-2px);
-        }
-
-        /* Image Container */
-        .image-container {
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .profile-image {
-            width: 100%;
-            max-width: 500px;
-            height: auto;
-            aspect-ratio: 1;
-            border-radius: 50%;
-            object-fit: cover;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
-        }
-
-        .status-badge {
-            position: absolute;
-            bottom: 2rem;
-            right: 2rem;
-            background: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 2rem;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-weight: 600;
-        }
-
-        .status-badge::before {
-            content: '';
-            width: 10px;
-            height: 10px;
-            background: #10b981;
-            border-radius: 50%;
-        }
-
-        /* Social Icons */
-        .social-links {
-            display: flex;
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-
-        .social-icon {
-            width: 48px;
-            height: 48px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: white;
-            border: 2px solid #e5e7eb;
-            border-radius: 0.75rem;
-            color: #374151;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .social-icon:hover {
-            border-color: #111827;
-            color: #111827;
-            transform: translateY(-2px);
-        }
-
-        /* Content Section */
-        .content-section {
-            padding: 5rem 1rem;
-            background: white;
-        }
-
-        .section-title {
-            font-size: clamp(2rem, 4vw, 3rem);
-            font-weight: 800;
-            text-align: center;
-            margin-bottom: 1rem;
-            color: #111827;
-        }
-
-        .section-description {
-            text-align: center;
-            color: #6b7280;
-            max-width: 700px;
-            margin: 0 auto 4rem;
-            line-height: 1.7;
-        }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .skill-card {
-            background: white;
-            border: 2px solid #f3f4f6;
-            border-radius: 1.5rem;
-            padding: 2rem;
-            transition: all 0.3s ease;
-        }
-
-        .skill-card:hover {
-            border-color: #e5e7eb;
-            transform: translateY(-4px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-        }
-
-        .skill-card-header {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            margin-bottom: 1.5rem;
-            font-weight: 700;
-            font-size: 1.125rem;
-            color: #111827;
-        }
-
-        .skill-card-icon {
-            width: 24px;
-            height: 24px;
-        }
-
-        .skill-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-
-        .skill-tag {
-            padding: 0.5rem 1rem;
-            background: #f3f4f6;
-            border-radius: 0.5rem;
-            font-size: 0.875rem;
-            font-weight: 500;
-            color: #374151;
-            transition: all 0.2s ease;
-        }
-
-        .skill-tag:hover {
-            background: #e5e7eb;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero-section {
-                min-height: auto;
-            }
-            
-            .profile-image {
-                max-width: 300px;
-            }
-
-            .status-badge {
-                bottom: 1rem;
-                right: 1rem;
-            }
-
-            .mobile-menu {
-                display: block;
-            }
-
-            .desktop-menu {
-                display: none;
-            }
-        }
-
-        @media (min-width: 769px) {
-            .mobile-menu {
-                display: none;
-            }
-
-            .desktop-menu {
-                display: flex;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
 </head>
 <body>
-    <!-- Navigation -->
     <nav class="main-nav">
-        <div class="max-w-7xl mx-auto px-6 py-4">
-            <div class="flex justify-between items-center">
-                <div class="text-xl font-bold">{{ site.title | default: page.name }}</div>
-                <div class="desktop-menu gap-8 items-center">
-                    {% for item in site.data.navigation %}
-                    <a href="{{ item.link }}" class="text-gray-700 hover:text-gray-900 font-medium">{{ item.name }}</a>
-                    {% endfor %}
-                    <button class="w-10 h-10 flex items-center justify-center rounded-lg border-2 border-gray-200 hover:border-gray-900">
-                        <i class="fas fa-sun"></i>
-                    </button>
-                </div>
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-xl font-bold">{{ site.title | default: page.name }}</div>
+            
+            <div class="hidden md:flex gap-8 items-center">
+                {% for item in site.data.navigation %}
+                <a href="{{ item.link }}" class="nav-link font-medium">{{ item.name }}</a>
+                {% endfor %}
+                <button id="theme-toggle" class="w-10 h-10 flex items-center justify-center rounded-lg border-2 border-gray-200 theme-btn">
+                    <i class="fas fa-sun"></i>
+                </button>
             </div>
+
+            <div class="md:hidden flex items-center gap-4">
+                <button id="theme-toggle-mobile" class="w-10 h-10 flex items-center justify-center rounded-lg border-2 border-gray-200 theme-btn">
+                    <i class="fas fa-sun"></i>
+                </button>
+                <button id="mobile-menu-btn" class="text-2xl mobile-trigger"><i class="fas fa-bars"></i></button>
+            </div>
+        </div>
+        
+        <div id="mobile-menu" class="hidden md:hidden mobile-dropdown px-6 py-4">
+            {% for item in site.data.navigation %}
+            <a href="{{ item.link }}" class="block py-2 font-medium nav-link">{{ item.name }}</a>
+            {% endfor %}
         </div>
     </nav>
 
-    {{ content }}
+    <main>
+        {{ content }}
+    </main>
 
     <script>
-        // Smooth scroll
+        const themeBtns = document.querySelectorAll('.theme-btn');
+        const icons = document.querySelectorAll('.theme-btn i');
+        const html = document.documentElement;
+
+        if (localStorage.getItem('theme') === 'dark') {
+            html.setAttribute('data-theme', 'dark');
+            icons.forEach(i => i.classList.replace('fa-sun', 'fa-moon'));
+        }
+
+        themeBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const isDark = html.getAttribute('data-theme') === 'dark';
+                if (isDark) {
+                    html.removeAttribute('data-theme');
+                    localStorage.setItem('theme', 'light');
+                    icons.forEach(i => i.classList.replace('fa-moon', 'fa-sun'));
+                } else {
+                    html.setAttribute('data-theme', 'dark');
+                    localStorage.setItem('theme', 'dark');
+                    icons.forEach(i => i.classList.replace('fa-sun', 'fa-moon'));
+                }
+            });
+        });
+
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
