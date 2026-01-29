@@ -3,65 +3,112 @@ layout: default
 title: Home
 ---
 
-<div class="grid grid-cols-1 md:grid-cols-12 gap-6">
-
-    <div class="md:col-span-8 bento-card p-8 md:p-12 flex flex-col justify-center">
-        <div class="typing-container">
-            <h1 class="text-4xl md:text-5xl font-black text-slate-900 mb-4 typing-text">
-                ¡Hola! Son Anxo
-            </h1>
+<!-- Hero Section -->
+<section class="hero-section" id="home">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+            <!-- Left Content -->
+            <div>
+                <h1 class="hero-title">
+                    <span class="typing">Hola, son Anxo López</span>
+                </h1>
+                
+                <p class="hero-subtitle">
+                    Estudo <span class="highlight">Intelixencia Artificial</span> na Universidade de Vigo – ESEI
+                </p>
+                
+                <p class="hero-subtitle" style="margin-bottom: 2.5rem;">
+                    Intento que as máquinas aprendan a razoar, mentres exploro novas ideas e construo cousas que teñan sentido.
+                </p>
+                
+                <div class="social-links">
+                    <a href="https://linkedin.com/in/anxo-lopez-rodriguez" class="social-icon" title="LinkedIn">
+                        <i class="fab fa-linkedin-in fa-lg"></i>
+                    </a>
+                    <a href="https://github.com/anxolo" class="social-icon" title="GitHub">
+                        <i class="fab fa-github fa-lg"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Right Image -->
+            <div class="image-container">
+                <div class="relative">
+                    <img src="https://avatars.githubusercontent.com/u/50779387?v=4" 
+                         alt="Anxo López" 
+                         class="profile-image">
+                </div>
+            </div>
         </div>
-        <p class="text-xl text-slate-600 leading-relaxed max-w-2xl">
-            Estudo <span class="text-indigo-600 font-bold">Intelixencia Artificial</span> na Universidade de Vigo – ESEI. 
-            Intento que as máquinas aprendan a razoar, mentres exploro novas ideas e construo cousas que teñan sentido.
-        </p>
-        <div class="flex gap-4 mt-8">
-            <a href="https://linkedin.com/in/anxo-lopez-rodriguez" class="p-2 hover:bg-slate-100 rounded-full transition">
-                <img src="/assets/pictures/linkedin_blue.png" class="w-6 h-6" alt="LinkedIn">
-            </a>
-            <a href="https://github.com/anxolo" class="p-2 hover:bg-slate-100 rounded-full transition">
-                <img src="/assets/pictures/github.png" class="w-6 h-6" alt="GitHub">
-            </a>
+
+        <!-- Scroll indicator -->
+        <div class="text-center mt-16">
+            <p class="text-sm text-gray-500 mb-2">Scroll para explorar</p>
+            <svg class="w-6 h-6 mx-auto text-gray-400 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+            </svg>
         </div>
     </div>
+</section>
 
-    <div class="md:col-span-4 bento-card overflow-hidden bg-indigo-600">
-        <img src="https://avatars.githubusercontent.com/u/50779387?v=4" class="w-full h-full object-cover mix-blend-luminosity hover:mix-blend-normal transition duration-500" alt="Anxo López">
-    </div>
-
-    <div class="md:col-span-7 bento-card p-8 bg-slate-900 text-white relative group overflow-hidden border-none">
-        <div class="relative z-10">
-            <span class="text-indigo-400 font-mono text-xs uppercase tracking-tighter">Proxecto Destacado</span>
-            <h2 class="text-3xl font-bold mt-2">GLPI AssistIA</h2>
-            <p class="text-slate-400 mt-4 mb-6 leading-relaxed">
+<!-- Featured Project Section -->
+<section class="content-section" style="background: #111827; color: white;">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="max-w-4xl mx-auto">
+            <span class="text-indigo-400 font-mono text-xs uppercase tracking-wider block mb-4">Proxecto Destacado</span>
+            <h2 class="text-4xl md:text-5xl font-bold mb-6">GLPI AssistIA</h2>
+            <p class="text-xl text-gray-400 leading-relaxed mb-8">
                 Automatización de incidencias mediante axentes intelixentes (CrewAI). Desenvolvido con bolsa ANFAIA.
             </p>
-            <a href="/es/proyectos/GLPI-AssistIA" class="inline-flex items-center gap-2 bg-indigo-600 px-6 py-3 rounded-xl font-bold hover:bg-indigo-500 transition">
+            <a href="/es/proyectos/GLPI-AssistIA" class="btn-primary" style="background: #6366f1;">
                 Explorar proxecto
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M17 8l4 4m0 0l-4 4m4-4H3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <i class="fas fa-arrow-right"></i>
             </a>
         </div>
-        <div class="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition">
-            <img src="/assets/pictures/glpiassistia.png" class="w-40 transform rotate-12" alt="GLPI">
+    </div>
+</section>
+
+<!-- Knowledge Base Section -->
+<section class="content-section" style="background: #fafafa;">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="max-w-4xl mx-auto">
+            <h3 class="text-3xl font-bold mb-4">Knowledge Base</h3>
+            <p class="text-gray-600 mb-8">Os meus apuntamentos de IA na ESEI.</p>
+            
+            <div class="bg-gray-900 text-green-400 p-6 rounded-2xl font-mono text-sm mb-6 shadow-xl">
+                <p class="mb-3"><span class="text-pink-500">$</span> ls ~/esei/apuntes/</p>
+                <ul class="space-y-1 text-gray-300 ml-4">
+                    <li>📂 APS/</li>
+                    <li>📂 IC/</li>
+                    <li>📂 PROII/</li>
+                </ul>
+            </div>
+            
+            <a href="/es/apuntes" class="btn-secondary">
+                Abrir biblioteca
+                <i class="fas fa-arrow-right"></i>
+            </a>
         </div>
     </div>
+</section>
 
-    <div class="md:col-span-5 bento-card p-8 flex flex-col justify-between border-slate-200 bg-slate-50">
-        <div>
-            <h3 class="text-xl font-bold">Knowledge Base</h3>
-            <p class="text-slate-500 text-sm mt-1">Os meus apuntamentos de IA na ESEI.</p>
-        </div>
-        <div class="mt-6 font-mono text-sm bg-slate-900 text-indigo-300 p-4 rounded-xl shadow-inner">
-            <p><span class="text-pink-500">ls</span> ~/esei/apuntes/</p>
-            <ul class="text-slate-300 mt-2">
-                <li>📂 APS/</li>
-                <li>📂 IC/</li>
-                <li>📂 PROII/</li>
-            </ul>
-        </div>
-        <a href="/es/apuntes" class="mt-4 text-center py-3 bg-white border border-slate-200 rounded-xl text-sm font-bold hover:bg-slate-50 transition">
-            Abrir biblioteca &rarr;
-        </a>
-    </div>
-
-</div>
+<style>
+    /* Efecto de escritura de teclado */
+    .typing {
+        display: inline-block;
+        overflow: hidden;
+        border-right: 3px solid #111827;
+        white-space: nowrap;
+        animation: typing 3s steps(30, end), blink-caret 0.75s step-end infinite;
+    }
+    
+    @keyframes typing {
+        from { width: 0; }
+        to { width: 100%; }
+    }
+    
+    @keyframes blink-caret {
+        from, to { border-color: transparent; }
+        50% { border-color: #111827; }
+    }
+</style>
