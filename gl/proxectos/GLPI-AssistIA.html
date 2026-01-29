@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<html lang="gl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GLPI AssistIA</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="../../assets/js/layout.js"></script>
+---
+layout: default
+title: GLPI AssistIA
+lang: gl
+---
     <style>
         /* Importa a fonte Inter para un deseño limpo */
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
@@ -236,10 +233,6 @@
             }
         }
     </style>
-</head>
-<body class="flex flex-col">
-
-    <div id="header-output"></div>
 
     <main class="flex-grow pt-0 pb-16 flex flex-col items-center">
     
@@ -445,8 +438,6 @@
         </div>
     </main>
 
-    <div id="footer-output"></div>
-
     <script>
         // Image Carousel Logic
         let slideIndex = 1;
@@ -482,5 +473,3 @@
             dots[slideIndex-1].classList.add("active-dot");
         }
     </script>
-</body>
-</html>
