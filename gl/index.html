@@ -1,119 +1,67 @@
-<!DOCTYPE html>
-<html lang="gl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anxo López Rodríguez</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="../assets/js/layout.js"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-        html, body {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-            overflow-x: hidden;
-        }
-        body {
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #A7B1FF 0%, #764BA2 100%);
-        }
-    </style>
-</head>
-<body class="flex flex-col">
+---
+layout: default
+title: Home
+---
 
-    <div class="fixed top-4 right-4 z-50">
-        <div class="relative">
-            <button id="lang-button" class="flex items-center space-x-2 px-4 py-2 text-sm sm:text-base font-medium text-gray-700 bg-gray-100 rounded-full hover:bg-gray-200 transition-colors duration-200">
-                <svg class="w-5 h-5 text-gray-500" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
-                    <path d="M10 20a10 10 0 110-20 10 10 0 010 20zm0-18a8 8 0 100 16 8 8 0 000-16zM6 9a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm0 4a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1z" clip-rule="evenodd" fill-rule="evenodd"></path>
-                </svg>
-                <span>GL</span>
-                <svg class="w-4 h-4 transform transition-transform duration-200" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
-                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                </svg>
-            </button>
-            <div id="lang-menu" class="absolute right-0 mt-2 w-40 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 origin-top-right transform scale-95 opacity-0 transition-all duration-300 hidden">
-                <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
-                    <a href="/es" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Español</a>
-                    <a href="/en" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">English</a>
-                    <a href="/gl" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Galego</a>
-                </div>
-            </div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+
+    <div class="md:col-span-8 bento-card p-8 md:p-12 flex flex-col justify-center">
+        <div class="typing-container">
+            <h1 class="text-4xl md:text-5xl font-black text-slate-900 mb-4 typing-text">
+                ¡Hola! Son Anxo
+            </h1>
+        </div>
+        <p class="text-xl text-slate-600 leading-relaxed max-w-2xl">
+            Estudo <span class="text-indigo-600 font-bold">Intelixencia Artificial</span> na Universidade de Vigo – ESEI. 
+            Intento que as máquinas aprendan a razoar, mentres exploro novas ideas e construo cousas que teñan sentido.
+        </p>
+        <div class="flex gap-4 mt-8">
+            <a href="https://linkedin.com/in/anxo-lopez-rodriguez" class="p-2 hover:bg-slate-100 rounded-full transition">
+                <img src="/assets/pictures/linkedin_blue.png" class="w-6 h-6" alt="LinkedIn">
+            </a>
+            <a href="https://github.com/anxolo" class="p-2 hover:bg-slate-100 rounded-full transition">
+                <img src="/assets/pictures/github.png" class="w-6 h-6" alt="GitHub">
+            </a>
         </div>
     </div>
 
-    <main class="flex-grow flex items-center justify-center p-8 text-white relative">
-        <div class="container mx-auto flex flex-col-reverse lg:flex-row items-center justify-center lg:space-x-12">
-            <div class="text-center lg:text-left space-y-8 mt-12 lg:mt-0">
-                <div class="flex flex-col items-center lg:items-start">
-                    <h1 class="text-5xl sm:text-6xl md:text-7xl font-light tracking-wide italic">
-                        <span class="font-bold">&lt;</span>Ola! Son Anxo<span class="font-bold">&gt;</span>
-                    </h1>
-                    <p class="mt-4 text-xl sm:text-2xl font-normal opacity-80">
-                        Estudiante do Grao en Intelixencia Artificial
-                    </p>
-                </div>
-                
-                <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-center lg:justify-start">
-                    <a href="/gl/sobre-min" class="inline-block px-10 py-3 bg-white text-purple-600 font-bold rounded-full text-center shadow-lg transition-transform duration-300 hover:scale-105 hover:bg-gray-100">
-                        Sobre Min
-                    </a>
-                    <a href="/gl/proxectos" class="inline-block px-10 py-3 bg-white text-purple-600 font-bold rounded-full text-center shadow-lg transition-transform duration-300 hover:scale-105 hover:bg-gray-100">
-                        Ver Proxectos
-                    </a>
-                    <a href="/gl/apuntamentos" class="inline-block px-10 py-3 bg-white text-purple-600 font-bold rounded-full text-center shadow-lg transition-transform duration-300 hover:scale-105 hover:bg-gray-100">
-                        Apuntamentos
-                    </a>
-                </div>
-            </div>
+    <div class="md:col-span-4 bento-card overflow-hidden bg-indigo-600">
+        <img src="https://avatars.githubusercontent.com/u/50779387?v=4" class="w-full h-full object-cover mix-blend-luminosity hover:mix-blend-normal transition duration-500" alt="Anxo López">
+    </div>
 
-            <div class="flex flex-col items-center space-y-8">
-                <div class="w-48 h-48 sm:w-64 sm:h-64 rounded-full overflow-hidden border-4 border-white shadow-lg transition-transform duration-500 hover:scale-110">
-                    <img src="https://avatars.githubusercontent.com/u/50779387?v=4" alt="Foto de Perfil" class="object-cover w-full h-full">
-                </div>
-            
-                <div class="flex justify-center space-x-6">
-                    <a href="https://github.com/anxolo" target="_blank" class="text-white hover:text-gray-200 transition-colors duration-300">
-                        <img src="/assets/pictures/github.png" alt="GitHub" class="w-8 h-8">
-                    </a>
-                    <a href="https://linkedin.com/in/anxo-lopez-rodriguez" target="_blank" class="text-white hover:text-gray-200 transition-colors duration-300">
-                        <img src="/assets/pictures/linkedin.png" alt="LinkedIn" class="w-8 h-8">
-                    </a>
-                </div>
-            </div>
+    <div class="md:col-span-7 bento-card p-8 bg-slate-900 text-white relative group overflow-hidden border-none">
+        <div class="relative z-10">
+            <span class="text-indigo-400 font-mono text-xs uppercase tracking-tighter">Proxecto Destacado</span>
+            <h2 class="text-3xl font-bold mt-2">GLPI AssistIA</h2>
+            <p class="text-slate-400 mt-4 mb-6 leading-relaxed">
+                Automatización de incidencias mediante axentes intelixentes (CrewAI). Desenvolvido con bolsa ANFAIA.
+            </p>
+            <a href="/es/proyectos/GLPI-AssistIA" class="inline-flex items-center gap-2 bg-indigo-600 px-6 py-3 rounded-xl font-bold hover:bg-indigo-500 transition">
+                Explorar proxecto
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M17 8l4 4m0 0l-4 4m4-4H3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
         </div>
-    </main>
+        <div class="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition">
+            <img src="/assets/pictures/glpiassistia.png" class="w-40 transform rotate-12" alt="GLPI">
+        </div>
+    </div>
 
-    <script>
-        // Get the button and menu elements
-        const langButton = document.getElementById('lang-button');
-        const langMenu = document.getElementById('lang-menu');
-        const arrowSvg = langButton.querySelector('svg:last-of-type');
+    <div class="md:col-span-5 bento-card p-8 flex flex-col justify-between border-slate-200 bg-slate-50">
+        <div>
+            <h3 class="text-xl font-bold">Knowledge Base</h3>
+            <p class="text-slate-500 text-sm mt-1">Os meus apuntamentos de IA na ESEI.</p>
+        </div>
+        <div class="mt-6 font-mono text-sm bg-slate-900 text-indigo-300 p-4 rounded-xl shadow-inner">
+            <p><span class="text-pink-500">ls</span> ~/esei/apuntes/</p>
+            <ul class="text-slate-300 mt-2">
+                <li>📂 APS/</li>
+                <li>📂 IC/</li>
+                <li>📂 PROII/</li>
+            </ul>
+        </div>
+        <a href="/es/apuntes" class="mt-4 text-center py-3 bg-white border border-slate-200 rounded-xl text-sm font-bold hover:bg-slate-50 transition">
+            Abrir biblioteca &rarr;
+        </a>
+    </div>
 
-        // Toggle the 'hidden' class on click
-        langButton.addEventListener('click', () => {
-            langMenu.classList.toggle('hidden');
-            if (langMenu.classList.contains('hidden')) {
-                arrowSvg.classList.remove('rotate-180');
-                langMenu.classList.remove('opacity-100', 'scale-100');
-                langMenu.classList.add('opacity-0', 'scale-95');
-            } else {
-                arrowSvg.classList.add('rotate-180');
-                langMenu.classList.remove('opacity-0', 'scale-95');
-                langMenu.classList.add('opacity-100', 'scale-100');
-            }
-        });
-
-        // Close the menu if the user clicks outside of it
-        document.addEventListener('click', (event) => {
-            if (!langButton.contains(event.target) && !langMenu.contains(event.target)) {
-                langMenu.classList.add('hidden');
-                arrowSvg.classList.remove('rotate-180');
-                langMenu.classList.remove('opacity-100', 'scale-100');
-                langMenu.classList.add('opacity-0', 'scale-95');
-            }
-        });
-    </script>
-</body>
-</html>
+</div>
