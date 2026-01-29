@@ -1,3 +1,17 @@
 theme: jekyll-theme-cayman
 title: Anxo López Rodríguez
 description: Anxo López Rodríguez
+
+# Configuración de layouts por defecto
+defaults:
+  - scope:
+      path: "assets/apuntes"
+      type: "pages"
+    values:
+      layout: "apuntes"
+      author: "Anxo López Rodríguez"
+  - scope:
+      path: "assets/apuntes/**/*.md"
+    values:
+      layout: "apuntes"
+      author: "Anxo López Rodríguez"

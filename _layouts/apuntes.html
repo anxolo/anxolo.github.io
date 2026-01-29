@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: 'gl' }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title | default: site.title }}</title>
+    
+    <!-- MathJax para LaTeX -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true,
+                processEnvironments: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+    
+    <!-- CSS para estilo académico -->
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #2d3748;
+            --heading-color: #1a202c;
+            --accent-color: #4299e1;
+            --border-color: #e2e8f0;
+            --code-bg: #f7fafc;
+            --blockquote-bg: #ebf8ff;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: #1a202c;
+                --text-color: #e2e8f0;
+                --heading-color: #f7fafc;
+                --accent-color: #63b3ed;
+                --border-color: #4a5568;
+                --code-bg: #2d3748;
+                --blockquote-bg: #2c5282;
+                --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            }
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Times New Roman', 'Liberation Serif', serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.7;
+            font-size: 16px;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+        
+        /* Encabezado del documento */
+        .document-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+        
+        .document-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--heading-color);
+            margin-bottom: 1rem;
+        }
+        
+        .document-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-color);
+            opacity: 0.8;
+            margin-bottom: 0.5rem;
+        }
+        
+        .document-author {
+            font-style: italic;
+            color: var(--accent-color);
+            font-size: 1.1rem;
+        }
+        
+        /* Botones de acción */
+        .action-buttons {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+        }
+        
+        .btn {
+            padding: 10px 16px;
+            border: none;
+            border-radius: 6px;
+            background: var(--accent-color);
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .btn-secondary {
+            background: var(--border-color);
+            color: var(--text-color);
+        }
+        
+        /* Tipografía */
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--heading-color);
+            font-weight: bold;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        h1 { font-size: 2.25rem; }
+        h2 { font-size: 1.875rem; }
+        h3 { font-size: 1.5rem; }
+        h4 { font-size: 1.25rem; }
+        
+        p {
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+        
+        /* Listas */
+        ul, ol {
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+        }
+        
+        li {
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Código */
+        code {
+            background: var(--code-bg);
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+        
+        pre {
+            background: var(--code-bg);
+            padding: 1rem;
+            border-radius: 6px;
+            overflow-x: auto;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--accent-color);
+        }
+        
+        /* Blockquotes */
+        blockquote {
+            background: var(--blockquote-bg);
+            padding: 1rem;
+            border-left: 4px solid var(--accent-color);
+            margin: 1rem 0;
+            font-style: italic;
+            border-radius: 0 6px 6px 0;
+        }
+        
+        /* Tablas */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1rem;
+            background: var(--bg-color);
+            box-shadow: var(--shadow);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+        
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        th {
+            background: var(--accent-color);
+            color: white;
+            font-weight: 600;
+        }
+        
+        /* Matemáticas */
+        .MathJax {
+            font-size: 1.1rem !important;
+        }
+        
+        /* Footer */
+        .document-footer {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            color: var(--text-color);
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+                font-size: 14px;
+            }
+            
+            .document-title {
+                font-size: 2rem;
+            }
+            
+            .action-buttons {
+                position: static;
+                justify-content: center;
+                margin-bottom: 2rem;
+            }
+        }
+        
+        /* Print styles */
+        @media print {
+            body {
+                max-width: none;
+                padding: 0;
+                font-size: 12pt;
+            }
+            
+            .action-buttons {
+                display: none;
+            }
+            
+            .document-header {
+                page-break-after: avoid;
+            }
+            
+            h1, h2, h3, h4, h5, h6 {
+                page-break-after: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Botones de acción -->
+    <div class="action-buttons">
+        <button class="btn" onclick="window.print()">
+            📄 Descargar PDF
+        </button>
+        <a href="{{ site.baseurl }}/" class="btn btn-secondary">
+            🏠 Inicio
+        </a>
+    </div>
+    
+    <!-- Encabezado del documento -->
+    <header class="document-header">
+        <h1 class="document-title">{{ page.title }}</h1>
+        {% if page.subtitle %}
+        <div class="document-subtitle">{{ page.subtitle }}</div>
+        {% endif %}
+        <div class="document-author">Anxo López Rodríguez</div>
+        {% if page.date %}
+        <div class="document-date">{{ page.date | date: "%d/%m/%Y" }}</div>
+        {% endif %}
+    </header>
+    
+    <!-- Contenido principal -->
+    <main class="document-content">
+        {{ content }}
+    </main>
+    
+    <!-- Footer del documento -->
+    <footer class="document-footer">
+        <p>© {{ site.time | date: "%Y" }} Anxo López Rodríguez - Apuntamentos ESEI</p>
+        {% if page.source %}
+        <p><small>Fonte: {{ page.source }}</small></p>
+        {% endif %}
+    </footer>
+    
+    <script>
+        // Mejoras de accesibilidad y funcionalidad
+        document.addEventListener('DOMContentLoaded', function() {
+            // Numeración automática de secciones si se especifica en front matter
+            {% if page.numbered_sections %}
+            let sectionCounter = 0;
+            let subsectionCounter = 0;
+            
+            document.querySelectorAll('h2').forEach(function(h2) {
+                sectionCounter++;
+                subsectionCounter = 0;
+                h2.textContent = sectionCounter + '. ' + h2.textContent;
+            });
+            
+            document.querySelectorAll('h3').forEach(function(h3) {
+                subsectionCounter++;
+                h3.textContent = sectionCounter + '.' + subsectionCounter + '. ' + h3.textContent;
+            });
+            {% endif %}
+            
+            // Soporte para navegación con teclado
+            document.addEventListener('keydown', function(e) {
+                if (e.ctrlKey && e.key === 'p') {
+                    e.preventDefault();
+                    window.print();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
