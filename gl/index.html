@@ -4,9 +4,9 @@ title: Home
 ---
 
 <section class="hero-section" id="home">
-    <div class="max-w-7xl mx-auto px-6">
-        <div class="grid md:grid-cols-2 gap-12 items-center">
-            <div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="grid md:grid-cols-2 gap-8 lg:gap-12 items-center">
+            <div class="order-2 md:order-1 text-center md:text-left">
                 <h1 class="hero-title">
                     <span class="typing">Hola, son Anxo López</span>
                 </h1>
@@ -15,30 +15,30 @@ title: Home
                     Estudo <span class="highlight">Intelixencia Artificial</span> na Universidade de Vigo – ESEI
                 </p>
                 
-                <p class="hero-subtitle mb-10">
+                <p class="hero-subtitle mb-8">
                     Intento que as máquinas aprendan a razoar, mentres exploro novas ideas e construo cousas que teñan sentido.
                 </p>
                 
-                <div class="social-links flex gap-4">
+                <div class="social-links">
                     <a href="https://linkedin.com/in/anxo-lopez-rodriguez" class="social-icon" title="LinkedIn">
-                        <i class="fab fa-linkedin-in fa-lg"></i>
+                        <i class="fab fa-linkedin-in"></i>
                     </a>
                     <a href="https://github.com/anxolo" class="social-icon" title="GitHub">
-                        <i class="fab fa-github fa-lg"></i>
+                        <i class="fab fa-github"></i>
                     </a>
                 </div>
             </div>
             
-            <div class="image-container">
+            <div class="image-container order-1 md:order-2">
                 <div class="relative">
                     <img src="https://avatars.githubusercontent.com/u/50779387?v=4" 
                          alt="Anxo López" 
-                         class="profile-image shadow-2xl border-4 border-[var(--border-color)]">
+                         class="profile-image">
                 </div>
             </div>
         </div>
 
-        <div class="text-center mt-16 opacity-60">
+        <div class="text-center mt-12 lg:mt-16 opacity-60 hidden sm:block">
             <p class="text-sm mb-2">Scroll para explorar</p>
             <svg class="w-6 h-6 mx-auto animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
@@ -48,70 +48,84 @@ title: Home
 </section>
 
 <section class="content-section featured-box">
-    <div class="max-w-7xl mx-auto px-6">
-        <div class="max-w-4xl mx-auto p-8 md:p-12 rounded-3xl bg-[var(--card-bg)] border border-[var(--border-color)] shadow-xl">
-            <span class="text-indigo-500 font-mono text-xs uppercase tracking-wider block mb-4">Proxecto Destacado</span>
-            <h2 class="text-4xl md:text-5xl font-bold mb-6">GLPI AssistIA</h2>
-            <p class="text-xl opacity-80 leading-relaxed mb-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="max-w-4xl mx-auto">
+            <span class="text-indigo-500 font-mono text-xs uppercase tracking-wider block mb-4 text-center">Proxecto Destacado</span>
+            <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-center">GLPI AssistIA</h2>
+            <p class="text-lg md:text-xl opacity-80 leading-relaxed mb-8 text-center max-w-3xl mx-auto">
                 Automatización de incidencias mediante axentes intelixentes (CrewAI). Desenvolvido con bolsa ANFAIA.
             </p>
-            <a href="/es/proyectos/GLPI-AssistIA" class="btn-primary">
-                Explorar proxecto
-                <i class="fas fa-arrow-right ml-2"></i>
-            </a>
+            <div class="text-center">
+                <a href="/gl/proxectos/GLPI-AssistIA" class="btn-primary">
+                    Explorar proxecto
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
         </div>
     </div>
 </section>
 
 <section class="content-section">
-    <div class="max-w-7xl mx-auto px-6">
-        <div class="max-w-4xl mx-auto">
-            <h3 class="text-3xl font-bold mb-4">Knowledge Base</h3>
-            <p class="opacity-70 mb-8">Os meus apuntamentos de IA na ESEI.</p>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="max-w-4xl mx-auto text-center md:text-left">
+            <h3 class="text-2xl md:text-3xl font-bold mb-4">Knowledge Base</h3>
+            <p class="opacity-70 mb-8 text-base md:text-lg">Os meus apuntamentos de IA na ESEI.</p>
             
-            <div class="bg-gray-900 text-green-400 p-6 rounded-2xl font-mono text-sm mb-6 shadow-2xl border border-gray-700">
-                <p class="mb-3"><span class="text-pink-500">$</span> ls ~/esei/apuntes/</p>
+            <div class="bg-gray-900 text-green-400 p-4 md:p-6 rounded-2xl font-mono text-xs md:text-sm mb-6 shadow-2xl border border-gray-700 overflow-x-auto">
+                <p class="mb-3 whitespace-nowrap"><span class="text-pink-500">$</span> ls ~/esei/apuntes/</p>
                 <ul class="space-y-1 text-gray-300 ml-4">
-                    <li class="hover:text-white cursor-default">📂 APS/</li>
-                    <li class="hover:text-white cursor-default">📂 IC/</li>
-                    <li class="hover:text-white cursor-default">📂 PROII/</li>
+                    <li class="hover:text-white cursor-default transition-colors">📂 APS/</li>
+                    <li class="hover:text-white cursor-default transition-colors">📂 IC/</li>
+                    <li class="hover:text-white cursor-default transition-colors">📂 PROII/</li>
                 </ul>
             </div>
             
-            <a href="/es/apuntes" class="btn-secondary border-2 border-[var(--border-color)] px-6 py-3 rounded-xl inline-block font-bold hover:border-[var(--text-color)] transition-all">
-                Abrir biblioteca
-                <i class="fas fa-arrow-right ml-2"></i>
-            </a>
+            <div class="text-center md:text-left">
+                <a href="/gl/apuntamentos" class="btn-secondary">
+                    Abrir biblioteca
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
         </div>
     </div>
 </section>
 
 <style>
+/* Page-specific styles */
+.featured-box {
+    position: relative;
+    overflow: hidden;
+}
+
+.featured-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, 
+        var(--bg-color) 0%, 
+        var(--hover-bg) 50%, 
+        var(--bg-color) 100%);
+    z-index: -1;
+}
+
+@media (max-width: 768px) {
+    .hero-section {
+        padding: 1rem 0 2rem;
+    }
+    
     .featured-box {
-        background-color: var(--bg-color);
-        padding: 5rem 0;
-    }
-
-    .typing {
-        display: inline-block;
-        overflow: hidden;
-        border-right: 3px solid var(--text-color);
-        white-space: nowrap;
-        animation: typing 3s steps(30, end), blink-caret 0.75s step-end infinite;
+        padding: 2rem 0;
     }
     
-    @keyframes typing {
-        from { width: 0; }
-        to { width: 100%; }
+    .content-section {
+        padding: 2rem 0;
     }
     
-    @keyframes blink-caret {
-        from, to { border-color: transparent; }
-        50% { border-color: var(--text-color); }
+    .grid.md\:grid-cols-2 {
+        gap: 1.5rem !important;
     }
-
-    .highlight {
-        color: #6366f1; /* Indigo suave que funciona en ambos modos */
-        font-weight: 700;
-    }
+}
 </style>

@@ -10,36 +10,42 @@
 </head>
 <body>
     <nav class="main-nav">
-        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="text-xl font-bold">{{ site.title | default: page.name }}</div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex justify-between items-center">
+            <div class="text-lg sm:text-xl font-bold text-truncate max-w-[150px] sm:max-w-none">{{ site.title | default: "Anxo López" }}</div>
             
-            <div class="hidden md:flex gap-8 items-center">
+            <div class="hidden md:flex gap-6 lg:gap-8 items-center">
                 {% for item in site.data.navigation %}
-                <a href="{{ item.link }}" class="nav-link font-medium">{{ item.name }}</a>
+                <a href="{{ item.link }}" class="nav-link font-medium hover:text-indigo-500 transition-colors">{{ item.name }}</a>
                 {% endfor %}
-                <button id="theme-toggle" class="w-10 h-10 flex items-center justify-center rounded-lg border-2 border-gray-200 theme-btn">
+                <button id="theme-toggle" class="theme-btn">
                     <i class="fas fa-sun"></i>
                 </button>
             </div>
 
-            <div class="md:hidden flex items-center gap-4">
-                <button id="theme-toggle-mobile" class="w-10 h-10 flex items-center justify-center rounded-lg border-2 border-gray-200 theme-btn">
+            <div class="md:hidden flex items-center gap-3">
+                <button id="theme-toggle-mobile" class="theme-btn">
                     <i class="fas fa-sun"></i>
                 </button>
-                <button id="mobile-menu-btn" class="text-2xl mobile-trigger"><i class="fas fa-bars"></i></button>
+                <button id="mobile-menu-btn" class="mobile-trigger">
+                    <i class="fas fa-bars"></i>
+                </button>
             </div>
         </div>
         
-        <div id="mobile-menu" class="hidden md:hidden mobile-dropdown px-6 py-4">
-            {% for item in site.data.navigation %}
-            <a href="{{ item.link }}" class="block py-2 font-medium nav-link">{{ item.name }}</a>
-            {% endfor %}
+        <div id="mobile-menu" class="mobile-dropdown">
+            <div class="px-4 py-4 space-y-2">
+                {% for item in site.data.navigation %}
+                <a href="{{ item.link }}" class="block py-3 px-4 rounded-lg nav-link font-medium hover:bg-[var(--tag-bg)] transition-colors">{{ item.name }}</a>
+                {% endfor %}
+            </div>
         </div>
     </nav>
 
-    <main>
+    <main class="min-h-screen">
         {{ content }}
     </main>
+
+    {% include footer.html %}
 
     <script>
         const themeBtns = document.querySelectorAll('.theme-btn');
@@ -69,7 +75,21 @@
         const mobileBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
         mobileBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
+            mobileMenu.classList.toggle('mobile-menu-open');
+            const icon = mobileBtn.querySelector('i');
+            if (mobileMenu.classList.contains('mobile-menu-open')) {
+                icon.classList.replace('fa-bars', 'fa-times');
+            } else {
+                icon.classList.replace('fa-times', 'fa-bars');
+            }
+        });
+
+        // Close mobile menu when clicking on a link
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('mobile-menu-open');
+                mobileBtn.querySelector('i').classList.replace('fa-times', 'fa-bars');
+            });
         });
 
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
