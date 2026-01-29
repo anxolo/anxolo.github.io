@@ -1,0 +1,289 @@
+---
+layout: default
+title: Página non encontrada
+permalink: /404.html
+---
+
+<section class="content-section error-page">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center">
+        <!-- Error principal -->
+        <div class="error-content mb-12">
+            <div class="error-code">404</div>
+            <h1 class="error-title">Páxina non encontrada</h1>
+            <p class="error-description">
+                Ups! A páxina que buscas non existe ou foi movida a outro lugar.
+            </p>
+        </div>
+
+        <!-- Sección de frase (solo si existe quotes.json) -->
+        <div id="quote-section" class="quote-container hidden mb-12">
+            <p class="quote-intro">Non obstante, móstroche unha frase de <span id="quote-author" class="quote-author"></span>:</p>
+            <blockquote class="quote-text" id="quote-text"></blockquote>
+        </div>
+
+        <!-- Opciones de navegación -->
+        <div class="navigation-options">
+            <h3 class="options-title">¿Que podes facer agora?</h3>
+            <div class="options-grid">
+                <a href="/" class="option-card">
+                    <i class="fas fa-home option-icon"></i>
+                    <span class="option-label">Ir ao inicio</span>
+                </a>
+                <a href="/gl/proxectos/" class="option-card">
+                    <i class="fas fa-folder option-icon"></i>
+                    <span class="option-label">Ver proxectos</span>
+                </a>
+                <a href="/gl/apuntamentos" class="option-card">
+                    <i class="fas fa-book option-icon"></i>
+                    <span class="option-label">Ver apuntamentos</span>
+                </a>
+                <a href="/gl/sobre-min" class="option-card">
+                    <i class="fas fa-user option-icon"></i>
+                    <span class="option-label">Sobre min</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Información técnica (opcional, se puede quitar) -->
+        <div class="tech-info">
+            <p class="text-sm opacity-60">
+                Erro 404 • Código de estado HTTP que indica que o recurso solicitado non foi encontrado no servidor
+            </p>
+        </div>
+    </div>
+</section>
+
+<script>
+// Intentar cargar quotes.json y mostrar frase aleatoria
+document.addEventListener('DOMContentLoaded', function() {
+    fetch('/assets/quotes.json')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('quotes.json non encontrado');
+            }
+            return response.json();
+        })
+        .then(quotes => {
+            if (quotes && quotes.length > 0) {
+                // Seleccionar frase aleatoria
+                const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+                
+                // Mostrar la frase
+                document.getElementById('quote-author').textContent = randomQuote.autor;
+                document.getElementById('quote-text').textContent = `"${randomQuote.frase}"`;
+                document.getElementById('quote-section').classList.remove('hidden');
+            }
+        })
+        .catch(error => {
+            // Si no existe el archivo o hay error, simplemente no mostramos la sección
+            console.log('quotes.json non dispoñible:', error.message);
+        });
+
+    // Efecto de aparición gradual
+    const elements = document.querySelectorAll('.error-content, .navigation-options, .tech-info');
+    elements.forEach((el, index) => {
+        setTimeout(() => {
+            el.style.opacity = '1';
+            el.style.transform = 'translateY(0)';
+        }, index * 200);
+    });
+});
+</script>
+
+<style>
+/* Estilos específicos para página 404 */
+.error-page {
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 0;
+}
+
+.error-content {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease;
+}
+
+.error-code {
+    font-size: 8rem;
+    font-weight: 900;
+    color: var(--accent-color);
+    opacity: 0.8;
+    margin-bottom: 1rem;
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    
+    background: linear-gradient(135deg, var(--accent-color), #8b5cf6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.error-title {
+    font-size: 3rem;
+    font-weight: bold;
+    color: var(--text-color);
+    margin-bottom: 1rem;
+}
+
+.error-description {
+    font-size: 1.25rem;
+    color: var(--subtitle-color);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* Sección de frases */
+.quote-container {
+    background: var(--card-bg);
+    border: 2px solid var(--border-color);
+    border-radius: 1rem;
+    padding: 2rem;
+    box-shadow: 0 4px 6px var(--shadow-light);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease;
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+.quote-intro {
+    font-size: 1.1rem;
+    color: var(--text-color);
+    margin-bottom: 1rem;
+}
+
+.quote-author {
+    font-weight: 600;
+    color: var(--accent-color);
+}
+
+.quote-text {
+    font-size: 1.2rem;
+    font-style: italic;
+    color: var(--text-color);
+    margin: 0;
+    padding: 1rem 0;
+    border-left: 4px solid var(--accent-color);
+    padding-left: 1.5rem;
+    background: var(--hover-bg);
+    border-radius: 0 0.5rem 0.5rem 0;
+}
+
+/* Opciones de navegación */
+.navigation-options {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease;
+}
+
+.options-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 2rem;
+}
+
+.options-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.option-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 1.5rem;
+    background: var(--card-bg);
+    border: 2px solid var(--border-color);
+    border-radius: 1rem;
+    text-decoration: none;
+    color: var(--text-color);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px var(--shadow-light);
+}
+
+.option-card:hover {
+    border-color: var(--accent-color);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px var(--shadow-dark);
+    background: var(--hover-bg);
+}
+
+.option-icon {
+    font-size: 2rem;
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+}
+
+.option-label {
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+/* Información técnica */
+.tech-info {
+    margin-top: 3rem;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease;
+}
+
+/* Animaciones */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .error-code {
+        font-size: 6rem;
+    }
+    
+    .error-title {
+        font-size: 2rem;
+    }
+    
+    .error-description {
+        font-size: 1.1rem;
+    }
+    
+    .options-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .option-card {
+        padding: 1.5rem 1rem;
+    }
+    
+    .quote-container {
+        padding: 1.5rem;
+    }
+    
+    .quote-text {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .error-code {
+        font-size: 4rem;
+    }
+    
+    .error-title {
+        font-size: 1.75rem;
+    }
+}
+</style>

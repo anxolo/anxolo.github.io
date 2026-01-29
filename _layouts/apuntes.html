@@ -55,7 +55,7 @@
         }
         
         body {
-            font-family: 'Times New Roman', 'Liberation Serif', serif;
+            font-family: 'Calibri', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
             line-height: 1.7;
@@ -100,32 +100,44 @@
             top: 20px;
             right: 20px;
             display: flex;
-            gap: 10px;
+            gap: 12px;
             z-index: 1000;
         }
         
         .btn {
-            padding: 10px 16px;
-            border: none;
-            border-radius: 6px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border: 2px solid var(--accent-color);
+            border-radius: 12px;
             background: var(--accent-color);
             color: white;
             text-decoration: none;
             font-size: 14px;
             font-weight: 600;
             cursor: pointer;
-            box-shadow: var(--shadow);
             transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
         
         .btn:hover {
+            background: transparent;
+            color: var(--accent-color);
             transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
         }
         
         .btn-secondary {
-            background: var(--border-color);
+            background: transparent;
+            border-color: var(--border-color);
             color: var(--text-color);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--accent-color);
+            border-color: var(--accent-color);
+            color: white;
         }
         
         /* Tipografía */
@@ -264,13 +276,18 @@
     </style>
 </head>
 <body>
+    <!-- Font Awesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <!-- Botones de acción -->
     <div class="action-buttons">
         <button class="btn" onclick="window.print()">
-            📄 Descargar PDF
+            <i class="fas fa-download"></i>
+            Descargar PDF
         </button>
         <a href="{{ site.baseurl }}/" class="btn btn-secondary">
-            🏠 Inicio
+            <i class="fas fa-home"></i>
+            Inicio
         </a>
     </div>
     
@@ -293,7 +310,7 @@
     
     <!-- Footer del documento -->
     <footer class="document-footer">
-        <p>© {{ site.time | date: "%Y" }} Anxo López Rodríguez - Apuntamentos ESEI</p>
+        <p>© {{ site.time | date: "%Y" }} Anxo López Rodríguez</p>
         {% if page.source %}
         <p><small>Fonte: {{ page.source }}</small></p>
         {% endif %}

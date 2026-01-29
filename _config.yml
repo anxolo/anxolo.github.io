@@ -6,12 +6,6 @@ description: Anxo López Rodríguez
 defaults:
   - scope:
       path: "assets/apuntes"
-      type: "pages"
-    values:
-      layout: "apuntes"
-      author: "Anxo López Rodríguez"
-  - scope:
-      path: "assets/apuntes/**/*.md"
     values:
       layout: "apuntes"
       author: "Anxo López Rodríguez"
