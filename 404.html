@@ -12,11 +12,9 @@ permalink: /404.html
             <p class="error-description"></p>
         </div>
 
-        <!-- Sección de cita -->
         <div id="quote-section" class="quote-container hidden mb-12">
-            <p class="quote-intro"></p>
+            <p class="quote-intro" id="quote-intro"></p>
             <blockquote class="quote-text" id="quote-text"></blockquote>
-            <p class="quote-author" id="quote-author"></p>
         </div>
 
     </div>
@@ -29,7 +27,7 @@ const language = urlPath.includes('/es/') ? 'es' : urlPath.includes('/en/') ? 'e
 document.addEventListener('DOMContentLoaded', function() {
     const errorTitle = document.querySelector('.error-title');
     const errorDescription = document.querySelector('.error-description');
-    const quoteIntro = document.querySelector('.quote-intro');
+    const quoteIntro = document.querySelector('#quote-intro');
     
     const texts = {
         es: {
@@ -64,8 +62,9 @@ document.addEventListener('DOMContentLoaded', function() {
             if (quotes && quotes.length > 0) {
                 const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
                 
-                document.getElementById('quote-author').textContent = randomQuote.autor;
+                quoteIntro.textContent += ` ${randomQuote.autor}:`;
                 document.getElementById('quote-text').textContent = `"${randomQuote.frase}"`;
+
                 document.getElementById('quote-section').classList.remove('hidden');
             }
         })
@@ -140,14 +139,9 @@ document.addEventListener('DOMContentLoaded', function() {
 }
 
 .quote-intro {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     color: var(--text-color);
     margin-bottom: 1rem;
-}
-
-.quote-author {
-    font-weight: 600;
-    color: var(--accent-color);
 }
 
 .quote-text {
