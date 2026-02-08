@@ -50,10 +50,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     };
 
-    // Asignar los textos según el idioma
-    errorTitle.textContent = texts[language].title;
-    errorDescription.textContent = texts[language].description;
-    quoteIntro.textContent = texts[language].quoteIntro;
+
 
     // Cargar una cita aleatoria
     fetch('/assets/quotes.json')
