@@ -1,46 +1,13 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anxo López Rodríguez</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="../../assets/js/layout.js"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-        html, body {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-            overflow-x: hidden;
-        }
-        body {
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #A7B1FF 0%, #764BA2 100%);
-            color: #333;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        .message {
-            font-size: 2.25rem; /* text-4xl */
-            font-weight: 700; /* font-bold */
-            color: #1a202c; /* text-gray-900 */
-        }
-        .text-white {
-            color: #ffffff;
-        }
-    </style>
-</head>
-<body class="flex flex-col">
+---
+layout: default
+title: Proyectos
+lang: es
+---
 
-    <div id="header-output"></div>
-
-    <main class="flex-grow pt-24 pb-8">
-        <div class="container mx-auto px-4">
-            <h1 class="message text-left text-white mb-8">Proyectos</h1>
+<section class="content-section" id="proyectos">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="max-w-5xl mx-auto py-12 md:py-16">
+            <h1 class="text-4xl md:text-5xl font-bold mb-12">Proyectos</h1>
             
             <div class="flex flex-col md:flex-row gap-8 items-start">
                 <div class="w-full md:w-1/3 flex justify-start">
@@ -50,21 +17,18 @@
                 </div>
                 
                 <div class="w-full md:w-2/3 flex flex-col items-start space-y-4">
-                    <div class="bg-white bg-opacity-70 backdrop-blur-sm p-8 rounded-xl shadow-lg w-full space-y-4 text-left">
-                        <h2 class="text-2xl font-bold text-gray-800">GLPI AssistIA</h2>
-                        <h3 class="text-md font-medium text-gray-600">Becas de Verano ANFAIA 2025</h3>
-                        <p class="text-gray-700 text-base leading-relaxed">
-                            GLPI AssistIA es un sistema diseñado para la gestión de incidencias en departamentos de IT, reduciendo la carga de tareas repetitivas. Su arquitectura se basa en un flujo de trabajo que activa un sistema de agentes inteligentes (CrewAI) cuando se crea un ticket en GLPI. Estos agentes colaboran para analizar la incidencia, evaluando la urgencia, clasificándola y proponiendo soluciones. El objetivo es reducir el tiempo de primera respuesta y el tiempo de resolución.
+                    <div class="bg-white bg-opacity-70 backdrop-blur-sm p-8 rounded-xl shadow-lg w-full space-y-4 text-left dark:bg-gray-800 dark:bg-opacity-70">
+                        <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-200">GLPI AssistIA</h2>
+                        <h3 class="text-md font-medium text-gray-600 dark:text-gray-400">Becas de Verano ANFAIA 2025</h3>
+                        <p class="text-gray-700 dark:text-gray-300 text-base leading-relaxed">
+                            GLPI AssistIA es un sistema diseñado para la gestión de incidencias en departamentos de TI, reduciendo la carga de tareas repetitivas. Su arquitectura se basa en un flujo de trabajo que activa un sistema de agentes inteligentes (CrewAI) cuando se crea un ticket en GLPI. Estos agentes colaboran para analizar la incidencia, evaluando la urgencia, clasificándola y proponiendo soluciones. El objetivo es reducir el tiempo de primera respuesta y el tiempo de resolución.
                         </p>
-                        <a href="/es/proyectos/GLPI-AssistIA" class="inline-block bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-6 rounded-full transition-colors duration-200">
+                        <a href="/es/proyectos/GLPI-AssistIA" class="btn-primary">
                             Ver más
                         </a>
                     </div>
                 </div>
             </div>
         </div>
-    </main>
-
-    <div id="footer-output"></div>
-</body>
-</html>
+    </div>
+</section>

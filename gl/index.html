@@ -38,8 +38,8 @@ title: Inicio
             </div>
         </div>
         
-        <!-- Scroll down button -->
-        <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-center opacity-60 hidden sm:block">
+        <!-- Botón de desprazamento cara abaixo -->
+        <div class="scroll-indicator">
             <p class="text-sm mb-2">Scroll para explorar</p>
             <a href="#featured-project" class="inline-block">
                 <svg class="w-6 h-6 mx-auto animate-bounce hover:opacity-80 transition-opacity cursor-pointer" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -95,13 +95,14 @@ title: Inicio
 
 <style>
 .hero-section {
-    min-height: 100vh;
+    min-height: 90vh;
+    height: auto;
     display: flex;
     align-items: center;
     position: relative;
+    padding: 2rem 0;
 }
 
-/* Smooth scroll behavior */
 html {
     scroll-behavior: smooth;
 }
@@ -131,13 +132,20 @@ html {
 }
 
 .typing {
-    animation: typing 2s steps(20, end), blink-caret 0.75s step-end infinite;
+    display: inline-block;
+}
+
+@media (max-width: 1024px) {
+    .hero-section {
+        min-height: 85vh;
+        padding: 1.5rem 0;
+    }
 }
 
 @media (max-width: 768px) {
     .hero-section {
-        min-height: 100vh;
-        padding: 2rem 0;
+        min-height: 80vh;
+        padding: 1rem 0;
     }
     
     .featured-box {
@@ -151,5 +159,34 @@ html {
     .grid.md\:grid-cols-2 {
         gap: 1.5rem !important;
     }
+    
+    .profile-image {
+        max-width: 200px !important;
+        height: auto;
+    }
+}
+
+@media (max-width: 640px) {
+    .hero-section {
+        min-height: 75vh;
+        padding: 0.5rem 0;
+    }
+    
+    .hero-title {
+        font-size: 2.5rem !important;
+        line-height: 1.2;
+    }
+    
+    .hero-subtitle {
+        font-size: 1rem !important;
+    }
+    
+    .profile-image {
+        max-width: 150px !important;
+    }
+}
+
+.hero-section .absolute.bottom-4 {
+    bottom: 1rem;
 }
 </style>

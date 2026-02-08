@@ -10,7 +10,7 @@ lang: gl
 
 ## Introdución
 
-Este é un exemplo de como usar a nova plantilla para apuntamentos. A plantilla inclúe:
+Este é un exemplo xenerado con IA de como usar a nova plantilla para apuntamentos. A plantilla inclúe:
 
 - **Soporte completo para LaTeX**: Podes usar fórmulas como $E = mc^2$ ou ecuacións en bloque:
 
@@ -18,7 +18,7 @@ $$\int_{-\infty}^{\infty} e^{-x^2} dx = \sqrt{\pi}$$
 
 - **Deseño académico**: Optimizado para lectura e estudo
 - **Descarga en PDF**: Botón na esquina superior dereita  
-- **Responsive**: Adapta-se a móviles e tablets
+- **Responsive**: Adaptase a móviles e tablets
 
 ## Fórmulas Matemáticas
 

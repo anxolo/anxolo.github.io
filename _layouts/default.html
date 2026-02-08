@@ -13,12 +13,12 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex justify-between items-center">
             <a href="{{ '/' | relative_url }}" class="site-title text-lg sm:text-xl font-bold hover:text-indigo-500 transition-colors">Anxo López Rodríguez</a>
             
-            <div class="hidden md:flex gap-6 lg:gap-8 items-center">
+            <div class="hidden lg:flex gap-6 lg:gap-8 items-center">
                 {% for item in site.data.navigation %}
                 <a href="{{ item.link }}" class="nav-link font-medium hover:text-indigo-500 transition-colors">{{ item.name }}</a>
                 {% endfor %}
                 
-                <!-- Language selector -->
+                <!-- Selector de idioma -->
                 <div class="relative language-selector">
                     <button class="language-toggle flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-[var(--hover-bg)] transition-colors">
                         <i class="fas fa-globe text-sm"></i>
@@ -37,8 +37,8 @@
                 </button>
             </div>
 
-            <div class="md:hidden flex items-center gap-3">
-                <!-- Mobile language selector -->
+            <div class="lg:hidden flex items-center gap-3">
+                <!-- Selector de idioma móbil -->
                 <div class="relative language-selector">
                     <button class="language-toggle flex items-center gap-1 px-2 py-1 rounded-lg hover:bg-[var(--hover-bg)] transition-colors">
                         <i class="fas fa-globe text-sm"></i>
@@ -112,7 +112,7 @@
             }
         });
 
-        // Close mobile menu when clicking on a link
+        // Pechar menú móbil ao premer nun enlace
         mobileMenu.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 mobileMenu.classList.remove('mobile-menu-open');
@@ -120,7 +120,7 @@
             });
         });
 
-        // Language selector functionality
+        // Funcionalidade do selector de idioma
         document.querySelectorAll('.language-selector').forEach(selector => {
             const toggle = selector.querySelector('.language-toggle');
             const dropdown = selector.querySelector('.language-dropdown');
@@ -130,7 +130,7 @@
                 dropdown.classList.toggle('language-dropdown-open');
             });
             
-            // Close dropdown when clicking outside
+            // Pechar despregable ao premer fóra
             document.addEventListener('click', () => {
                 dropdown.classList.remove('language-dropdown-open');
             });

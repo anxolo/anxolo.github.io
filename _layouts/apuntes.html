@@ -78,12 +78,34 @@
             transition: all 0.3s ease;
         }
         
-        /* Encabezado del documento */
+        /* Cabeceira do documento */
         .document-header {
             text-align: center;
             margin-bottom: 3rem;
             padding-bottom: 1.5rem;
             border-bottom: 2px solid var(--border-color);
+        }
+        
+        .course-info {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .year-badge {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 1rem;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+        
+        .course-name {
+            color: var(--text-color);
+            font-weight: 500;
         }
         
         .document-title {
@@ -106,7 +128,7 @@
             font-size: 1.1rem;
         }
         
-        /* Botones de acción */
+        /* Botóns de acción */
         .action-buttons {
             position: fixed;
             top: 20px;
@@ -198,7 +220,7 @@
             border-left: 4px solid var(--accent-color);
         }
         
-        /* Blockquotes */
+        /* Citas */
         blockquote {
             background: var(--blockquote-bg);
             padding: 1rem;
@@ -208,7 +230,7 @@
             border-radius: 0 6px 6px 0;
         }
         
-        /* Tablas */
+        /* Táboas */
         table {
             width: 100%;
             border-collapse: collapse;
@@ -236,7 +258,7 @@
             font-size: 1.1rem !important;
         }
         
-        /* Footer */
+        /* Pé de páxina */
         .document-footer {
             margin-top: 4rem;
             padding-top: 2rem;
@@ -247,7 +269,7 @@
             font-size: 0.9rem;
         }
         
-        /* Responsive */
+        /* Responsivo */
         @media (max-width: 768px) {
             body {
                 padding: 1rem;
@@ -265,7 +287,7 @@
             }
         }
         
-        /* Print styles */
+        /* Estilos para impresión */
         @media print {
             body {
                 max-width: none;
@@ -288,10 +310,10 @@
     </style>
 </head>
 <body>
-    <!-- Font Awesome para iconos -->
+    <!-- Font Awesome para iconas -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Botones de acción -->
+    <!-- Botóns de acción -->
     <div class="action-buttons">
         <button class="btn" onclick="window.print()" title="Descargar PDF">
             <i class="fas fa-file-pdf"></i>
@@ -301,8 +323,14 @@
         </button>
     </div>
     
-    <!-- Encabezado del documento -->
+    <!-- Cabeceira do documento -->
     <header class="document-header">
+        {% if page.year %}
+        <div class="course-info">
+            <span class="year-badge">{{ page.year }}</span>
+            {% if page.course %}<span class="course-name">{{ page.course }}</span>{% endif %}
+        </div>
+        {% endif %}
         <h1 class="document-title">{{ page.title }}</h1>
         {% if page.subtitle %}
         <div class="document-subtitle">{{ page.subtitle }}</div>
@@ -313,12 +341,12 @@
         {% endif %}
     </header>
     
-    <!-- Contenido principal -->
+    <!-- Contido principal -->
     <main class="document-content">
         {{ content }}
     </main>
     
-    <!-- Footer del documento -->
+    <!-- Pé do documento -->
     <footer class="document-footer">
         <p>© {{ site.time | date: "%Y" }} Anxo López Rodríguez</p>
         {% if page.source %}
@@ -344,9 +372,9 @@
             }
         }
         
-        // Mejoras de accesibilidad y funcionalidad
+        // Melloras de accesibilidade e funcionalidade
         document.addEventListener('DOMContentLoaded', function() {
-            // Aplicar tema guardado
+            // Aplicar tema gardado
             const savedTheme = localStorage.getItem('theme');
             const themeToggle = document.getElementById('theme-toggle');
             const icon = themeToggle.querySelector('i');
@@ -357,7 +385,7 @@
             } else {
                 icon.className = 'fas fa-moon';
             }
-            // Numeración automática de secciones si se especifica en front matter
+            // Numeración automática de seccións se especifica no front matter
             {% if page.numbered_sections %}
             let sectionCounter = 0;
             let subsectionCounter = 0;
@@ -374,7 +402,7 @@
             });
             {% endif %}
             
-            // Soporte para navegación con teclado
+            // Soporte para navegación co teclado
             document.addEventListener('keydown', function(e) {
                 if (e.ctrlKey && e.key === 'p') {
                     e.preventDefault();

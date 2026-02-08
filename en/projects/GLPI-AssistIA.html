@@ -7,20 +7,18 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="../../assets/js/layout.js"></script>
     <style>
-        /* Importa a fonte Inter para un deseño limpo */
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
         
-        /* Estilos base para o corpo e o deseño */
         html, body {
             height: 100%;
             margin: 0;
             padding: 0;
             overflow-x: hidden;
-            scroll-behavior: smooth; /* Desprazamento suave para a frecha de "baixar" */
+            scroll-behavior: smooth;
         }
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f7fafc; /* Cor de fondo base para o resto da páxina */
+            background-color: #f7fafc; 
             color: #333;
         }
         .section-card {
@@ -33,7 +31,7 @@
         .youtube-container {
             position: relative;
             width: 100%;
-            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            padding-bottom: 56.25%;
             border-radius: 1rem;
             overflow: hidden;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
@@ -103,29 +101,25 @@
             border-radius: 0.5rem;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-        /* Quitar marco/sombra a imágenes con esta clase */
         .no-frame {
             box-shadow: none !important;
             border-radius: 0 !important;
         }
 
-        /* Igualar alturas y adaptar imagen al texto en "Caso de uso" */
         .case-row {
-            align-items: stretch; /* ambas columnas con la misma altura */
-        }
-        .metrics-row { align-items: stretch; }        /* columnas misma altura */
+            align-items: stretch; 
+        .metrics-row { align-items: stretch; }      
         .metrics-illustration img {
         width: 100%;
         height: 100%;
-        object-fit: contain;                         /* sin recortes, sin hueco */
+        object-fit: contain;                         
         }
 
         .case-illustration img {
             width: 100%;
             height: 100%;
-            object-fit: contain; /* sin recorte */
+            object-fit: contain; 
         }
-        /* Animación para a frecha de desprazamento */
         @keyframes bounce {
             0%, 20%, 50%, 80%, 100% {
                 transform: translateY(0);
@@ -141,7 +135,6 @@
             animation: bounce 2s infinite;
         }
 
-        /* Estilos da liña de tempo */
         .timeline-container {
             display: flex;
             flex-direction: column;
@@ -203,7 +196,6 @@
             z-index: 10;
         }
 
-        /* Estilos para a liña de tempo en móbiles */
         @media (max-width: 768px) {
             .timeline-container::before {
                 left: 2rem;
@@ -299,21 +291,21 @@
                             <h3 class="text-xl font-semibold mb-2">Prototype 1 </h3>
                             <p>A basic agent was implemented with a single function to summarize a GLPI ticket, sending the result to a file on the server.</p>
                         </div>
-                        <div class="number-circle bg-blue-500">1</div>
+                        <div class="number-circle bg-blue-500"></div>
                     </div>
                                         <div class="timeline-point">
                         <div class="content md:text-left">
                             <h3 class="text-xl font-semibold mb-2">Prototype 2 </h3>
                             <p>The ability to perform a ping to an IP address provided in the ticket was introduced, and the reading of Wiki.js documentation was improved. This allowed the agent to respond more effectively to connectivity incidents.</p>
                         </div>
-                        <div class="number-circle bg-purple-500">2</div>
+                        <div class="number-circle bg-purple-500"></div>
                     </div>
                                         <div class="timeline-point">
                         <div class="content md:text-right">
                             <h3 class="text-xl font-semibold mb-2">Prototype 3 </h3>
                             <p>Multiple agents with specific roles (Analyst, Resolver) were integrated, and a workflow was implemented to allow agents to interact and collaborate on resolving more complex problems. The concept of an MCP data bus was introduced.</p>
                         </div>
-                        <div class="number-circle bg-green-500">3</div>
+                        <div class="number-circle bg-green-500"></div>
                     </div>
                 </div>
             </section>
@@ -451,7 +443,6 @@
     <div id="footer-output"></div>
 
     <script>
-        // Functionality for the menus
         const langButton = document.getElementById('lang-button');
         const langMenu = document.getElementById('lang-menu');
         const mobileMenuButton = document.getElementById('mobile-menu-button');
@@ -508,7 +499,6 @@
             mobileLangButton.addEventListener('click', () => toggleMenu(mobileLangMenu, mobileLangButton));
         }
 
-        // Image Carousel Logic
         let slideIndex = 1;
         showSlides(slideIndex);
 
@@ -533,7 +523,6 @@
               slideIndex = slides.length;
           }
 
-          // Move the carousel
           slider.style.transform = `translateX(-${(slideIndex - 1) * 100}%)`;
 
           for (i = 0; i < dots.length; i++) {

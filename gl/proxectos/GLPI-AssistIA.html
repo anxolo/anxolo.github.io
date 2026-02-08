@@ -4,16 +4,14 @@ title: GLPI AssistIA
 lang: gl
 ---
     <style>
-        /* Importa a fonte Inter para un deseño limpo */
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
         
-        /* Estilos base para o corpo e o deseño */
         html, body {
             height: 100%;
             margin: 0;
             padding: 0;
             overflow-x: hidden;
-            scroll-behavior: smooth; /* Desprazamento suave para a frecha de "baixar" */
+            scroll-behavior: smooth;
         }
         body {
             font-family: 'Inter', sans-serif;
@@ -35,12 +33,10 @@ lang: gl
             color: var(--text-color) !important;
         }
         
-        /* Sobrescribir colores fijos de texto */
         .text-gray-800, .text-gray-700, .text-gray-500 {
             color: var(--text-color) !important;
         }
         
-        /* Asegurar que todo el contenido se adapte al tema */
         .container h2, .container h3, .container h4,
         .container p, .container li, .container ul {
             color: var(--text-color) !important;
@@ -48,7 +44,7 @@ lang: gl
         .youtube-container {
             position: relative;
             width: 100%;
-            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            padding-bottom: 56.25%;
             border-radius: 1rem;
             overflow: hidden;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
@@ -118,29 +114,27 @@ lang: gl
             border-radius: 0.5rem;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-        /* Quitar marco/sombra a imágenes con esta clase */
+
         .no-frame {
             box-shadow: none !important;
             border-radius: 0 !important;
         }
 
-        /* Igualar alturas y adaptar imagen al texto en "Caso de uso" */
-        .case-row {
-            align-items: stretch; /* ambas columnas con la misma altura */
+        .content-row {
+            align-items: stretch;
         }
-        .metrics-row { align-items: stretch; }        /* columnas mesma altura */
+        .metrics-row { align-items: stretch; }
         .metrics-illustration img {
         width: 100%;
         height: 100%;
-        object-fit: contain;                         /* sin recortes, sin hueco */
+        object-fit: contain;
         }
 
         .case-illustration img {
             width: 100%;
             height: 100%;
-            object-fit: contain; /* sin recorte */
+            object-fit: contain;
         }
-        /* Animación para a frecha de desprazamento */
         @keyframes bounce {
             0%, 20%, 50%, 80%, 100% {
                 transform: translateY(0);
@@ -156,7 +150,7 @@ lang: gl
             animation: bounce 2s infinite;
         }
 
-        /* Estilos da liña de tempo */
+
         .timeline-container {
             display: flex;
             flex-direction: column;
@@ -171,7 +165,7 @@ lang: gl
             top: 0;
             width: 4px;
             height: 100%;
-            background: #cbd5e1;
+            background: var(--border-color, #cbd5e1);
             transform: translateX(-50%);
         }
         .timeline-point {
@@ -182,12 +176,13 @@ lang: gl
             margin-bottom: 2rem;
         }
         .timeline-point .content {
-            background-color: white;
+            background-color: var(--card-bg);
             padding: 1.5rem;
             border-radius: 0.75rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 6px var(--shadow-light);
             position: relative;
             width: 45%;
+            color: var(--text-color);
         }
         .timeline-point:nth-child(odd) {
             justify-content: flex-start;
@@ -218,7 +213,7 @@ lang: gl
             z-index: 10;
         }
 
-        /* Estilos para a liña de tempo en móbiles */
+
         @media (max-width: 768px) {
             .timeline-container::before {
                 left: 2rem;
@@ -282,7 +277,7 @@ lang: gl
                 <img src="/assets/pictures/glpi/viñeta1.png" alt="Información adicional" class="no-frame w-full h-full">
                 </div>
 
-                <!-- Título y texto en la misma columna; el título queda centrado verticalmente con el texto -->
+
                 <div class="md:w-1/2 flex flex-col justify-center">
                 <h2 class="text-3xl font-bold text-gray-800 mb-4 text-center md:text-left">Caso de uso</h2>
                 <p class="text-gray-700 leading-relaxed">
@@ -293,52 +288,52 @@ lang: gl
 
             
             <section class="section-card">
-                <h2 class="text-3xl font-bold text-gray-800 mb-6">Evolución dos Axentes</h2>
-                <p class="text-gray-700 leading-relaxed">
+                <h2 class="text-3xl font-bold mb-6" style="color: var(--text-color) !important;">Evolución dos Axentes</h2>
+                <p class="leading-relaxed" style="color: var(--text-color) !important;">
                     Os axentes de GLPI AssistIA evolucionaron a través de varios prototipos, cada un engadindo novas funcionalidades e capacidades para mellorar a xestión de incidencias. A continuación, descríbense os principais fitos nesta evolución.
                 </p>
                 <div class="timeline-container">
                     
                                         <div class="timeline-point">
                         <div class="content md:text-right">
-                            <h3 class="text-xl font-semibold mb-2">Prototipo 1 </h3>
-                            <p>Implementouse un axente básico cunha soa función de resumo para un tícket de GLPI, enviando o resultado a un arquivo no servidor.</p>
+                            <h3 class="text-xl font-semibold mb-2" style="color: var(--text-color) !important;">Prototipo 1 </h3>
+                            <p style="color: var(--text-color) !important;">Implementouse un axente básico cunha soa función de resumo para un tícket de GLPI, enviando o resultado a un arquivo no servidor.</p>
                         </div>
-                        <div class="number-circle bg-blue-500">1</div>
+                        <div class="number-circle bg-blue-500"></div>
                     </div>
                                         <div class="timeline-point">
                         <div class="content md:text-left">
-                            <h3 class="text-xl font-semibold mb-2">Prototipo 2 </h3>
-                            <p>Introduciuse a capacidade de realizar un ping a un enderezo IP proporcionado no tícket e mellorouse a lectura da documentación de Wiki.js. Isto permitiu ao axente responder de maneira máis efectiva a incidentes de conectividade.</p>
+                            <h3 class="text-xl font-semibold mb-2" style="color: var(--text-color) !important;">Prototipo 2 </h3>
+                            <p style="color: var(--text-color) !important;">Introduciuse a capacidade de realizar un ping a un enderezo IP proporcionado no tícket e mellorouse a lectura da documentación de Wiki.js. Isto permitiu ao axente responder de maneira máis efectiva a incidentes de conectividade.</p>
                         </div>
-                        <div class="number-circle bg-purple-500">2</div>
+                        <div class="number-circle bg-purple-500"></div>
                     </div>
                                         <div class="timeline-point">
                         <div class="content md:text-right">
-                            <h3 class="text-xl font-semibold mb-2">Prototipo 3 </h3>
-                            <p>Integráronse múltiples axentes con roles específicos (Analista, Resolutor) e implementouse un fluxo de traballo para que os axentes puidesen interactuar e colaborar na resolución de problemas máis complexos. Introduciuse o concepto dun bus de datos MCP.</p>
+                            <h3 class="text-xl font-semibold mb-2" style="color: var(--text-color) !important;">Prototipo 3 </h3>
+                            <p style="color: var(--text-color) !important;">Integráronse múltiples axentes con roles específicos (Analista, Resolutor) e implementouse un fluxo de traballo para que os axentes puidesen interactuar e colaborar na resolución de problemas máis complexos. Introduciuse o concepto dun bus de datos MCP.</p>
                         </div>
-                        <div class="number-circle bg-green-500">3</div>
+                        <div class="number-circle bg-green-500"></div>
                     </div>
                 </div>
             </section>
 
                         <section class="section-card">
-                <h2 class="text-3xl font-bold text-gray-800 mb-6">Análise de Modelos LLM</h2>
+                <h2 class="text-3xl font-bold mb-6" style="color: var(--text-color) !important;">Análise de Modelos LLM</h2>
                 <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-8">
                     <div class="md:w-1/2">
-                        <p class="text-gray-700 leading-relaxed">
+                        <p style="color: var(--text-color) !important;" class="leading-relaxed">
                             Para o desenvolvemento de GLPI AssistIA, realizouse unha análise comparativa de varios modelos de linguaxe para determinar cal sería o máis adecuado para o proxecto. O obxectivo era atopar un modelo que ofrecese un equilibrio entre capacidades de procesamento, custo e capacidade de ser auto-aloxado para garantir a privacidade dos datos.
                         </p>
-                        <p class="text-gray-700 leading-relaxed mt-4">
+                        <p style="color: var(--text-color) !important;" class="leading-relaxed mt-4">
                             A orquestración dos axentes levouse a cabo utilizando a libraría CrewAI, que facilita a colaboración entre diferentes axentes especializados. Consideráronse tanto modelos de código aberto como propietarios, prestando especial atención á flexibilidade para a súa integración no servidor. Esta análise foi crucial para optimizar o rendemento e a eficiencia do sistema no contorno de GLPI.
                         </p>
-                        <p class="text-gray-700 mt-4">Para máis detalles sobre esta análise, podes consultar o documento completo no repositorio do proxecto.</p>
+                        <p style="color: var(--text-color) !important;" class="mt-4">Para máis detalles sobre esta análise, podes consultar o documento completo no repositorio do proxecto.</p>
                         <a href="https://github.com/ANFAIA/GLPI-AssistIA/blob/main/docs/analisis_LLM_para_CrewAi.md" class="text-blue-600 hover:underline">Ver documento de análise completo (Español)</a>
                     </div>
                     <div class="md:w-1/2 flex flex-col items-center justify-center">
                         <img src="/assets/pictures/glpi/viñeta2.png" alt="Información LLM" class="no-frame w-full h-auto">
-                        <ul class="list-disc list-inside text-gray-700 leading-relaxed">
+                        <ul class="list-disc list-inside leading-relaxed" style="color: var(--text-color) !important;">
                                 
                                 
                         </ul>
@@ -347,15 +342,15 @@ lang: gl
             </section>
 
                         <section class="section-card">
-                <h2 class="text-3xl font-bold text-gray-800 mb-6">Arquitectura e Visión Xeral</h2>
-                <p class="text-gray-700 leading-relaxed mb-8">
+                <h2 class="text-3xl font-bold mb-6" style="color: var(--text-color) !important;">Arquitectura e Visión Xeral</h2>
+                <p class="leading-relaxed mb-8" style="color: var(--text-color) !important;">
                     O núcleo do sistema está deseñado ao redor dun fluxo de traballo que se activa coa creación dun tícket en GLPI. A información do tícket é procesada por un sistema de axentes intelixentes (CrewAI) que colaboran para analizar, enriquecer e propor solucións. Este CrewAI conéctase a ferramentas externas (bases de coñecemento, sistemas de monitorización) a través dun Servidor MCP (Model Context Protocol), que actúa como un bus de datos.
                 </p>
-                <h3 class="text-2xl font-semibold text-gray-800 mt-8 mb-4">Fluxo de Traballo do Tícket</h3>
+                <h3 class="text-2xl font-semibold mt-8 mb-4" style="color: var(--text-color) !important;">Fluxo de Traballo do Tícket</h3>
                 <div class="flex justify-center mb-8">
                     <img src="https://raw.githubusercontent.com/ANFAIA/GLPI-AssistIA/b0f1cb55bdc569c4f83b0b36e34c96536fe1d644/docs/BigPicture_VersionActual.svg" alt="Diagrama de Arquitectura V3" class="w-full h-auto rounded-xl">
                 </div>
-                <ul class="list-decimal list-inside text-gray-700 leading-relaxed space-y-2">
+                <ul class="list-decimal list-inside leading-relaxed space-y-2" style="color: var(--text-color) !important;">
                     <li>Entrada en GLPI: Un usuario ou técnico crea un tícket de incidencia.</li>
                     <li>Activación do Axente: A incidencia transfírese ao sistema CrewAI aloxado en GLPI AssistIA Server para o seu procesamento.</li>
                     <li>Análise por Axentes IA: Un equipo de axentes avalía a urxencia, clasifica a incidencia e revisa datos históricos para propor unha solución.</li>
@@ -364,7 +359,7 @@ lang: gl
             </section>
 
                         <section class="section-card">
-                <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">Configuración e Exemplo de Uso</h2>
+                <h2 class="text-3xl font-bold mb-6 text-center" style="color: var(--text-color) !important;">Configuración e Exemplo de Uso</h2>
                 <div class="youtube-container">
                     <div class="w-full h-full bg-gray-200 flex items-center justify-center text-center text-gray-500 rounded-xl">
                         <iframe width="560" height="315" src="https://www.youtube.com/embed/tBrVdnGEEe4?si=c_gJg94Uw2leh2Ck" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -457,7 +452,7 @@ lang: gl
     </main>
 
     <script>
-        // Image Carousel Logic
+        // Lóxica do carrusel de imaxes
         let slideIndex = 1;
         showSlides(slideIndex);
 
@@ -482,7 +477,7 @@ lang: gl
                 slideIndex = slides.length;
             }
 
-            // Mueve el carrusel
+            // Move o carrusel
             slider.style.transform = `translateX(-${(slideIndex - 1) * 100}%)`;
 
             for (i = 0; i < dots.length; i++) {
