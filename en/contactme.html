@@ -1,61 +1,51 @@
-<!DOCTYPE html>
-<html>
-<head>
-<style>
-    p { color: black; font-family: Calibri; text-align: center;}
+---
+layout: default
+title: Contact
+lang: en
+---
 
-   .pc {
-    color: black; 
-    font-family: Calibri; 
-    border: 2px solid grey; 
-    border-radius: 10px; 
-    padding: 15px 20px;  
-    margin: 12px auto; 
-    max-width: 400px; 
-    width: 95%; 
-    display: block; 
-    text-align: center;
-    text-decoration: none; 
-    font-size: 1.2rem; 
-}
+<main class="flex-grow pt-24 pb-8">
+    <div class="container mx-auto px-4">
+        <h1 class="text-4xl md:text-5xl font-bold text-left mb-8" style="color: var(--text-color);">Contact</h1>
+        
+        <!-- Profile photo -->
+        <div style="display: flex; justify-content: center; margin-bottom: 20px;">
+            <img
+                src="https://avatars.githubusercontent.com/u/50779387?v=4"
+                alt="Foto de perfil de Anxo López"
+                style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover; border: 2px solid #ccc;"
+            >
+        </div>
 
-    h1 {
-        color: darkslategray;
-        font-family: Calibri;
-        text-align: center;
-    }
-
-    h3 {
-        color: dimgrey;
-        font-family: Calibri;
-        text-align: center;
-    }
-</style>
-<title>About me</title>
-</head>
-<body>
-<div style="display: flex; justify-content: center; margin: 0;">
-  <img
-    src="https://avatars.githubusercontent.com/u/50779387?v=4"
-    alt="Foto de perfil"
-    style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover; border: 2px solid #ccc;"
-  >
-</div>
-
-    <h1>Anxo López Rodríguez</h1>
-    <h3>AI Student | ESEI - UVigo</h3>
-    <p>Artificial Intelligence degree student at Universidade de Vigo. I am deeply committed to social issues, which is why I took part in projects like "Los Klimatas", developed in collaboration with the EduCaixa Next program by "La Caixa Foundation", aiming to reduce CO₂ emissions through basic data analysis of our local environment.
-<br> I am currently involved in projects related to my field and actively participate in the academic environment, being a member of Eseida (Escola Superior de Enxeñaría Informática Delegación de Alumnos) and taking part in various committees and mentoring actions to support new students.
-</p>
-  <a href="https://www.x.com/anxolo_/" class="pc"> X - Twitter 🐦 </a>
-  <a href="https://bsky.app/profile/anxolo.bsky.social" class="pc"> Bluesky 🦋 </a>
-    <a href="https://es.linkedin.com/in/anxo-lopez-rodriguez" class="pc"> LinkedIn 💼 </a>
-    <a href="mailto:lopezrodriguezanxo@gmail.com" class="pc"> Email 📩 </a>
-    <a href="https://github.com/anxolo" class="pc"> GitHub 💻 </a>
-
-<div style="text-align:center; font-size:1.2rem; font-family:Calibri, sans-serif;"><a href="https://anxolo.github.io/gl/contactme" style="margin:0 10px; text-decoration:none; color:#333;">GL</a>|<a href="https://anxolo.github.io/es/contactme" style="margin:0 10px; text-decoration:none; color:#333;">ES</a>|<a href="https://anxolo.github.io/en/contactme" style="margin:0 10px; text-decoration:none; color:#333;">EN</a></div>
+        <!-- Información personal -->
+        <div class="flex flex-col md:flex-row gap-8 items-start">
+            <div class="w-full md:w-2/3 flex flex-col items-start space-y-4">
+                <div class="p-8 rounded-xl shadow-lg w-full space-y-4 text-left" style="background-color: var(--card-bg); color: var(--text-color);">
+                    <h2 class="text-2xl font-bold" style="color: var(--text-color);">Anxo López Rodríguez</h2>
+                    <h3 class="text-md font-medium" style="color: var(--subtitle-color);">AI Student | ESEI - UVigo</h3>
 
 
-   
-</body>
-</html>
+                    <!-- Enlaces de contacto -->
+                    <div class="space-y-4">
+                        <a href="https://www.x.com/anxolo_/" class="inline-block bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-6 rounded-full transition-colors duration-200">
+                            X - Twitter 🐦
+                        </a>
+                        <a href="https://bsky.app/profile/anxolo.bsky.social" class="inline-block bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-6 rounded-full transition-colors duration-200">
+                            Bluesky 🦋
+                        </a>
+                        <a href="https://es.linkedin.com/in/anxo-lopez-rodriguez" class="inline-block bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-6 rounded-full transition-colors duration-200">
+                            LinkedIn 💼
+                        </a>
+                        <a href="mailto:lopezrodriguezanxo@gmail.com" class="inline-block bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-6 rounded-full transition-colors duration-200">
+                            Email 📩
+                        </a>
+                        <a href="https://github.com/anxolo" class="inline-block bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-6 rounded-full transition-colors duration-200">
+                            GitHub 💻
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</main>
