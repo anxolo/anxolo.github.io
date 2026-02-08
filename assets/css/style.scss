@@ -517,11 +517,11 @@ body {
     overflow: hidden;
     border-right: 3px solid var(--accent-color);
     white-space: nowrap;
-    animation: typing 3.5s steps(14, end) forwards, blink-caret 0.75s step-end infinite;
+    animation: typing 3.5s steps(15, end) forwards, blink-caret 0.75s step-end infinite;
     
     @media (max-width: 640px) {
         border-right-width: 2px;
-        animation: typing 2.5s steps(14, end) forwards, blink-caret 0.75s step-end infinite;
+        animation: typing 2.5s steps(15, end) forwards, blink-caret 0.75s step-end infinite;
     }
 }
 

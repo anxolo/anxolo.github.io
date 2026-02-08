@@ -129,6 +129,13 @@ lang: en
 
 .typing {
     display: inline-block;
+    animation: typing 3.5s steps(12, end) forwards, blink-caret 0.75s step-end infinite;
+}
+
+@media (max-width: 640px) {
+    .typing {
+        animation: typing 2.5s steps(12, end) forwards, blink-caret 0.75s step-end infinite;
+    }
 }
 
 @media (max-width: 1024px) {
