@@ -1,38 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Notes 📒 - Anxo López Rodríguez</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="../assets/js/layout.js"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-        html, body {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-            overflow-x: hidden;
-        }
-        body {
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #A7B1FF 0%, #764BA2 100%);
-            color: #333;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-    </style>
-</head>
-<body class="flex flex-col">
-
-    <div id="header-output"></div>
-
-    <main class="flex-grow pt-24 pb-8 bg-white bg-opacity-70 backdrop-blur-md">
-        <div class="container mx-auto px-4">
-            <h1 class="text-4xl sm:text-5xl font-extrabold text-center mb-12 text-gray-800">
+---
+layout: default
+title: Notes 📒
+lang: en
+---
+    <main class="flex-grow pt-24 pb-8">
+        <div class="container mx-auto px-4 max-w-6xl">
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-center mb-12" style="color: var(--text-color);">
                 Notes 📒
             </h1>
             
@@ -43,10 +16,11 @@
                 <p class="font-bold mt-4">Whoever you are, if you see something wrong or have any suggestions, don't hesitate to contact me ;)</p>
             </div>
 
-            <div class="bg-white rounded-xl shadow-lg overflow-hidden mb-8">
+            <div class="rounded-xl shadow-lg overflow-hidden mb-8" style="background-color: var(--card-bg);">
     <div class="p-6 text-2xl font-semibold bg-gradient-to-r from-indigo-500 to-purple-600 text-white">
         1st year - GRIA
     </div>
+
     <div class="p-6 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         <div class="bg-gray-50 rounded-lg p-4 border-l-4 border-l-orange-500">
             <h3 class="text-lg font-bold text-orange-600 mb-2">Introduction to Computers</h3>
@@ -117,7 +91,9 @@
     </div>
 </div>
 
-<div class="bg-white rounded-xl shadow-lg overflow-hidden mb-8">
+
+
+<div class="rounded-xl shadow-lg overflow-hidden mb-8" style="background-color: var(--card-bg);">
     <div class="p-6 text-2xl font-semibold bg-gradient-to-r from-indigo-500 to-purple-600 text-white">
         2nd year - GRIA
     </div>
@@ -149,11 +125,6 @@
     </div>
 </div>
 
-
-
         </div>
     </main>
 
-    <div id="footer-output"></div>
-</body>
-</html>

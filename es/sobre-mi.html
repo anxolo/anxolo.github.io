@@ -1,243 +1,109 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sobre Mí - Anxo López Rodríguez</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="../assets/js/layout.js"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-        html, body {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-            overflow-x: hidden;
-        }
-        body {
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #A7B1FF 0%, #764BA2 100%);
-            color: #333;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        .main-content-section {
-            background-color: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(5px);
-            border-radius: 1rem;
-            padding: 2rem;
-        }
-        .section-header {
-            border-bottom: 2px solid #667eea;
-            padding-bottom: 0.5rem;
-            margin-bottom: 1.5rem;
-        }
-    </style>
-</head>
-<body class="flex flex-col">
+---
+layout: default
+title: Sobre mí
+lang: es
+---
 
-    <div id="header-output"></div>
+<main class="flex-grow pt-24 pb-8 flex items-center justify-center">
+    <div class="container mx-auto px-4">
+        
+        <div class="flex flex-col md:flex-row justify-center items-center md:items-start mb-8">
+            <div class="mb-6 md:mb-0 md:w-1/3 flex-shrink-0 flex justify-center md:justify-end md:mr-8">
+                <img src="https://avatars.githubusercontent.com/u/50779387?v=4" alt="Foto de perfil" class="w-48 h-48 md:w-64 md:h-64 rounded-full object-cover border-4 border-white shadow-lg">
+            </div>
 
-    <main class="flex-grow pt-24 pb-8 flex items-center justify-center">
-        <div class="container mx-auto px-4">
-            
-            <div class="flex flex-col md:flex-row justify-center items-center md:items-start mb-8 text-white">
-                <div class="mb-6 md:mb-0 md:w-1/3 flex-shrink-0 flex justify-center md:justify-end md:mr-8">
-                    <img src="https://avatars.githubusercontent.com/u/50779387?v=4" alt="Foto de perfil" class="w-48 h-48 md:w-64 md:h-64 rounded-full object-cover border-4 border-white shadow-lg">
-                </div>
+            <div class="md:w-2/3">
+                <h1 class="text-4xl md:text-5xl font-bold text-left mb-4" style="color: var(--text-color);">
+                    ¡Hola! 👋 Soy Anxo
+                </h1>
+                <p class="text-lg leading-relaxed mb-6" style="color: var(--text-secondary);">
+                    Estudiante de <strong>Grado en Ingeniería Robótica, Inteligencia Artificial y Mecatrónica</strong> en la Universidad de Vigo. Apasionado por la tecnología, el aprendizaje continuo y los desafíos técnicos.
+                </p>
+                <p class="text-lg leading-relaxed mb-6" style="color: var(--text-secondary);">
+                    Mi curiosidad me lleva a explorar diferentes campos de la tecnología, desde el desarrollo de software hasta la automatización y la inteligencia artificial. Siempre estoy buscando nuevas formas de aplicar mis conocimientos en proyectos innovadores.
+                </p>
+            </div>
+        </div>
 
-                <div class="md:w-2/3 md:pl-8 text-center md:text-left flex flex-col justify-center">
-                    <h1 class="text-4xl sm:text-5xl font-extrabold mb-1">
-                        Anxo López Rodríguez
-                    </h1>
-                    <h3 class="text-xl font-semibold opacity-80 mb-4">
-                        Estudiante de IA | ESEI - UVigo
-                    </h3>
-                    
-                    <div class="flex flex-wrap justify-center md:justify-start space-x-4 mt-4">
-                        <a href="https://www.x.com/anxolo_/" class="w-8 h-8 opacity-80 hover:opacity-100 transition-opacity duration-200">
-                            <img src="/assets/pictures/x.png" alt="X logo" class="w-full h-full">
-                        </a>
-                        <a href="https://bsky.app/profile/anxolo.bsky.social" class="w-8 h-8 opacity-80 hover:opacity-100 transition-opacity duration-200">
-                            <img src="/assets/pictures/bluesky.png" alt="Bluesky logo" class="w-full h-full">
-                        </a>
-                        <a href="https://es.linkedin.com/in/anxo-lopez-rodriguez" class="w-8 h-8 opacity-80 hover:opacity-100 transition-opacity duration-200">
-                            <img src="/assets/pictures/linkedin_blue.png" alt="LinkedIn logo" class="w-full h-full">
-                        </a>
-                        <a href="mailto:lopezrodriguezanxo@gmail.com" class="w-8 h-8 opacity-80 hover:opacity-100 transition-opacity duration-200">
-                            <img src="/assets/pictures/email.png" alt="Email icon" class="w-full h-full">
-                        </a>
-                        <a href="https://github.com/anxolo" class="w-8 h-8 opacity-80 hover:opacity-100 transition-opacity duration-200">
-                            <img src="/assets/pictures/github.png" alt="GitHub logo" class="w-full h-full">
-                        </a>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div class="bg-[var(--card-bg)] rounded-xl shadow-lg overflow-hidden p-8 border border-[var(--border-color)]">
+                <h2 class="text-2xl font-bold mb-6" style="color: var(--text-color); border-bottom: 2px solid var(--accent-color); padding-bottom: 0.5rem;">Experiencia</h2>
+                
+                <div class="space-y-6">
+                    <div class="border-l-4 border-blue-500 pl-4">
+                        <h3 class="text-xl font-semibold mb-2" style="color: var(--text-color);">Estudiante en Prácticas</h3>
+                        <p class="text-sm mb-2" style="color: var(--accent-color);">AtlantTIC (Centro Tecnológico de Telecomunicaciones) | Julio 2024</p>
+                        <p style="color: var(--text-secondary);">Desarrollo de una herramienta de inteligencia artificial para la generación automática de tickets de GLPI. El proyecto incluye integración con GPT-4 para análisis de texto y automatización de procesos de soporte técnico.</p>
                     </div>
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 gap-6">
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden main-content-section p-8">
-                    <h2 class="text-2xl font-bold section-header text-gray-800">Sobre Mí</h2>
-                    <p class="text-gray-700 leading-relaxed">
-                        Estudiante del Grado Interuniversitario en Inteligencia Artificial en la Escola Superior de Enxeñaría Informática de la Universidade de Vigo. A lo largo de mi vida académica he realizado diversos proyectos, tanto de ámbito social como tecnológico, mediante programas de entidades como Fundación La Caixa o ANFAIA.
-                    </p>
-                    <p class="text-gray-700 leading-relaxed">
-                        Actualmente colaboro en proyectos de mi especialidad y participo activamente en el entorno académico, siendo representante estudiantil y participando en diversas comisiones y acciones de mentoría hacia nuevos alumnos del centro.
-                    </p>
-                </div>
+            <div class="bg-[var(--card-bg)] rounded-xl shadow-lg overflow-hidden p-8 border border-[var(--border-color)]">
+                <h2 class="text-2xl font-bold mb-6" style="color: var(--text-color); border-bottom: 2px solid var(--accent-color); padding-bottom: 0.5rem;">Educación</h2>
                 
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden main-content-section p-8">
-                    <h2 class="text-2xl font-bold section-header text-gray-800">Educación</h2>
-                    <div class="relative space-y-6">
-                        <div class="absolute left-3 top-0 h-full w-0.5 bg-gray-300"></div>
+                <div class="space-y-6">
+                    <div class="border-l-4 border-green-500 pl-4">
+                        <h3 class="text-xl font-semibold mb-2" style="color: var(--text-color);">Grado en Ingeniería Robótica, IA y Mecatrónica</h3>
+                        <p class="text-sm mb-2" style="color: var(--accent-color);">Universidad de Vigo | 2022 - 2026</p>
+                        <p style="color: var(--text-secondary);">Especialización en sistemas robóticos, algoritmos de inteligencia artificial y control automático. Desarrollo de competencias en programación, matemáticas aplicadas y diseño de sistemas mecatrónicos.</p>
+                    </div>
+                    
+                    <div class="border-l-4 border-yellow-500 pl-4">
+                        <h3 class="text-xl font-semibold mb-2" style="color: var(--text-color);">Bachillerato Científico-Tecnológico</h3>
+                        <p class="text-sm mb-2" style="color: var(--accent-color);">IES de Sar | 2020 - 2022</p>
+                        <p style="color: var(--text-secondary);">Formación sólida en matemáticas, física y tecnología, estableciendo las bases para estudios superiores en ingeniería.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-                        <div class="flex items-start space-x-4">
-                            <div class="relative flex-shrink-0 w-6 h-6 rounded-full bg-purple-500 z-10"></div>
-                            <div class="flex-grow">
-                                <img src="/assets/pictures/logos/esei.jpg" alt="Logo de ESEI" class="w-10 h-10 object-contain mb-2">
-                                <div>
-                                    <h3 class="text-xl font-semibold text-gray-800">Grado en Inteligencia Artificial</h3>
-                                    <p class="text-lg text-gray-600">ESEI - Universidade de Vigo</p>
-                                </div>
-                                <p class="text-gray-700 leading-relaxed mt-2">Septiembre 2024 - Actualidad</p>
-                            </div>
+        <div class="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div class="bg-[var(--card-bg)] rounded-xl shadow-lg overflow-hidden p-8 border border-[var(--border-color)]">
+                <h2 class="text-2xl font-bold mb-6" style="color: var(--text-color); border-bottom: 2px solid var(--accent-color); padding-bottom: 0.5rem;">Habilidades Técnicas</h2>
+                <div class="grid grid-cols-1 gap-8">
+                    <div>
+                        <h3 class="text-xl font-semibold mb-4" style="color: var(--text-color);">Programación y Tecnología</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-[var(--tag-bg)] text-[var(--tag-text)] text-xs font-medium px-2.5 py-0.5 rounded-full">MATLAB (Avanzado)</span>
+                            <span class="bg-[var(--tag-bg)] text-[var(--tag-text)] text-xs font-medium px-2.5 py-0.5 rounded-full">Simulink (Avanzado)</span>
+                            <span class="bg-[var(--tag-bg)] text-[var(--tag-text)] text-xs font-medium px-2.5 py-0.5 rounded-full">C++ (Medio)</span>
+                            <span class="bg-[var(--tag-bg)] text-[var(--tag-text)] text-xs font-medium px-2.5 py-0.5 rounded-full">Arduino (Medio)</span>
+                            <span class="bg-[var(--tag-bg)] text-[var(--tag-text)] text-xs font-medium px-2.5 py-0.5 rounded-full">Linux (Terminal)</span>
+                            <span class="bg-[var(--tag-bg)] text-[var(--tag-text)] text-xs font-medium px-2.5 py-0.5 rounded-full">Python (Básico/Medio)</span>
+                            <span class="bg-[var(--tag-bg)] text-[var(--tag-text)] text-xs font-medium px-2.5 py-0.5 rounded-full">Bash (Medio)</span>
+                            <span class="bg-[var(--tag-bg)] text-[var(--tag-text)] text-xs font-medium px-2.5 py-0.5 rounded-full">HTML (Básico)</span>
+                            <span class="bg-[var(--tag-bg)] text-[var(--tag-text)] text-xs font-medium px-2.5 py-0.5 rounded-full">Uso de Markdown y Jupiter Notebook</span>
+                            <span class="bg-[var(--tag-bg)] text-[var(--tag-text)] text-xs font-medium px-2.5 py-0.5 rounded-full">LaTeX (Básico)</span>
                         </div>
-                        <div class="flex items-start space-x-4">
-                            <div class="relative flex-shrink-0 w-6 h-6 rounded-full bg-purple-500 z-10"></div>
-                            <div class="flex-grow">
-                                <img src="/assets/pictures/logos/12outubro.jpeg" alt="Logo de IES 12 De Outubro" class="w-10 h-10 object-contain mb-2">
-                                <div>
-                                    <h3 class="text-xl font-semibold text-gray-800">Bachillerato - Ciencias y tecnología</h3>
-                                    <p class="text-lg text-gray-600">IES 12 De Outubro - Ourense</p>
-                                </div>
-                                <p class="text-gray-700 leading-relaxed mt-2">Septiembre 2022 - Junio 2024 | Representante de Alumnado en Consejo Escolar</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start space-x-4">
-                            <div class="relative flex-shrink-0 w-6 h-6 rounded-full bg-purple-500 z-10"></div>
-                            <div class="flex-grow">
-                                <img src="/assets/pictures/logos/12outubro.jpeg" alt="Logo de IES 12 De Outubro" class="w-10 h-10 object-contain mb-2">
-                                <div>
-                                    <h3 class="text-xl font-semibold text-gray-800">Educación secundaria Obligatoria (ESO)</h3>
-                                    <p class="text-lg text-gray-600">IES 12 De Outubro - Ourense</p>
-                                </div>
-                                <p class="text-gray-700 leading-relaxed mt-2">Septiembre 2018 - Junio 2022</p>
-                            </div>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold mb-4" style="color: var(--text-color);">Soft Skills - Habilidades Blandas</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-[var(--tag-bg)] text-[var(--tag-text)] text-xs font-medium px-2.5 py-0.5 rounded-full">Trabajo en Equipo</span>
+                            <span class="bg-[var(--tag-bg)] text-[var(--tag-text)] text-xs font-medium px-2.5 py-0.5 rounded-full">Resolución de Problemas</span>
+                            <span class="bg-[var(--tag-bg)] text-[var(--tag-text)] text-xs font-medium px-2.5 py-0.5 rounded-full">Adaptabilidad</span>
+                            <span class="bg-[var(--tag-bg)] text-[var(--tag-text)] text-xs font-medium px-2.5 py-0.5 rounded-full">Pensamiento Crítico</span>
+                            <span class="bg-[var(--tag-bg)] text-[var(--tag-text)] text-xs font-medium px-2.5 py-0.5 rounded-full">Curiosidad y Aprendizaje Continuo</span>
+                            <span class="bg-[var(--tag-bg)] text-[var(--tag-text)] text-xs font-medium px-2.5 py-0.5 rounded-full">Autodidacta</span>
+                            <span class="bg-[var(--tag-bg)] text-[var(--tag-text)] text-xs font-medium px-2.5 py-0.5 rounded-full">Comunicativo</span>
                         </div>
                     </div>
                 </div>
-                
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden main-content-section p-8">
-                    <h2 class="text-2xl font-bold section-header text-gray-800">Experiencia</h2>
-                    <div class="relative space-y-6">
-                        <div class="flex items-start space-x-4">
-                            <div class="flex-grow">
-                                <img src="/assets/pictures/logos/anfaia.png" alt="Logo de Anfaia" class="w-12 h-12 object-contain mb-2">
-                                <div>
-                                    <h3 class="text-xl font-semibold text-gray-800">GLPI AssistIA</h3>
-                                    <p class="text-lg text-gray-600">ANFAIA - Asociación Faro para la Aceleración de la Inteligencia Artificial</p>
-                                </div>
-                                <p class="text-gray-700 leading-relaxed mt-2">Julio-Septiembre 2025 | GLPI AI Automation - Proyecto realizado en calidad de becario, con el objetivo de integrar agentes de inteligencia artificial en la plataforma de software libre GLPI</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            </div>
 
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden main-content-section p-8">
-                    <h2 class="text-2xl font-bold section-header text-gray-800">Voluntariado, Proyectos y Representación</h2>
-                    <div class="relative space-y-6">
-
-                        <!-- ESEIDA -->
-                        <div class="flex items-start space-x-4">
-                            <div class="flex-grow">
-                                <img src="/assets/pictures/logos/eseida.png" alt="Logo de ESEIDA" class="w-12 h-12 object-contain mb-2">
-                                <div>
-                                    <h3 class="text-xl font-semibold text-gray-800">Miembro Delegado</h3>
-                                    <p class="text-lg text-gray-600">Eseida - Escuela Superior de Ingeniería Informática, Delegación de Alumnos</p>
-                                </div>
-                                <p class="text-gray-700 leading-relaxed mt-2">Mayo 2025 - Actualidad | Miembro de la Delegación de Alumnos como estudiante del Grado en Inteligencia Artificial (GrIA), miembro de la Junta Directiva como Vocal y Responsable de Comunicaciones. Participante en diversos Órganos de Gobierno (Junta de Centro, Mesa de Junta de Centro, Comisión Permanente y Comisión de Calidad).</p>
-                            </div>
-                        </div>
-
-                        <!-- RITSI -->
-                        <div class="flex items-start space-x-4">
-                            <div class="flex-grow">
-                                <img src="/assets/pictures/logos/ritsi.png" alt="Logo de RITSI" class="w-12 h-12 object-contain mb-2">
-                                <div>
-                                    <h3 class="text-xl font-semibold text-gray-800">Representante acreditado de la Universidade de Vigo</h3>
-                                    <p class="text-lg text-gray-600">RITSI - Reunión de Estudiantes de Ingenierías Técnicas y Superiores en Informática</p>
-                                </div>
-                                <p class="text-gray-700 leading-relaxed mt-2">Noviembre 2025 - Actualidad | Acreditado en la RITSI representando al alumnado de la UVigo, participando en la comunicación entre estudiantes de informática a nivel nacional, fomentando la colaboración entre universidades y promoviendo iniciativas formativas y profesionales.</p>
-                            </div>
-                        </div>
-
-                        <!-- EduCaixa -->
-                        <div class="flex items-start space-x-4">
-                            <div class="flex-grow">
-                                <img src="/assets/pictures/logos/educaixa.png" alt="Logo de Educaixa" class="w-12 h-12 object-contain mb-2">
-                                <div>
-                                    <h3 class="text-xl font-semibold text-gray-800">The Klimatas</h3>
-                                    <p class="text-lg text-gray-600">Educaixa | Fundación "la Caixa"</p>
-                                </div>
-                                <p class="text-gray-700 leading-relaxed mt-2">Ene 2022 - Ago 2023 | Proyecto de concienciación enfocado en reducir la contaminación y las emisiones de CO₂ combinando análisis de datos y promoviendo iniciativas en diversas comunidades locales. Reconocido en The Challenge por Educaixa y promovido por la incubadora EduCaixa NEXT de la Fundación "la Caixa".</p>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden main-content-section p-8">
-                    <h2 class="text-2xl font-bold section-header text-gray-800">Habilidades</h2>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        <div>
-                            <h3 class="text-xl font-semibold text-gray-800 mb-4">Hard Skills - Habilidades Técnicas</h3>
-                            <div class="flex flex-wrap gap-2">
-                                <span class="bg-indigo-200 text-indigo-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Herramientas Ofimáticas (Excel, Word, PowerPoint)</span>
-                                <span class="bg-indigo-200 text-indigo-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Certificado ComDix - Uso de herramientas básicas</span>
-
-                                <span class="bg-indigo-200 text-indigo-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Linux (Terminal)</span>
-                                <span class="bg-indigo-200 text-indigo-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Python (Básico/Medio)</span>
-                                <span class="bg-indigo-200 text-indigo-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Bash (Medio)</span>
-                                <span class="bg-indigo-200 text-indigo-800 text-xs font-medium px-2.5 py-0.5 rounded-full">HTML (Básico)</span>
-                                <span class="bg-indigo-200 text-indigo-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Uso de Markdown y Jupiter Notebook</span>
-                                <span class="bg-indigo-200 text-indigo-800 text-xs font-medium px-2.5 py-0.5 rounded-full">LaTeX (Básico)</span>
-                            </div>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-semibold text-gray-800 mb-4">Soft Skills - Habilidades Blandas</h3>
-                            <div class="flex flex-wrap gap-2">
-                                <span class="bg-purple-200 text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Trabajo en Equipo</span>
-                                <span class="bg-purple-200 text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Resolución de Problemas</span>
-                                <span class="bg-purple-200 text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Adaptabilidad</span>
-                                <span class="bg-purple-200 text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Pensamiento Crítico</span>
-                                <span class="bg-purple-200 text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Curiosidad y Aprendizaje Continuo</span>
-                                <span class="bg-purple-200 text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Autodidacta</span>
-                                <span class="bg-purple-200 text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Comunicativo</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden main-content-section p-8">
-                    <h2 class="text-2xl font-bold section-header text-gray-800">Idiomas</h2>
-                    <div class="grid grid-cols-1 gap-8">
-                        <div>
-                            <div class="flex flex-wrap gap-2">
-                                <span class="bg-green-200 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Español (Nativo)</span>
-                                <span class="bg-green-200 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Gallego (Nativo)</span>
-                                <span class="bg-green-200 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Inglés (B2 - Intermedio)</span>
-                                <span class="bg-green-200 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Portugués (Intermedio)</span>
-                            </div>
+            <div class="bg-[var(--card-bg)] rounded-xl shadow-lg overflow-hidden p-8 border border-[var(--border-color)]">
+                <h2 class="text-2xl font-bold mb-6" style="color: var(--text-color); border-bottom: 2px solid var(--accent-color); padding-bottom: 0.5rem;">Idiomas</h2>
+                <div class="grid grid-cols-1 gap-8">
+                    <div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-[var(--tag-bg)] text-[var(--tag-text)] text-xs font-medium px-2.5 py-0.5 rounded-full">Español (Nativo)</span>
+                            <span class="bg-[var(--tag-bg)] text-[var(--tag-text)] text-xs font-medium px-2.5 py-0.5 rounded-full">Gallego (Nativo)</span>
+                            <span class="bg-[var(--tag-bg)] text-[var(--tag-text)] text-xs font-medium px-2.5 py-0.5 rounded-full">Inglés (B2 - Intermedio)</span>
+                            <span class="bg-[var(--tag-bg)] text-[var(--tag-text)] text-xs font-medium px-2.5 py-0.5 rounded-full">Portugués (Intermedio)</span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </main>
-
-    <div id="footer-output"></div>
-</body>
-</html>
+    </div>
+</main>

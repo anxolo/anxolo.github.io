@@ -39,7 +39,6 @@ lang: en
             </div>
         </div>
         
-        <!-- Scroll down button -->
         <div class="scroll-indicator">
             <p class="text-sm mb-2">Scroll to explore</p>
             <a href="#featured-project" class="inline-block">
@@ -194,7 +193,6 @@ lang: en
             }
         });
 
-        // Pechar o menú se o usuario preme fóra del
         document.addEventListener('click', (event) => {
             if (!langButton.contains(event.target) && !langMenu.contains(event.target)) {
                 langMenu.classList.add('hidden');

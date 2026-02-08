@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ page.title | default: site.title }}</title>
     
-    <!-- MathJax para LaTeX -->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>
@@ -22,7 +21,6 @@
         };
     </script>
     
-    <!-- CSS para estilo académico -->
     <style>
         :root {
             --bg-color: #faf5ff;
@@ -78,7 +76,6 @@
             transition: all 0.3s ease;
         }
         
-        /* Cabeceira do documento */
         .document-header {
             text-align: center;
             margin-bottom: 3rem;
@@ -128,7 +125,6 @@
             font-size: 1.1rem;
         }
         
-        /* Botóns de acción */
         .action-buttons {
             position: fixed;
             top: 20px;
@@ -174,7 +170,6 @@
             color: white;
         }
         
-        /* Tipografía */
         h1, h2, h3, h4, h5, h6 {
             color: var(--heading-color);
             font-weight: bold;
@@ -192,7 +187,6 @@
             text-align: justify;
         }
         
-        /* Listas */
         ul, ol {
             margin-bottom: 1rem;
             padding-left: 2rem;
@@ -202,7 +196,6 @@
             margin-bottom: 0.5rem;
         }
         
-        /* Código */
         code {
             background: var(--code-bg);
             padding: 0.25rem 0.5rem;
@@ -220,7 +213,6 @@
             border-left: 4px solid var(--accent-color);
         }
         
-        /* Citas */
         blockquote {
             background: var(--blockquote-bg);
             padding: 1rem;
@@ -230,7 +222,6 @@
             border-radius: 0 6px 6px 0;
         }
         
-        /* Táboas */
         table {
             width: 100%;
             border-collapse: collapse;
@@ -253,12 +244,10 @@
             font-weight: 600;
         }
         
-        /* Matemáticas */
         .MathJax {
             font-size: 1.1rem !important;
         }
         
-        /* Pé de páxina */
         .document-footer {
             margin-top: 4rem;
             padding-top: 2rem;
@@ -269,7 +258,6 @@
             font-size: 0.9rem;
         }
         
-        /* Responsivo */
         @media (max-width: 768px) {
             body {
                 padding: 1rem;
@@ -287,7 +275,6 @@
             }
         }
         
-        /* Estilos para impresión */
         @media print {
             body {
                 max-width: none;
@@ -310,10 +297,8 @@
     </style>
 </head>
 <body>
-    <!-- Font Awesome para iconas -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Botóns de acción -->
     <div class="action-buttons">
         <button class="btn" onclick="window.print()" title="Descargar PDF">
             <i class="fas fa-file-pdf"></i>
@@ -323,7 +308,6 @@
         </button>
     </div>
     
-    <!-- Cabeceira do documento -->
     <header class="document-header">
         {% if page.year %}
         <div class="course-info">
@@ -341,12 +325,10 @@
         {% endif %}
     </header>
     
-    <!-- Contido principal -->
     <main class="document-content">
         {{ content }}
     </main>
     
-    <!-- Pé do documento -->
     <footer class="document-footer">
         <p>© {{ site.time | date: "%Y" }} Anxo López Rodríguez</p>
         {% if page.source %}
@@ -355,7 +337,6 @@
     </footer>
     
     <script>
-        // Función para cambiar tema
         function toggleTheme() {
             const html = document.documentElement;
             const themeToggle = document.getElementById('theme-toggle');
@@ -372,9 +353,7 @@
             }
         }
         
-        // Melloras de accesibilidade e funcionalidade
         document.addEventListener('DOMContentLoaded', function() {
-            // Aplicar tema gardado
             const savedTheme = localStorage.getItem('theme');
             const themeToggle = document.getElementById('theme-toggle');
             const icon = themeToggle.querySelector('i');
@@ -385,7 +364,6 @@
             } else {
                 icon.className = 'fas fa-moon';
             }
-            // Numeración automática de seccións se especifica no front matter
             {% if page.numbered_sections %}
             let sectionCounter = 0;
             let subsectionCounter = 0;
@@ -402,7 +380,6 @@
             });
             {% endif %}
             
-            // Soporte para navegación co teclado
             document.addEventListener('keydown', function(e) {
                 if (e.ctrlKey && e.key === 'p') {
                     e.preventDefault();

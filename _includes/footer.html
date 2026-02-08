@@ -1,7 +1,14 @@
 <footer class="site-footer">
   <div class="container">
     <div class="site-info">
+      {% assign current_lang = page.lang | default: "gl" %}
+      {% if current_lang == "es" %}
+      <p>&copy; {{ site.time | date: "%Y" }} Anxo López Rodríguez. Todos los derechos reservados.</p>
+      {% elsif current_lang == "en" %}
+      <p>&copy; {{ site.time | date: "%Y" }} Anxo López Rodríguez. All rights reserved.</p>
+      {% else %}
       <p>&copy; {{ site.time | date: "%Y" }} Anxo López Rodríguez. Tódolos dereitos reservados.</p>
+      {% endif %}
     </div>
     <div class="social-links">
       <a href="https://www.x.com/anxolo_/" title="X (Twitter)" target="_blank" rel="noopener noreferrer" class="social-icon">
