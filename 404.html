@@ -12,26 +12,25 @@ permalink: /404.html
             <p class="error-description"></p>
         </div>
 
+        <!-- Sección de cita -->
         <div id="quote-section" class="quote-container hidden mb-12">
             <p class="quote-intro"></p>
             <blockquote class="quote-text" id="quote-text"></blockquote>
+            <p class="quote-author" id="quote-author"></p>
         </div>
 
     </div>
 </section>
 
 <script>
-// Obtener el idioma de la URL o de un parámetro de lenguaje
 const urlPath = window.location.pathname;
 const language = urlPath.includes('/es/') ? 'es' : urlPath.includes('/en/') ? 'en' : 'gl';
 
-// Traducir contenido según el idioma
 document.addEventListener('DOMContentLoaded', function() {
     const errorTitle = document.querySelector('.error-title');
     const errorDescription = document.querySelector('.error-description');
     const quoteIntro = document.querySelector('.quote-intro');
     
-    // Textos para cada idioma
     const texts = {
         es: {
             title: 'Página no encontrada',
@@ -50,9 +49,10 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     };
 
+    errorTitle.textContent = texts[language].title;
+    errorDescription.textContent = texts[language].description;
+    quoteIntro.textContent = texts[language].quoteIntro;
 
-
-    // Cargar una cita aleatoria
     fetch('/assets/quotes.json')
         .then(response => {
             if (!response.ok) {
@@ -73,7 +73,6 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log('quotes.json no disponible:', error.message);
         });
 
-    // Animación de los elementos
     const elements = document.querySelectorAll('.error-content, .navigation-options, .tech-info');
     elements.forEach((el, index) => {
         setTimeout(() => {
