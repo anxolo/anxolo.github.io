@@ -11,3 +11,5 @@ defaults:
       layout: "apuntes"
       author: "Anxo López Rodríguez"
       use_math: true
+plugins:
+  - jekyll-sitemap
