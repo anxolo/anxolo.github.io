@@ -22,13 +22,13 @@
     <style>
         :root {
             --bg-body: #F8FAFC !important;
-            --text-title: #0F172A !important; /* slate-900 (Contraste absoluto en claro) */
+            --text-title: #0F172A !important; /* slate-900 */
             --text-body: #334155 !important;  /* slate-700 */
             --text-muted: #64748B !important; /* slate-500 */
-            --bg-projects: #768CB6; /* Azul de Canva */
-            --bg-notes: #958FA7;    /* Morado de Canva */
-            --bg-news: #7BA1A1;     /* Verde auga de Canva */
-            --bg-footer: #6F7D95 !important; /* Color de acento do pie de página en claro */
+            --bg-projects: #768CB6; /* Azul */
+            --bg-notes: #958FA7;    /* Morado */
+            --bg-news: #7BA1A1;     /* Verde auga */
+            --bg-footer: #6F7D95 !important;
             --border-avatar: #E2E8F0 !important;
             --border-social: #94A3B8 !important;
             --text-social: #334155 !important;
@@ -40,7 +40,7 @@
             --text-title: #FFFFFF !important;
             --text-body: #CBD5E1 !important;  /* slate-300 */
             --text-muted: #94A3B8 !important; /* slate-400 */
-            --bg-footer: #1E293B !important;   /* Color de acento do pie de página en escuro (Excelente contraste con bg #0F172A) */
+            --bg-footer: #1E293B !important; 
             --border-avatar: #334155 !important;
             --border-social: #475569 !important;
             --text-social: #F1F5F9 !important;
@@ -121,11 +121,11 @@
         
         <!-- Menú Escritorio -->
         <nav class="hidden md:flex items-center gap-8">
-            <a href="{{ '/#inicio' | relative_url }}" class="text-sm font-semibold theme-title hover:text-indigo-600 transition-colors">Inicio</a>
-            <a href="{{ '/#inicio' | relative_url }}" class="text-sm font-semibold theme-title hover:text-indigo-600 transition-colors">Sobre min</a>
-            <a href="{{ '/#proxectos' | relative_url }}" class="text-sm font-semibold theme-title hover:text-indigo-600 transition-colors">Proxectos</a>
-            <a href="{{ '/#apuntamentos' | relative_url }}" class="text-sm font-semibold theme-title hover:text-indigo-600 transition-colors">Apuntamentos</a>
-            <a href="#contacto" class="text-sm font-semibold theme-title hover:text-indigo-600 transition-colors">Contacto</a>
+            <a href="{{ '/' | relative_url }}" class="text-sm font-semibold theme-title hover:text-[#6f7d95] transition-colors">Inicio</a>
+            <a href="{{ '/sobre-min' | relative_url }}" class="text-sm font-semibold theme-title hover:text-[#6f7d95] transition-colors">Sobre min</a>
+            <a href="{{ '/proxectos' | relative_url }}" class="text-sm font-semibold theme-title hover:text-[#6f7d95] transition-colors">Proxectos</a>
+            <a href="{{ '/apuntamentos' | relative_url }}" class="text-sm font-semibold theme-title hover:text-[#6f7d95] transition-colors">Apuntamentos</a>
+            <a href="/contacto" class="text-sm font-semibold theme-title hover:text-[#6f7d95] transition-colors">Contacto</a>
             
             <!-- Selector de idioma interactivo (Dinámico con Liquid de Jekyll) -->
             <div class="flex items-center gap-3 ml-4 pl-4 border-l theme-border-social relative">
@@ -169,11 +169,11 @@
         </div>
         
         <nav class="flex flex-col gap-6 text-lg font-bold">
-            <a href="{{ '/#inicio' | relative_url }}" class="theme-title hover:text-indigo-600 transition-colors mobile-nav-link">Inicio</a>
-            <a href="{{ '/#inicio' | relative_url }}" class="theme-title hover:text-indigo-600 transition-colors mobile-nav-link">Sobre min</a>
-            <a href="{{ '/#proxectos' | relative_url }}" class="theme-title hover:text-indigo-600 transition-colors mobile-nav-link">Proxectos</a>
-            <a href="{{ '/#apuntamentos' | relative_url }}" class="theme-title hover:text-indigo-600 transition-colors mobile-nav-link">Apuntamentos</a>
-            <a href="#contacto" class="theme-title hover:text-indigo-600 transition-colors mobile-nav-link">Contacto</a>
+            <a href="{{ '/#inicio' | relative_url }}" class="theme-title hover:text-[#6f7d95] transition-colors mobile-nav-link">Inicio</a>
+            <a href="{{ '/#inicio' | relative_url }}" class="theme-title hover:text-[#6f7d95] transition-colors mobile-nav-link">Sobre min</a>
+            <a href="{{ '/#proxectos' | relative_url }}" class="theme-title hover:text-[#6f7d95] transition-colors mobile-nav-link">Proxectos</a>
+            <a href="{{ '/#apuntamentos' | relative_url }}" class="theme-title hover:text-[#6f7d95] transition-colors mobile-nav-link">Apuntamentos</a>
+            <a href="#contacto" class="theme-title hover:text-[#6f7d95] transition-colors mobile-nav-link">Contacto</a>
         </nav>
         
         <div class="flex flex-col gap-4 mt-auto pt-8 border-t theme-border-social col-span-1">
