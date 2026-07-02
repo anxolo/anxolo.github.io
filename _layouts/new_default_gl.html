@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: 'gl' }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if page.title %}{{ page.title }} | {% endif %}Anxo López Rodríguez</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class'
+        }
+    </script>
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-body: #F8FAFC !important;
+            --text-title: #0F172A !important; /* slate-900 (Contraste absoluto en claro) */
+            --text-body: #334155 !important;  /* slate-700 */
+            --text-muted: #64748B !important; /* slate-500 */
+            --bg-projects: #768CB6; /* Azul de Canva */
+            --bg-notes: #958FA7;    /* Morado de Canva */
+            --bg-news: #7BA1A1;     /* Verde auga de Canva */
+            --bg-footer: #6F7D95 !important; /* Color de acento do pie de página en claro */
+            --border-avatar: #E2E8F0 !important;
+            --border-social: #94A3B8 !important;
+            --text-social: #334155 !important;
+        }
+
+        /* Cores aplicadas con prioridade máxima en modo escuro */
+        body.dark-mode {
+            --bg-body: #0F172A !important;
+            --text-title: #FFFFFF !important;
+            --text-body: #CBD5E1 !important;  /* slate-300 */
+            --text-muted: #94A3B8 !important; /* slate-400 */
+            --bg-footer: #1E293B !important;   /* Color de acento do pie de página en escuro (Excelente contraste con bg #0F172A) */
+            --border-avatar: #334155 !important;
+            --border-social: #475569 !important;
+            --text-social: #F1F5F9 !important;
+        }
+
+        /* Clases de utilidade de tema que evitan interferencias da CDN de Tailwind */
+        .theme-bg { background-color: var(--bg-body); transition: background-color 0.3s ease; }
+        .theme-title { color: var(--text-title); transition: color 0.3s ease; }
+        .theme-body { color: var(--text-body); transition: color 0.3s ease; }
+        .theme-muted { color: var(--text-muted); transition: color 0.3s ease; }
+        .theme-border-avatar { border-color: var(--border-avatar); transition: border-color 0.3s ease; }
+        .theme-border-social { border-color: var(--border-social); transition: border-color 0.3s ease; }
+        .theme-text-social { color: var(--text-social); transition: color 0.3s ease; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        /* Terminal Apuntamentos */
+        .terminal-code {
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        /* Estilo cursor de teclado*/
+        .typing-cursor::after {
+            content: '|';
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #F1F5F9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #CBD5E1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94A3B8;
+        }
+    </style>
+
+    <!-- SCRIPT PRE-CARGA TEMA -->
+    <script>
+        (function() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        })();
+    </script>
+</head>
+<body class="min-h-screen flex flex-col justify-between theme-bg transition-colors duration-300">
+    <script>
+
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark-mode');
+        }
+    </script>
+
+    <!-- Header -->
+    <header class="w-full max-w-7xl mx-auto px-6 py-6 flex justify-between items-center z-50 relative">
+        <div class="text-xl font-bold tracking-tight theme-title">
+            <a href="{{ '/' | relative_url }}">Anxo López Rodríguez</a>
+        </div>
+        
+        <!-- Menú Escritorio -->
+        <nav class="hidden md:flex items-center gap-8">
+            <a href="{{ '/#inicio' | relative_url }}" class="text-sm font-semibold theme-title hover:text-indigo-600 transition-colors">Inicio</a>
+            <a href="{{ '/#inicio' | relative_url }}" class="text-sm font-semibold theme-title hover:text-indigo-600 transition-colors">Sobre min</a>
+            <a href="{{ '/#proxectos' | relative_url }}" class="text-sm font-semibold theme-title hover:text-indigo-600 transition-colors">Proxectos</a>
+            <a href="{{ '/#apuntamentos' | relative_url }}" class="text-sm font-semibold theme-title hover:text-indigo-600 transition-colors">Apuntamentos</a>
+            <a href="#contacto" class="text-sm font-semibold theme-title hover:text-indigo-600 transition-colors">Contacto</a>
+            
+            <!-- Selector de idioma interactivo (Dinámico con Liquid de Jekyll) -->
+            <div class="flex items-center gap-3 ml-4 pl-4 border-l theme-border-social relative">
+                <div class="relative inline-block text-left">
+                    <button id="lang-menu-btn" class="flex items-center gap-1 text-sm font-semibold theme-text-social hover:opacity-80 focus:outline-none" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa-solid fa-globe"></i>
+                        <span>
+                            {% if page.lang == 'en' %}EN{% elsif page.lang == 'es' %}ES{% else %}GL{% endif %}
+                        </span>
+                        <i class="fa-solid fa-chevron-down text-[10px]"></i>
+                    </button>
+                    <!-- Menú de selección de idioma -->
+                    <div id="lang-dropdown" class="hidden absolute right-0 mt-2 w-32 rounded-xl bg-white dark:bg-slate-800 shadow-xl border border-slate-200 dark:border-slate-700 z-50 transition-all duration-200">
+                        <div class="py-1">
+                            <a href="{{ page.trans_gl | default: '/gl/' | relative_url }}" class="block px-4 py-2 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700">Galego (GL)</a>
+                            <a href="{{ page.trans_es | default: '/es/' | relative_url }}" class="block px-4 py-2 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700">Español (ES)</a>
+                            <a href="{{ page.trans_en | default: '/en/' | relative_url }}" class="block px-4 py-2 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700">English (EN)</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Toggle escritorio -->
+                <button class="theme-text-social hover:opacity-80 ml-2" id="theme-toggle" aria-label="Cambiar tema">
+                    <i class="fa-solid fa-moon text-lg"></i>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Botón menú (Móvil) -->
+        <button id="mobile-menu-open" class="md:hidden theme-text-social hover:opacity-80 p-2" aria-label="Abrir menú">
+            <i class="fa-solid fa-bars text-2xl"></i>
+        </button>
+    </header>
+
+    <!-- PANEL DE MENÚ MÓBIL LATERAL (DRAWER RESPONSIVE) -->
+    <div id="mobile-menu" class="fixed inset-y-0 right-0 w-72 theme-bg border-l theme-border-social z-50 transform translate-x-full transition-transform duration-300 ease-in-out shadow-2xl md:hidden flex flex-col p-6 pointer-events-auto">
+        <div class="flex justify-between items-center mb-8">
+            <span class="text-sm font-bold theme-muted uppercase tracking-wider"></span>
+            <button id="mobile-menu-close" class="theme-text-social hover:opacity-80 p-2" aria-label="Pechar menú">
+                <i class="fa-solid fa-xmark text-2xl"></i>
+            </button>
+        </div>
+        
+        <nav class="flex flex-col gap-6 text-lg font-bold">
+            <a href="{{ '/#inicio' | relative_url }}" class="theme-title hover:text-indigo-600 transition-colors mobile-nav-link">Inicio</a>
+            <a href="{{ '/#inicio' | relative_url }}" class="theme-title hover:text-indigo-600 transition-colors mobile-nav-link">Sobre min</a>
+            <a href="{{ '/#proxectos' | relative_url }}" class="theme-title hover:text-indigo-600 transition-colors mobile-nav-link">Proxectos</a>
+            <a href="{{ '/#apuntamentos' | relative_url }}" class="theme-title hover:text-indigo-600 transition-colors mobile-nav-link">Apuntamentos</a>
+            <a href="#contacto" class="theme-title hover:text-indigo-600 transition-colors mobile-nav-link">Contacto</a>
+        </nav>
+        
+        <div class="flex flex-col gap-4 mt-auto pt-8 border-t theme-border-social col-span-1">
+            <div class="flex items-center justify-between relative">
+                <span class="text-sm font-semibold theme-muted">Idioma</span>
+                <div class="relative">
+                    <button id="mobile-lang-menu-btn" class="flex items-center gap-1 text-sm font-semibold theme-text-social hover:opacity-80 focus:outline-none">
+                        <i class="fa-solid fa-globe"></i>
+                        <span>{% if page.lang == 'en' %}EN{% elsif page.lang == 'es' %}ES{% else %}GL{% endif %}</span>
+                        <i class="fa-solid fa-chevron-down text-[10px]"></i>
+                    </button>
+                    <!-- Desplegable móbil táctil -->
+                    <div id="mobile-lang-dropdown" class="hidden absolute right-0 bottom-8 mt-2 w-32 rounded-xl bg-white dark:bg-slate-800 shadow-xl border border-slate-200 dark:border-slate-700 z-50">
+                        <div class="py-1">
+                            <a href="{{ page.trans_gl | default: '/gl/' | relative_url }}" class="block px-4 py-2 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700">Galego (GL)</a>
+                            <a href="{{ page.trans_es | default: '/es/' | relative_url }}" class="block px-4 py-2 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700">Español (ES)</a>
+                            <a href="{{ page.trans_en | default: '/en/' | relative_url }}" class="block px-4 py-2 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700">English (EN)</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex items-center justify-between">
+                <span class="text-sm font-semibold theme-muted">Tema</span>
+                <button class="theme-text-social hover:opacity-80 flex items-center gap-2" id="mobile-theme-toggle" aria-label="Cambiar tema">
+                    <i class="fa-solid fa-moon text-lg"></i>
+                    <span class="text-sm font-semibold">Modo Escuro</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="mobile-menu-overlay" class="fixed inset-0 bg-black/40 z-40 hidden transition-opacity duration-300 pointer-events-auto md:hidden"></div>
+
+    <!-- ONTIDO DINÁMICO -->
+    <main class="flex-grow">
+        {{ content }}
+    </main>
+
+    <!-- FOOTER -->
+    <footer id="contacto" class="w-full mt-12 py-8 text-white relative z-10 transition-colors duration-300" style="background-color: var(--bg-footer);">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="text-xs opacity-90 font-semibold">
+                &copy; {{ "now" | date: "%Y" | default: "2026" }} Anxo López Rodríguez. Tódolos dereitos reservados.
+            </div>
+            <!-- Redes Sociais no pie de página (Twitter/X, LinkedIn, GitHub e Bluesky) -->
+            <div class="flex gap-6 text-lg">
+                <a href="https://bsky.app/profile/anxolo.bsky.social" target="_blank" class="hover:text-slate-200 transition-colors" title="Bluesky"><i class="fa-brands fa-bluesky"></i></a>
+                <a href="https://x.com/anxolo_/" target="_blank" class="hover:text-slate-200 transition-colors" title="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="https://linkedin.com/in/anxo-lopez-rodriguez" target="_blank" class="hover:text-slate-200 transition-colors" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="https://github.com/anxolo" target="_blank" class="hover:text-slate-200 transition-colors" title="GitHub"><i class="fa-brands fa-github"></i></a>
+
+            </div>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS INTERACTIVIDADE -->
+    <script>
+
+        const themeToggle = document.getElementById('theme-toggle');
+        const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
+
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            document.body.classList.toggle('dark-mode');
+            
+            const isDarkMode = document.body.classList.contains('dark-mode');
+            
+
+            localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+
+            const desktopIcon = themeToggle.querySelector('i');
+            const mobileIcon = mobileThemeToggle.querySelector('i');
+            const mobileText = mobileThemeToggle.querySelector('span');
+
+            if (isDarkMode) {
+                desktopIcon.className = 'fa-solid fa-sun text-lg text-yellow-400';
+                mobileIcon.className = 'fa-solid fa-sun text-lg text-yellow-400';
+                mobileText.textContent = 'Modo Claro';
+            } else {
+                desktopIcon.className = 'fa-solid fa-moon text-lg theme-text-social';
+                mobileIcon.className = 'fa-solid fa-moon text-lg theme-text-social';
+                mobileText.textContent = 'Modo Escuro';
+            }
+        }
+
+        
+        themeToggle.addEventListener('click', toggleTheme);
+        mobileThemeToggle.addEventListener('click', toggleTheme);
+
+        
+        window.addEventListener('DOMContentLoaded', () => {
+            const isDarkMode = document.body.classList.contains('dark-mode');
+            const desktopIcon = themeToggle.querySelector('i');
+            const mobileIcon = mobileThemeToggle.querySelector('i');
+            const mobileText = mobileThemeToggle.querySelector('span');
+
+            if (isDarkMode) {
+                desktopIcon.className = 'fa-solid fa-sun text-lg text-yellow-400';
+                mobileIcon.className = 'fa-solid fa-sun text-lg text-yellow-400';
+                mobileText.textContent = 'Modo Claro';
+            } else {
+                desktopIcon.className = 'fa-solid fa-moon text-lg theme-text-social';
+                mobileIcon.className = 'fa-solid fa-moon text-lg theme-text-social';
+                mobileText.textContent = 'Modo Escuro';
+            }
+        });
+
+        
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+        const btnMenuOpen = document.getElementById('mobile-menu-open');
+        const btnMenuClose = document.getElementById('mobile-menu-close');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+        function openMobileMenu() {
+            mobileMenu.classList.remove('translate-x-full');
+            mobileMenuOverlay.classList.remove('hidden');
+            document.body.classList.add('overflow-hidden');
+        }
+
+        function closeMobileMenu() {
+            mobileMenu.classList.add('translate-x-full');
+            mobileMenuOverlay.classList.add('hidden');
+            document.body.classList.remove('overflow-hidden');
+            // Pechar tamén dropdown móvil se estivese aberto
+            document.getElementById('mobile-lang-dropdown').classList.add('hidden');
+        }
+
+        btnMenuOpen.addEventListener('click', openMobileMenu);
+        btnMenuClose.addEventListener('click', closeMobileMenu);
+        mobileMenuOverlay.addEventListener('click', closeMobileMenu);
+        
+        // Pecha o menú automaticamente cando se preme unha ligazón de ancora
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', closeMobileMenu);
+        });
+
+        
+        const langMenuBtn = document.getElementById('lang-menu-btn');
+        const langDropdown = document.getElementById('lang-dropdown');
+        const mobileLangMenuBtn = document.getElementById('mobile-lang-menu-btn');
+        const mobileLangDropdown = document.getElementById('mobile-lang-dropdown');
+
+        langMenuBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            langDropdown.classList.toggle('hidden');
+        });
+
+        mobileLangMenuBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            mobileLangDropdown.classList.toggle('hidden');
+        });
+
+        
+        document.addEventListener('click', () => {
+            langDropdown.classList.add('hidden');
+            mobileLangDropdown.classList.add('hidden');
+        });
+    </script>
+</body>
+</html>
