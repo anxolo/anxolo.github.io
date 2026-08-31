@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Anxo López Rodríguez</title>
+  <script>
+    window.onload = function() {
+      const lang = navigator.language || navigator.userLanguage;
+      const langCode = lang.substring(0, 2).toLowerCase();
+
+      if (langCode === 'es') {
+        window.location.href = "https://anxolo.github.io/es/apuntes";
+      } else if (langCode === 'gl') {
+        window.location.href = "https://anxolo.github.io/gl/apuntamentos";
+      } else {
+        window.location.href = "https://anxolo.github.io/en/notes";
+      }
+    };
+  </script>
+</head>
+</html>

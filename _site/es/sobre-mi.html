@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre mi | Anxo López Rodríguez</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class'
+        }
+    </script>
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link rel="stylesheet" href="/assets/css/style.css">
+
+    <style>
+        :root {
+            --bg-body: #F8FAFC !important;
+            --text-title: #0F172A !important; /* slate-900 */
+            --text-body: #334155 !important;  /* slate-700 */
+            --text-muted: #64748B !important; /* slate-500 */
+            --bg-projects: #768CB6; /* Blue */
+            --bg-notes: #958FA7;    /* Purple */
+            --bg-news: #7BA1A1;     /* Aqua */
+            --bg-footer: #6F7D95 !important;
+            --border-avatar: #E2E8F0 !important;
+            --border-social: #94A3B8 !important;
+            --text-social: #334155 !important;
+        }
+
+        body.dark-mode {
+            --bg-body: #0F172A !important;
+            --text-title: #FFFFFF !important;
+            --text-body: #CBD5E1 !important;  /* slate-300 */
+            --text-muted: #94A3B8 !important; /* slate-400 */
+            --bg-footer: #1E293B !important; 
+            --border-avatar: #334155 !important;
+            --border-social: #475569 !important;
+            --text-social: #F1F5F9 !important;
+        }
+
+        .theme-bg { background-color: var(--bg-body); transition: background-color 0.3s ease; }
+        .theme-title { color: var(--text-title); transition: color 0.3s ease; }
+        .theme-body { color: var(--text-body); transition: color 0.3s ease; }
+        .theme-muted { color: var(--text-muted); transition: color 0.3s ease; }
+        .theme-border-avatar { border-color: var(--border-avatar); transition: border-color 0.3s ease; }
+        .theme-border-social { border-color: var(--border-social); transition: border-color 0.3s ease; }
+        .theme-text-social { color: var(--text-social); transition: color 0.3s ease; }
+
+        body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+    </style>
+
+    <script>
+        (function() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        })();
+    </script>
+</head>
+<body class="min-h-screen flex flex-col justify-between theme-bg transition-colors duration-300">
+    <script>
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark-mode');
+        }
+    </script>
+
+    <!-- Header -->
+    <header class="w-full max-w-7xl mx-auto px-6 py-6 flex justify-between items-center z-50 relative">
+        <div class="text-xl font-bold tracking-tight theme-title">
+            <a href="/">Anxo López Rodríguez</a>
+        </div>
+        
+        <!-- Desktop menu -->
+        <nav class="hidden md:flex items-center gap-8">
+            <a href="/es/#home" class="text-sm font-semibold theme-title hover:text-[#6f7d95] transition-colors">Inicio</a>
+            <a href="/es/sobre-mi" class="text-sm font-semibold theme-title hover:text-[#6f7d95] transition-colors">Sobre mí</a>
+            <a href="/es/proyectos" class="text-sm font-semibold theme-title hover:text-[#6f7d95] transition-colors">Proyectos</a>
+            <a href="/es/apuntes" class="text-sm font-semibold theme-title hover:text-[#6f7d95] transition-colors">Apuntes</a>
+            <a href="/es/contactme" class="text-sm font-semibold theme-title hover:text-[#6f7d95] transition-colors">Contacto</a>
+
+            <div class="flex items-center gap-3 ml-4 pl-4 border-l theme-border-social relative">
+                <div class="relative inline-block text-left">
+                    <button id="lang-menu-btn" class="flex items-center gap-1 text-sm font-semibold theme-text-social hover:opacity-80 focus:outline-none" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa-solid fa-globe"></i>
+                        <span>
+                            ES
+                        </span>
+                        <i class="fa-solid fa-chevron-down text-[10px]"></i>
+                    </button>
+                    <div id="lang-dropdown" class="hidden absolute right-0 mt-2 w-32 rounded-xl bg-white dark:bg-slate-800 shadow-xl border border-slate-200 dark:border-slate-700 z-50 transition-all duration-200">
+                        <div class="py-1">
+                            <a href="/gl/sobre-min" class="block px-4 py-2 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700">Galego (GL)</a>
+                            <a href="/es/sobre-mi" class="block px-4 py-2 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700">Español (ES)</a>
+                            <a href="/en/aboutme" class="block px-4 py-2 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700">English (EN)</a>
+                        </div>
+                    </div>
+                </div>
+                <button class="theme-text-social hover:opacity-80 ml-2" id="theme-toggle" aria-label="Toggle theme">
+                    <i class="fa-solid fa-moon text-lg"></i>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Mobile button -->
+        <button id="mobile-menu-open" class="md:hidden theme-text-social hover:opacity-80 p-2" aria-label="Open menu">
+            <i class="fa-solid fa-bars text-2xl"></i>
+        </button>
+    </header>
+
+    <!-- Mobile drawer -->
+    <div id="mobile-menu" class="fixed inset-y-0 right-0 w-72 theme-bg border-l theme-border-social z-50 transform translate-x-full transition-transform duration-300 ease-in-out shadow-2xl md:hidden flex flex-col p-6 pointer-events-auto">
+        <div class="flex justify-between items-center mb-8">
+            <span class="text-sm font-bold theme-muted uppercase tracking-wider"></span>
+            <button id="mobile-menu-close" class="theme-text-social hover:opacity-80 p-2" aria-label="Close menu">
+                <i class="fa-solid fa-xmark text-2xl"></i>
+            </button>
+        </div>
+        
+        <nav class="flex flex-col gap-6 text-lg font-bold">
+            <a href="/es/#home" class="theme-title hover:text-[#6f7d95] transition-colors mobile-nav-link">Inicio</a>
+            <a href="/es/#sobre-mi" class="theme-title hover:text-[#6f7d95] transition-colors mobile-nav-link">Sobre mí</a>
+            <a href="/es/#proyectos" class="theme-title hover:text-[#6f7d95] transition-colors mobile-nav-link">Proyectos</a>
+            <a href="/es/#apuntes" class="theme-title hover:text-[#6f7d95] transition-colors mobile-nav-link">Apuntes</a>
+            <a href="/es/#contactme" class="theme-title hover:text-[#6f7d95] transition-colors mobile-nav-link">Contacto</a>
+        </nav>
+
+        <div class="flex flex-col gap-4 mt-auto pt-8 border-t theme-border-social col-span-1">
+            <div class="flex items-center justify-between relative">
+                <span class="text-sm font-semibold theme-muted">Idioma</span>
+                <div class="relative">
+                    <button id="mobile-lang-menu-btn" class="flex items-center gap-1 text-sm font-semibold theme-text-social hover:opacity-80 focus:outline-none">
+                        <i class="fa-solid fa-globe"></i>
+                        <span>ES</span>
+                        <i class="fa-solid fa-chevron-down text-[10px]"></i>
+                    </button>
+                    <div id="mobile-lang-dropdown" class="hidden absolute right-0 bottom-8 mt-2 w-32 rounded-xl bg-white dark:bg-slate-800 shadow-xl border border-slate-200 dark:border-slate-700 z-50">
+                        <div class="py-1">
+                            <a href="/gl/sobre-min" class="block px-4 py-2 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700">Galego (GL)</a>
+                            <a href="/es/sobre-mi" class="block px-4 py-2 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700">Español (ES)</a>
+                            <a href="/en/aboutme" class="block px-4 py-2 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700">English (EN)</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex items-center justify-between">
+                <span class="text-sm font-semibold theme-muted">Tema</span>
+                <button class="theme-text-social hover:opacity-80 flex items-center gap-2" id="mobile-theme-toggle" aria-label="Toggle theme">
+                    <i class="fa-solid fa-moon text-lg"></i>
+                    <span class="text-sm font-semibold">Modo Oscuro</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="mobile-menu-overlay" class="fixed inset-0 bg-black/40 z-40 hidden transition-opacity duration-300 pointer-events-auto md:hidden"></div>
+
+    <main class="flex-grow">
+            <main class="flex-grow pt-24 pb-8 flex items-center justify-center">
+        <div class="container mx-auto px-4">
+            
+            <div class="flex flex-col md:flex-row justify-center items-center md:items-start mb-8">
+                <div class="mb-6 md:mb-0 md:w-1/3 flex-shrink-0 flex justify-center md:justify-end md:mr-8">
+                    <div class="relative w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden border-4 theme-border-avatar shadow-xl">
+                        <img src="https://avatars.githubusercontent.com/u/50779387?v=4" alt="Foto de perfil" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='https://placehold.co/400x400/768cb6/ffffff?text=Anxo';">
+                    </div>
+                </div>
+
+                <div class="md:w-2/3 md:pl-8 text-center md:text-left flex flex-col justify-center">
+                    <h1 class="text-4xl sm:text-5xl font-extrabold mb-1 text-[var(--text-color)]">
+                        Anxo López Rodríguez
+                    </h1>
+                    <h3 class="text-xl font-semibold opacity-80 mb-4 text-[var(--subtitle-color)]">
+                        Estudante de IA | ESEI - UVigo
+                    </h3>
+                    
+
+                    <div class="flex flex-wrap justify-center md:justify-start space-x-4 mt-4" style="align-items:center;">
+                        <a href="https://www.x.com/anxolo_/" title="X (Twitter)" target="_blank" rel="noopener noreferrer">
+                            <i class="fa-brands fa-x-twitter" style="font-size: 24px; color: #6f7d95;" aria-hidden="true"></i>
+                        </a>
+                        <a href="https://bsky.app/profile/anxolo.bsky.social" title="Bluesky" target="_blank" rel="noopener noreferrer">
+                            <i class="fa-brands fa-bluesky" style="font-size: 24px; color: #6f7d95;" aria-hidden="true"></i>
+                        </a>
+                        <a href="https://es.linkedin.com/in/anxo-lopez-rodriguez" title="LinkedIn" target="_blank" rel="noopener noreferrer">
+                            <i class="fa-brands fa-linkedin-in" style="font-size: 24px; color: #6f7d95;" aria-hidden="true"></i>
+                        </a>
+                        <a href="mailto:lopezrodriguezanxo@gmail.com" title="Email">
+                            <i class="fa-solid fa-envelope" style="font-size: 24px; color: #6f7d95;" aria-hidden="true"></i>
+                        </a>
+                        <a href="https://github.com/anxolo" title="GitHub" target="_blank" rel="noopener noreferrer">
+                            <i class="fa-brands fa-github" style="font-size: 24px; color: #6f7d95;" aria-hidden="true"></i>
+                        </a>
+                    </div>
+
+
+
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 gap-6">
+                <div class="rounded-xl shadow-lg overflow-hidden main-content-section p-8" style="background-color: var(--card-bg); color: var(--text-color);">
+                    <h2 class="text-2xl font-bold section-header">Sobre Min</h2>
+                    <p class="opacity-90 leading-relaxed">
+                        Estudiante del Grado Interuniversitario en Inteligencia Artificial en la Escuela Superior de Ingeniería Informática de la Universidade de Vigo. A lo largo de mi vida académica, realicé diversos proyectos, tanto de ámbito social como tecnológico, a través de programas de entidades como la Fundación La Caixa o ANFAIA.
+                    </p>
+                    <p class="opacity-90 leading-relaxed">
+                        Actualmente, colaboro en proyectos de mi especialidad y participo activamente en el entorno académico, siendo representante estudiantil y participando en diversas comisiones y acciones de mentoría para nuevos alumnos del centro.
+                    </p>
+                </div>
+                
+                <div class="rounded-xl shadow-lg overflow-hidden main-content-section p-8" style="background-color: var(--card-bg); color: var(--text-color);">
+                    <h2 class="text-2xl font-bold section-header">Educación</h2>
+                    <div class="relative space-y-6">
+                        <div class="absolute left-3 top-0 h-full w-0.5" style="background-color: var(--text-color); opacity: 0.2;"></div>
+
+                        <div class="flex items-start space-x-4">
+                            <div class="relative flex-shrink-0 w-6 h-6 rounded-full z-10" style="background-color:#6f7d95;"></div>
+                            <div class="flex-grow">
+                                <img src="/assets/pictures/logos/esei.jpg" alt="Logo de ESEI" class="w-12 h-12 object-contain mb-2" style="border-radius:4px;">
+                                <div>
+                                    <h3 class="text-xl font-semibold">Grado en Inteligencia Artificial</h3>
+                                    <p class="text-lg opacity-80">ESEI - Universidade de Vigo</p>
+                                </div>
+                                <p class="opacity-90 leading-relaxed mt-2">Septiembre 2024 - Actualidad</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div class="relative flex-shrink-0 w-6 h-6 rounded-full z-10" style="background-color:#6f7d95;"></div>
+                            <div class="flex-grow">
+                                <img src="/assets/pictures/logos/12outubro.jpeg" alt="Logo de IES 12 De Outubro" class="w-12 h-12 object-contain mb-2" style="border-radius:4px;">
+                                <div>
+                                    <h3 class="text-xl font-semibold">Bachillerato - Ciencias y tecnología</h3>
+                                    <p class="text-lg opacity-80">IES 12 De Outubro - Ourense</p>
+                                </div>
+                                <p class="opacity-90 leading-relaxed mt-2">Septiembre 2022 - Junio 2024 | Representante de Alumnado en el Consejo Escolar</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div class="relative flex-shrink-0 w-6 h-6 rounded-full z-10" style="background-color:#6f7d95;"></div>
+                            <div class="flex-grow">
+                                <img src="/assets/pictures/logos/12outubro.jpeg" alt="Logo de IES 12 De Outubro" class="w-12 h-12 object-contain mb-2">
+                                <div>
+                                    <h3 class="text-xl font-semibold">Educación Secundaria Obligatoria (ESO)</h3>
+                                    <p class="text-lg opacity-80">IES 12 De Outubro - Ourense</p>
+                                </div>
+                                <p class="opacity-90 leading-relaxed mt-2">Septiembre 2018 - Junio 2022</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+<div class="rounded-xl shadow-lg overflow-hidden main-content-section p-8" style="background-color: var(--card-bg); color: var(--text-color);">
+                    <h2 class="text-2xl font-bold section-header">Experiencia</h2>
+
+                         <br>
+
+                    <div class="relative space-y-6">
+                        <div class="flex items-start space-x-4">
+                            <div class="flex-grow">
+                                <img src="/assets/pictures/logos/anfaia.png" alt="Logo de Anfaia" class="w-12 h-12 object-contain mb-2">
+                                <div>
+                                    <h3 class="text-xl font-semibold">GLPI AssistIA</h3>
+                                    <p class="text-lg opacity-80">ANFAIA - Asociación Faro para la Aceleración de la Inteligencia Artificial</p>
+                                </div>
+                                <p class="opacity-90 leading-relaxed mt-2">Jun 2025 - Sep 2025 | GLPI AI Automation - Proyecto realizado como becario, con el objetivo de integrar agentes de inteligencia artificial en la plataforma de software libre GLPI</p>
+                            </div>
+                        </div>
+
+<div class="flex items-start space-x-4">
+                            <div class="flex-grow">
+                                <img src="/assets/pictures/logos/educaixa.png" alt="Logo de Educaixa" class="w-12 h-12 object-contain mb-2">
+                                <div>
+                                    <h3 class="text-xl font-semibold">Los Klimatas</h3>
+                                    <p class="text-lg opacity-80">Educaixa | Fundación "la Caixa"</p>
+                                </div>
+                                <p class="opacity-90 leading-relaxed mt-2">Ene 2022 - Ago 2023 | Proyecto de concienciación centrado en reducir la contaminación y las emisiones de CO₂ combinando análisis de datos y promoviendo iniciativas en varias comunidades locales. Reconocido en The Challenge por Educaixa y promovido por la incubadora EduCaixa NEXT de la Fundación "la Caixa".</p>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <div class="rounded-xl shadow-lg overflow-hidden main-content-section p-8" style="background-color: var(--card-bg); color: var(--text-color);">
+                    <h2 class="text-2xl font-bold section-header">Voluntariado, Proyectos y Representación</h2>
+                    <div class="relative space-y-6">
+
+
+                        <br>
+                        <div class="flex items-start space-x-4">
+                            <div class="flex-grow">
+                                <img src="/assets/pictures/logos/ritsi.png" alt="Logo de RITSI" class="w-12 h-12 object-contain mb-2">
+                                <div>
+                                    <h3 class="text-xl font-semibold">Miembro acreditado por la UVigo y Coordinador de Zona III</h3>
+                                    <p class="text-lg opacity-80">RITSI - Reunión de Estudiantes de Ingenierías Técnicas y Superiores en Informática</p>
+                                </div>
+                                <p class="opacity-90 leading-relaxed mt-2">Jun 2026 - Actualidad | Rol de enlace entre la asociación y los socios universitarios de la zona (Asturias, Cantabria, Galicia, La Rioja, Navarra y País Vasco), encargado de facilitar la comunicación, coordinar actividades, apoyar a la directiva y captar nuevos miembros.</p>
+                                <br>
+                                <p class="opacity-90 leading-relaxed mt-2">Nov 2025 - Actualidad | Acreditado en la RITSI representando al alumnado de la UVigo, participando en la comunicación entre estudiantes de informática a nivel nacional, fomentando la colaboración entre universidades y promoviendo iniciativas formativas y profesionales.</p>
+
+                            </div>
+                        </div>
+
+                
+                        <div class="flex items-start space-x-4">
+                            <div class="flex-grow">
+                                <img src="/assets/pictures/uvigo_logo.jpeg" alt="Logo UVIGO" class="w-12 h-12 object-contain mb-2" style="border-radius:4px;">
+                                <div>
+                                    <h3 class="text-xl font-semibold">Miembro Claustral y representante en comisión de Seguimiento del Plan estratégico</h3>
+                                    <p class="text-lg opacity-80">Universidad de Vigo</p>
+                                </div>
+                                <p class="opacity-90 leading-relaxed mt-2">Feb 2026 - Actualidad | Participación en comisión de Seguimiento del Plan estratégico de la Universidad de Vigo, colaborando en la elaboración e implementación de estrategias e iniciativas para el desarrollo de la universidad.</p>
+                                <br>
+                                <p class="opacity-90 leading-relaxed mt-2">May 2026 - Actualidad | Miembro claustral electo de la Universidad de Vigo y representante CEUVI por la E.S. Superior de Ingeniería Informática.</p>
+
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4">
+                            <div class="flex-grow">
+                                <img src="/assets/pictures/logos/esei.jpg" alt="Logo de ESEI" class="w-12 h-12 object-contain mb-2" style="border-radius:4px;">
+                                <div>
+                                    <h3 class="text-xl font-semibold">Miembro Junta de Centro y Comisiones</h3>
+                                    <p class="text-lg opacity-80">Escuela Superior de Ingeniería Informática</p>
+                                </div>
+                                <p class="opacity-90 leading-relaxed mt-2"> Oct 2025 - Actualidad | Representante estudiantil en Junta de Centro, Comisión permanente y Comisión de Calidad de la ESEI.</p>
+                            </div>
+                        </div>
+
+
+                        <div class="flex items-start space-x-4">
+                            <div class="flex-grow">
+                                <img src="/assets/pictures/logos/eseida.png" alt="Logo de ESEIDA" class="w-12 h-12 object-contain mb-2">
+                                <div>
+                                    <h3 class="text-xl font-semibold">Representante Estudiantil</h3>
+                                    <p class="text-lg opacity-80">ESEIDA - Delegación de Estudiantado de la Escuela Superior de Ingeniería Informática</p>
+                                </div>
+                                <p class="opacity-90 leading-relaxed mt-2"> Marzo 2025 - Actualidad | Representante de estudiantes en la ESEIDA, colaborando en la gestión de la misma y garantizando el cumplimiento de los derechos del estudiantado</p>
+                                <br>
+                                <p class="opacity-90 leading-relaxed mt-2">Oct 2025 - May 2026 | Vocalía y Responsable de Comunicaciones - Gestión de Comunicación y Marca de la ESEIDA y escucha y atención de la diversidad de opiniones en la delegación.</p>
+                            </div>
+                        </div>
+
+                     
+                    </div>
+                </div>
+                <div class="rounded-xl shadow-lg overflow-hidden main-content-section p-8" style="background-color: var(--card-bg); color: var(--text-color);">
+                    <h2 class="text-2xl font-bold section-header">Habilidades</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="text-xl font-semibold mb-4">Hard Skills - Habilidades Técnicas</h3>
+                            <div class="flex flex-wrap gap-2">
+                                <span style="background-color:#768cb6;color:#ffffff;" class="text-indigo-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Herramientas de Ofimática (Excel, Word, PowerPoint)</span>
+                                <span style="background-color:#768cb6;color:#ffffff;" class="text-indigo-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Certificado ComDix - Uso de herramientas básicas</span>
+
+                                <span style="background-color:#768cb6;color:#ffffff;" class="text-indigo-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Linux (Terminal)</span>
+                                <span style="background-color:#768cb6;color:#ffffff;" class="text-indigo-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Python (Básico/Medio)</span>
+                                <span style="background-color:#768cb6;color:#ffffff;" class="text-indigo-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Bash (Medio)</span>
+                                <span style="background-color:#768cb6;color:#ffffff;" class="text-indigo-800 text-xs font-medium px-2.5 py-0.5 rounded-full">HTML (Básico)</span>
+                                <span style="background-color:#768cb6;color:#ffffff;" class="text-indigo-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Uso de Markdown y Jupyter Notebook</span>
+                                <span style="background-color:#768cb6;color:#ffffff;" class="text-indigo-800 text-xs font-medium px-2.5 py-0.5 rounded-full">LaTeX (Básico)</span>
+
+
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold mb-4">Soft Skills - Habilidades Brandas</h3>
+                            <div class="flex flex-wrap gap-2">
+                                <span style="background-color:#6f7d95;color:#ffffff;" class="text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Trabajo en Equipo</span>
+                                <span style="background-color:#6f7d95;color:#ffffff;" class="text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Resolución de Problemas</span>
+                                <span style="background-color:#6f7d95;color:#ffffff;" class="text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Adaptabilidad</span>
+                                <span style="background-color:#6f7d95;color:#ffffff;" class="text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Pensamiento Crítico</span>
+                                <span style="background-color:#6f7d95;color:#ffffff;" class="text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Curiosidad y Aprendizaje Continuo</span>
+                                <span style="background-color:#6f7d95;color:#ffffff;" class="text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Autodidacta</span>
+                                <span style="background-color:#6f7d95;color:#ffffff;" class="text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Comunicativo</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="rounded-xl shadow-lg overflow-hidden main-content-section p-8" style="background-color: var(--card-bg); color: var(--text-color);">
+                    <h2 class="text-2xl font-bold section-header">Idiomas</h2>
+                    <div class="grid grid-cols-1 gap-8">
+                        <div>
+                            <div class="flex flex-wrap gap-2">
+                                <span style="background-color:#7ba1a1;color:#ffffff;" class="text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Español (Nativo)</span>
+                                <span style="background-color:#7ba1a1;color:#ffffff;" class="text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Galego (Nativo)</span>
+                                <span style="background-color:#7ba1a1;color:#ffffff;" class="text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Inglés (B2 - Intermedio)</span>
+                                <span style="background-color:#7ba1a1;color:#ffffff;" class="text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Portugués (Intermedio)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    </main>
+
+    <footer id="contactme" class="w-full mt-12 py-8 text-white relative z-10 transition-colors duration-300" style="background-color: var(--bg-footer);">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="text-xs opacity-90 font-semibold">
+                &copy; 2026 Anxo López Rodríguez. Todos los derechos reservados.
+            </div>
+            <div class="flex gap-6 text-lg">
+                <a href="https://bsky.app/profile/anxolo.bsky.social" target="_blank" class="hover:text-slate-200 transition-colors" title="Bluesky"><i class="fa-brands fa-bluesky"></i></a>
+                <a href="https://x.com/anxolo_/" target="_blank" class="hover:text-slate-200 transition-colors" title="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="https://linkedin.com/in/anxo-lopez-rodriguez" target="_blank" class="hover:text-slate-200 transition-colors" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="https://github.com/anxolo" target="_blank" class="hover:text-slate-200 transition-colors" title="GitHub"><i class="fa-brands fa-github"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const themeToggle = document.getElementById('theme-toggle');
+        const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
+
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            document.body.classList.toggle('dark-mode');
+            const isDarkMode = document.body.classList.contains('dark-mode');
+            localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+            const desktopIcon = themeToggle.querySelector('i');
+            const mobileIcon = mobileThemeToggle.querySelector('i');
+            const mobileText = mobileThemeToggle.querySelector('span');
+            if (isDarkMode) {
+                desktopIcon.className = 'fa-solid fa-sun text-lg text-yellow-400';
+                mobileIcon.className = 'fa-solid fa-sun text-lg text-yellow-400';
+                mobileText.textContent = 'Light Mode';
+            } else {
+                desktopIcon.className = 'fa-solid fa-moon text-lg theme-text-social';
+                mobileIcon.className = 'fa-solid fa-moon text-lg theme-text-social';
+                mobileText.textContent = 'Dark Mode';
+            }
+        }
+
+        themeToggle.addEventListener('click', toggleTheme);
+        mobileThemeToggle.addEventListener('click', toggleTheme);
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const isDarkMode = document.body.classList.contains('dark-mode');
+            const desktopIcon = themeToggle.querySelector('i');
+            const mobileIcon = mobileThemeToggle.querySelector('i');
+            const mobileText = mobileThemeToggle.querySelector('span');
+            if (isDarkMode) {
+                desktopIcon.className = 'fa-solid fa-sun text-lg text-yellow-400';
+                mobileIcon.className = 'fa-solid fa-sun text-lg text-yellow-400';
+                mobileText.textContent = 'Light Mode';
+            } else {
+                desktopIcon.className = 'fa-solid fa-moon text-lg theme-text-social';
+                mobileIcon.className = 'fa-solid fa-moon text-lg theme-text-social';
+                mobileText.textContent = 'Dark Mode';
+            }
+        });
+
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+        const btnMenuOpen = document.getElementById('mobile-menu-open');
+        const btnMenuClose = document.getElementById('mobile-menu-close');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+        function openMobileMenu() {
+            mobileMenu.classList.remove('translate-x-full');
+            mobileMenuOverlay.classList.remove('hidden');
+            document.body.classList.add('overflow-hidden');
+        }
+
+        function closeMobileMenu() {
+            mobileMenu.classList.add('translate-x-full');
+            mobileMenuOverlay.classList.add('hidden');
+            document.body.classList.remove('overflow-hidden');
+            document.getElementById('mobile-lang-dropdown').classList.add('hidden');
+        }
+
+        btnMenuOpen.addEventListener('click', openMobileMenu);
+        btnMenuClose.addEventListener('click', closeMobileMenu);
+        mobileMenuOverlay.addEventListener('click', closeMobileMenu);
+        mobileNavLinks.forEach(link => link.addEventListener('click', closeMobileMenu));
+
+        const langMenuBtn = document.getElementById('lang-menu-btn');
+        const langDropdown = document.getElementById('lang-dropdown');
+        const mobileLangMenuBtn = document.getElementById('mobile-lang-menu-btn');
+        const mobileLangDropdown = document.getElementById('mobile-lang-dropdown');
+        langMenuBtn.addEventListener('click', (e) => { e.stopPropagation(); langDropdown.classList.toggle('hidden'); });
+        mobileLangMenuBtn.addEventListener('click', (e) => { e.stopPropagation(); mobileLangDropdown.classList.toggle('hidden'); });
+        document.addEventListener('click', () => { langDropdown.classList.add('hidden'); mobileLangDropdown.classList.add('hidden'); });
+    </script>
+</body>
+</html>

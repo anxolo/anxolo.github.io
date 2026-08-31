@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="gl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exemplo de Apuntamentos</title>
+    
+    <script src=""></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true,
+                processEnvironments: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+    
+    <style>
+        :root {
+            --bg-color: #faf5ff;
+            --text-color: #4c1d95;
+            --heading-color: #581c87;
+            --accent-color: #8b5cf6;
+            --border-color: #d8b4fe;
+            --code-bg: #f3e8ff;
+            --blockquote-bg: #ede9fe;
+            --shadow: 0 4px 6px rgba(139, 92, 246, 0.1);
+        }
+        
+        [data-theme="dark"] {
+            --bg-color: #1e1b4b;
+            --text-color: #c4b5fd;
+            --heading-color: #e0e7ff;
+            --accent-color: #a78bfa;
+            --border-color: #6d28d9;
+            --code-bg: #312e81;
+            --blockquote-bg: #4c1d95;
+            --shadow: 0 4px 6px rgba(167, 139, 250, 0.3);
+        }
+        
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: #1e1b4b;
+                --text-color: #c4b5fd;
+                --heading-color: #e0e7ff;
+                --accent-color: #a78bfa;
+                --border-color: #6d28d9;
+                --code-bg: #312e81;
+                --blockquote-bg: #4c1d95;
+                --shadow: 0 4px 6px rgba(167, 139, 250, 0.3);
+            }
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Calibri', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.7;
+            font-size: 16px;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            min-height: 150vh;
+            transition: all 0.3s ease;
+        }
+        
+        .document-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+        
+        .course-info {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .year-badge {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 1rem;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+        
+        .course-name {
+            color: var(--text-color);
+            font-weight: 500;
+        }
+        
+        .document-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--heading-color);
+            margin-bottom: 1rem;
+        }
+        
+        .document-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-color);
+            opacity: 0.8;
+            margin-bottom: 0.5rem;
+        }
+        
+        .document-author {
+            font-style: italic;
+            color: var(--accent-color);
+            font-size: 1.1rem;
+        }
+        
+        .action-buttons {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 12px;
+            z-index: 1000;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border: 2px solid var(--accent-color);
+            border-radius: 12px;
+            background: var(--accent-color);
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn:hover {
+            background: transparent;
+            color: var(--accent-color);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            border-color: var(--border-color);
+            color: var(--text-color);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--accent-color);
+            border-color: var(--accent-color);
+            color: white;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--heading-color);
+            font-weight: bold;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        h1 { font-size: 2.25rem; }
+        h2 { font-size: 1.875rem; }
+        h3 { font-size: 1.5rem; }
+        h4 { font-size: 1.25rem; }
+        
+        p {
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+        
+        ul, ol {
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+        }
+        
+        li {
+            margin-bottom: 0.5rem;
+        }
+        
+        code {
+            background: var(--code-bg);
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+        
+        pre {
+            background: var(--code-bg);
+            padding: 1rem;
+            border-radius: 6px;
+            overflow-x: auto;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--accent-color);
+        }
+        
+        blockquote {
+            background: var(--blockquote-bg);
+            padding: 1rem;
+            border-left: 4px solid var(--accent-color);
+            margin: 1rem 0;
+            font-style: italic;
+            border-radius: 0 6px 6px 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1rem;
+            background: var(--bg-color);
+            box-shadow: var(--shadow);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+        
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        th {
+            background: var(--accent-color);
+            color: white;
+            font-weight: 600;
+        }
+        
+        .MathJax {
+            font-size: 1.1rem !important;
+        }
+        
+        .document-footer {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            color: var(--text-color);
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+                font-size: 14px;
+            }
+            
+            .document-title {
+                font-size: 2rem;
+            }
+            
+            .action-buttons {
+                position: static;
+                justify-content: center;
+                margin-bottom: 2rem;
+            }
+        }
+        
+        @media print {
+            body {
+                max-width: none;
+                padding: 0;
+                font-size: 12pt;
+            }
+            
+            .action-buttons {
+                display: none;
+            }
+            
+            .document-header {
+                page-break-after: avoid;
+            }
+            
+            h1, h2, h3, h4, h5, h6 {
+                page-break-after: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <div class="action-buttons">
+        <button class="btn" onclick="window.print()" title="Descargar PDF">
+            <i class="fas fa-file-pdf"></i>
+        </button>
+        <button class="btn btn-secondary" onclick="toggleTheme()" id="theme-toggle" title="Cambiar tema">
+            <i class="fas fa-moon"></i>
+        </button>
+    </div>
+    
+    <header class="document-header">
+        
+        <h1 class="document-title">Exemplo de Apuntamentos</h1>
+        
+        <div class="document-subtitle">Intelixencia Artificial - Tema 1</div>
+        
+        <div class="document-author">Anxo López Rodríguez</div>
+        
+        <div class="document-date">29/01/2026</div>
+        
+    </header>
+    
+    <main class="document-content">
+        <h2 id="introdución">Introdución</h2>
+
+<p>Este é un exemplo xenerado con IA de como usar a nova plantilla para apuntamentos. A plantilla inclúe:</p>
+
+<ul>
+  <li><strong>Soporte completo para LaTeX</strong>: Podes usar fórmulas como $E = mc^2$ ou ecuacións en bloque:</li>
+</ul>
+
+\[\int_{-\infty}^{\infty} e^{-x^2} dx = \sqrt{\pi}\]
+
+<ul>
+  <li><strong>Deseño académico</strong>: Optimizado para lectura e estudo</li>
+  <li><strong>Descarga en PDF</strong>: Botón na esquina superior dereita</li>
+  <li><strong>Responsive</strong>: Adaptase a móviles e tablets</li>
+</ul>
+
+<h2 id="fórmulas-matemáticas">Fórmulas Matemáticas</h2>
+
+<h3 id="exemplos-de-latex">Exemplos de LaTeX</h3>
+
+<p>Ecuacións en liña: $f(x) = ax^2 + bx + c$</p>
+
+<p>Ecuacións en bloque:
+\(\begin{align}
+\nabla \times \vec{E} &amp;= -\frac{\partial \vec{B}}{\partial t} \\
+\nabla \times \vec{B} &amp;= \mu_0\vec{J} + \mu_0\epsilon_0\frac{\partial \vec{E}}{\partial t}
+\end{align}\)</p>
+
+<h3 id="matrices">Matrices</h3>
+
+\[A = \begin{pmatrix}
+a_{11} &amp; a_{12} &amp; \cdots &amp; a_{1n} \\
+a_{21} &amp; a_{22} &amp; \cdots &amp; a_{2n} \\
+\vdots  &amp; \vdots  &amp; \ddots &amp; \vdots  \\
+a_{m1} &amp; a_{m2} &amp; \cdots &amp; a_{mn}
+\end{pmatrix}\]
+
+<h2 id="código">Código</h2>
+
+<p>Exemplo de código Python:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">fibonacci</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">n</span>
+    <span class="k">return</span> <span class="nf">fibonacci</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="nf">fibonacci</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># Uso da función
+</span><span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">fib(10) = </span><span class="si">{</span><span class="nf">fibonacci</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="listas-e-táboas">Listas e Táboas</h2>
+
+<h3 id="lista-de-conceptos-importantes">Lista de conceptos importantes:</h3>
+
+<ol>
+  <li><strong>Machine Learning</strong>: Aprendizaxe automático</li>
+  <li><strong>Deep Learning</strong>: Aprendizaxe profundo</li>
+  <li><strong>Neural Networks</strong>: Redes neuronais</li>
+  <li><strong>Reinforcement Learning</strong>: Aprendizaxe por reforzo</li>
+</ol>
+
+<h3 id="táboa-comparativa">Táboa comparativa:</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Algoritmo</th>
+      <th>Complexidade</th>
+      <th>Precisión</th>
+      <th>Uso</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>SVM</td>
+      <td>O(n³)</td>
+      <td>Alta</td>
+      <td>Clasificación</td>
+    </tr>
+    <tr>
+      <td>Random Forest</td>
+      <td>O(n log n)</td>
+      <td>Media-Alta</td>
+      <td>Regresión/Clasificación</td>
+    </tr>
+    <tr>
+      <td>Neural Networks</td>
+      <td>Variable</td>
+      <td>Moi Alta</td>
+      <td>Recoñecemento de patróns</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="citas-e-referencias">Citas e Referencias</h2>
+
+<blockquote>
+  <p>“A intelixencia artificial é o futuro da humanidade. Non só para Rusia, senón para toda a humanidade.”</p>
+
+  <p>— Vladimir Putin</p>
+</blockquote>
+
+<h2 id="notas-importantes">Notas importantes</h2>
+
+<blockquote>
+  <p><strong>⚠️ Nota</strong>: Esta plantilla é específica para documentos académicos e apuntamentos.</p>
+</blockquote>
+
+<blockquote>
+  <p><strong>💡 Consello</strong>: Usa Ctrl+P para descargar directamente en PDF.</p>
+</blockquote>
+
+<h2 id="conclusión">Conclusión</h2>
+
+<p>Esta plantilla permite crear apuntamentos profesionais con:</p>
+
+<ul>
+  <li>✅ Soporte completo para LaTeX</li>
+  <li>✅ Deseño académico limpo</li>
+  <li>✅ Funcionalidade de descarga en PDF</li>
+  <li>✅ Responsive design</li>
+  <li>✅ Modo oscuro automático</li>
+  <li>✅ Pie de páxina personalizado</li>
+</ul>
+
+    </main>
+    
+    <footer class="document-footer">
+        <p>© 2026 Anxo López Rodríguez</p>
+        
+        <p><small>Fonte: ESEI - Universidade de Vigo</small></p>
+        
+    </footer>
+    
+    <script>
+        function toggleTheme() {
+            const html = document.documentElement;
+            const themeToggle = document.getElementById('theme-toggle');
+            const icon = themeToggle.querySelector('i');
+            
+            if (html.getAttribute('data-theme') === 'dark') {
+                html.removeAttribute('data-theme');
+                icon.className = 'fas fa-moon';
+                localStorage.setItem('theme', 'light');
+            } else {
+                html.setAttribute('data-theme', 'dark');
+                icon.className = 'fas fa-sun';
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedTheme = localStorage.getItem('theme');
+            const themeToggle = document.getElementById('theme-toggle');
+            const icon = themeToggle.querySelector('i');
+            
+            if (savedTheme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                icon.className = 'fas fa-sun';
+            } else {
+                icon.className = 'fas fa-moon';
+            }
+            
+            let sectionCounter = 0;
+            let subsectionCounter = 0;
+            
+            document.querySelectorAll('h2').forEach(function(h2) {
+                sectionCounter++;
+                subsectionCounter = 0;
+                h2.textContent = sectionCounter + '. ' + h2.textContent;
+            });
+            
+            document.querySelectorAll('h3').forEach(function(h3) {
+                subsectionCounter++;
+                h3.textContent = sectionCounter + '.' + subsectionCounter + '. ' + h3.textContent;
+            });
+            
+            
+            document.addEventListener('keydown', function(e) {
+                if (e.ctrlKey && e.key === 'p') {
+                    e.preventDefault();
+                    window.print();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

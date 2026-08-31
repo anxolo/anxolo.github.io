@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="gl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anxo López Rodríguez</title>
+    
+    <script src=""></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true,
+                processEnvironments: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+    
+    <style>
+        :root {
+            --bg-color: #faf5ff;
+            --text-color: #4c1d95;
+            --heading-color: #581c87;
+            --accent-color: #8b5cf6;
+            --border-color: #d8b4fe;
+            --code-bg: #f3e8ff;
+            --blockquote-bg: #ede9fe;
+            --shadow: 0 4px 6px rgba(139, 92, 246, 0.1);
+        }
+        
+        [data-theme="dark"] {
+            --bg-color: #1e1b4b;
+            --text-color: #c4b5fd;
+            --heading-color: #e0e7ff;
+            --accent-color: #a78bfa;
+            --border-color: #6d28d9;
+            --code-bg: #312e81;
+            --blockquote-bg: #4c1d95;
+            --shadow: 0 4px 6px rgba(167, 139, 250, 0.3);
+        }
+        
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: #1e1b4b;
+                --text-color: #c4b5fd;
+                --heading-color: #e0e7ff;
+                --accent-color: #a78bfa;
+                --border-color: #6d28d9;
+                --code-bg: #312e81;
+                --blockquote-bg: #4c1d95;
+                --shadow: 0 4px 6px rgba(167, 139, 250, 0.3);
+            }
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Calibri', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.7;
+            font-size: 16px;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            min-height: 150vh;
+            transition: all 0.3s ease;
+        }
+        
+        .document-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+        
+        .course-info {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .year-badge {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 1rem;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+        
+        .course-name {
+            color: var(--text-color);
+            font-weight: 500;
+        }
+        
+        .document-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--heading-color);
+            margin-bottom: 1rem;
+        }
+        
+        .document-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-color);
+            opacity: 0.8;
+            margin-bottom: 0.5rem;
+        }
+        
+        .document-author {
+            font-style: italic;
+            color: var(--accent-color);
+            font-size: 1.1rem;
+        }
+        
+        .action-buttons {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 12px;
+            z-index: 1000;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border: 2px solid var(--accent-color);
+            border-radius: 12px;
+            background: var(--accent-color);
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn:hover {
+            background: transparent;
+            color: var(--accent-color);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            border-color: var(--border-color);
+            color: var(--text-color);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--accent-color);
+            border-color: var(--accent-color);
+            color: white;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--heading-color);
+            font-weight: bold;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        h1 { font-size: 2.25rem; }
+        h2 { font-size: 1.875rem; }
+        h3 { font-size: 1.5rem; }
+        h4 { font-size: 1.25rem; }
+        
+        p {
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+        
+        ul, ol {
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+        }
+        
+        li {
+            margin-bottom: 0.5rem;
+        }
+        
+        code {
+            background: var(--code-bg);
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+        
+        pre {
+            background: var(--code-bg);
+            padding: 1rem;
+            border-radius: 6px;
+            overflow-x: auto;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--accent-color);
+        }
+        
+        blockquote {
+            background: var(--blockquote-bg);
+            padding: 1rem;
+            border-left: 4px solid var(--accent-color);
+            margin: 1rem 0;
+            font-style: italic;
+            border-radius: 0 6px 6px 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1rem;
+            background: var(--bg-color);
+            box-shadow: var(--shadow);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+        
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        th {
+            background: var(--accent-color);
+            color: white;
+            font-weight: 600;
+        }
+        
+        .MathJax {
+            font-size: 1.1rem !important;
+        }
+        
+        .document-footer {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            color: var(--text-color);
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+                font-size: 14px;
+            }
+            
+            .document-title {
+                font-size: 2rem;
+            }
+            
+            .action-buttons {
+                position: static;
+                justify-content: center;
+                margin-bottom: 2rem;
+            }
+        }
+        
+        @media print {
+            body {
+                max-width: none;
+                padding: 0;
+                font-size: 12pt;
+            }
+            
+            .action-buttons {
+                display: none;
+            }
+            
+            .document-header {
+                page-break-after: avoid;
+            }
+            
+            h1, h2, h3, h4, h5, h6 {
+                page-break-after: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <div class="action-buttons">
+        <button class="btn" onclick="window.print()" title="Descargar PDF">
+            <i class="fas fa-file-pdf"></i>
+        </button>
+        <button class="btn btn-secondary" onclick="toggleTheme()" id="theme-toggle" title="Cambiar tema">
+            <i class="fas fa-moon"></i>
+        </button>
+    </div>
+    
+    <header class="document-header">
+        
+        <h1 class="document-title"></h1>
+        
+        <div class="document-author">Anxo López Rodríguez</div>
+        
+    </header>
+    
+    <main class="document-content">
+        <h1 id="t2---sistemas-de-numeración">T2 - Sistemas de numeración</h1>
+<p><em>IC - 1.º Grado en Inteligencia Artificial</em></p>
+
+<p><em>Anxo López Rodríguez</em></p>
+
+<p><em>Escuela Superior de Enxeñaría Informática - Universidade de Vigo</em></p>
+
+<hr />
+
+<h3 id="tema-2---sistemas-de-numeración">Tema 2 - Sistemas de Numeración</h3>
+<p>Os números son cruciais na informática, xa que son a forma que temos de almacenar datos nun ordenador (Por ex. codificación en Binario).</p>
+
+<p>Un Número é unha representación dun valor o cal lle podemos aplicar certas operacións aritméticas (suma, resta). Dentro deles atopamos os naturais (0 a ∞), negativos, enteiros (Neg. e positivos) ou racionais (Enteiros ou cocientes de 2 enteiros - Fraccións).</p>
+
+<p>O sistema binario, e un sistema numérico composto polos números 0 e 1 (Base 2). Estes son os empregados polos ordenadores, xa que son máquinas dixitais que almacenan información coma sinais de Alto voltaxe (1) (Cheo) ou Baixo (0) (Baleiro). Cada un destes díxitos denomínanse Bits, e agrúpanse en Bytes (8 bits) e a súa vez en palabras (conxunto de Bytes) cuxo nº de Bits coñécese coma Lonxitude da palabra. Dependendo da capacidade do ordenador en interpretar os bits, pódense clasificar coma máquinas de 32, 64… Bits (Actualmente soen ser todos de 32 ou 64).</p>
+
+<p>Os sistemas de numeración son un conxunto de regras e símbolos empregados para representar cantidades. Este sistema define coma se escribe e organiza os Nos para expresar unha cantidade. Existen 2 sistemas diferentes:</p>
+
+<ul>
+  <li>
+    <p><strong>Non Posicional:</strong> O valor do díxito é fixo e non depende da súa posición no No resultante. Por exemplo os números romanos, XIV é 14 pero o X, I e V teñen un valor independententemente de onde os sitúes. Son ineficientes xa que é complicado representar números grandes.</p>
+  </li>
+  <li>
+    <p><strong>Posicional:</strong> O valor dun díxito depende de sí mesmo e da posición. Ten unha base (Nº de Símbolos diferentes) e se usan potencias (se multiplícase o díxito pola base elevada á potencia da posición). Ex. Decimal (101=1·10²+0·10¹+1·10⁰), Binario, octal, hexadecimal… Represéntanse pondo debaixo a Base ($8_{10} = 8$ Decimal).</p>
+  </li>
+</ul>
+
+<blockquote>
+  <p>Os polígonos quivalentes son unha maneira alxebraica de representar calquera número dun sist. de numeración posicional. Escribese como a suma dos produtos dos díxitos polas potencias correspondentes da base. Ex: 387 = 3·10² + 8·10¹ + 7·10⁰</p>
+</blockquote>
+
+<blockquote>
+  <p>En informática, ademáis do Binario, precísanse outros sistemas como o Octal (Base 8) ou o hexadecimal (Base 16 - Usado en programación de Hardware).</p>
+</blockquote>
+
+<p>NOTA: PARA COMPLETAR O CONTIDO DO TEMA, CÓMPRE SABER COMO CAMBIAR OS NºS ENTRE BASES</p>
+
+    </main>
+    
+    <footer class="document-footer">
+        <p>© 2026 Anxo López Rodríguez</p>
+        
+    </footer>
+    
+    <script>
+        function toggleTheme() {
+            const html = document.documentElement;
+            const themeToggle = document.getElementById('theme-toggle');
+            const icon = themeToggle.querySelector('i');
+            
+            if (html.getAttribute('data-theme') === 'dark') {
+                html.removeAttribute('data-theme');
+                icon.className = 'fas fa-moon';
+                localStorage.setItem('theme', 'light');
+            } else {
+                html.setAttribute('data-theme', 'dark');
+                icon.className = 'fas fa-sun';
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedTheme = localStorage.getItem('theme');
+            const themeToggle = document.getElementById('theme-toggle');
+            const icon = themeToggle.querySelector('i');
+            
+            if (savedTheme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                icon.className = 'fas fa-sun';
+            } else {
+                icon.className = 'fas fa-moon';
+            }
+            
+            
+            document.addEventListener('keydown', function(e) {
+                if (e.ctrlKey && e.key === 'p') {
+                    e.preventDefault();
+                    window.print();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

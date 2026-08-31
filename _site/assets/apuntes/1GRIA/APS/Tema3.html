@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="gl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anxo López Rodríguez</title>
+    
+    <script src=""></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true,
+                processEnvironments: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+    
+    <style>
+        :root {
+            --bg-color: #faf5ff;
+            --text-color: #4c1d95;
+            --heading-color: #581c87;
+            --accent-color: #8b5cf6;
+            --border-color: #d8b4fe;
+            --code-bg: #f3e8ff;
+            --blockquote-bg: #ede9fe;
+            --shadow: 0 4px 6px rgba(139, 92, 246, 0.1);
+        }
+        
+        [data-theme="dark"] {
+            --bg-color: #1e1b4b;
+            --text-color: #c4b5fd;
+            --heading-color: #e0e7ff;
+            --accent-color: #a78bfa;
+            --border-color: #6d28d9;
+            --code-bg: #312e81;
+            --blockquote-bg: #4c1d95;
+            --shadow: 0 4px 6px rgba(167, 139, 250, 0.3);
+        }
+        
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: #1e1b4b;
+                --text-color: #c4b5fd;
+                --heading-color: #e0e7ff;
+                --accent-color: #a78bfa;
+                --border-color: #6d28d9;
+                --code-bg: #312e81;
+                --blockquote-bg: #4c1d95;
+                --shadow: 0 4px 6px rgba(167, 139, 250, 0.3);
+            }
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Calibri', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.7;
+            font-size: 16px;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            min-height: 150vh;
+            transition: all 0.3s ease;
+        }
+        
+        .document-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+        
+        .course-info {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .year-badge {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 1rem;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+        
+        .course-name {
+            color: var(--text-color);
+            font-weight: 500;
+        }
+        
+        .document-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--heading-color);
+            margin-bottom: 1rem;
+        }
+        
+        .document-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-color);
+            opacity: 0.8;
+            margin-bottom: 0.5rem;
+        }
+        
+        .document-author {
+            font-style: italic;
+            color: var(--accent-color);
+            font-size: 1.1rem;
+        }
+        
+        .action-buttons {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 12px;
+            z-index: 1000;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border: 2px solid var(--accent-color);
+            border-radius: 12px;
+            background: var(--accent-color);
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn:hover {
+            background: transparent;
+            color: var(--accent-color);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            border-color: var(--border-color);
+            color: var(--text-color);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--accent-color);
+            border-color: var(--accent-color);
+            color: white;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--heading-color);
+            font-weight: bold;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        h1 { font-size: 2.25rem; }
+        h2 { font-size: 1.875rem; }
+        h3 { font-size: 1.5rem; }
+        h4 { font-size: 1.25rem; }
+        
+        p {
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+        
+        ul, ol {
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+        }
+        
+        li {
+            margin-bottom: 0.5rem;
+        }
+        
+        code {
+            background: var(--code-bg);
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+        
+        pre {
+            background: var(--code-bg);
+            padding: 1rem;
+            border-radius: 6px;
+            overflow-x: auto;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--accent-color);
+        }
+        
+        blockquote {
+            background: var(--blockquote-bg);
+            padding: 1rem;
+            border-left: 4px solid var(--accent-color);
+            margin: 1rem 0;
+            font-style: italic;
+            border-radius: 0 6px 6px 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1rem;
+            background: var(--bg-color);
+            box-shadow: var(--shadow);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+        
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        th {
+            background: var(--accent-color);
+            color: white;
+            font-weight: 600;
+        }
+        
+        .MathJax {
+            font-size: 1.1rem !important;
+        }
+        
+        .document-footer {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            color: var(--text-color);
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+                font-size: 14px;
+            }
+            
+            .document-title {
+                font-size: 2rem;
+            }
+            
+            .action-buttons {
+                position: static;
+                justify-content: center;
+                margin-bottom: 2rem;
+            }
+        }
+        
+        @media print {
+            body {
+                max-width: none;
+                padding: 0;
+                font-size: 12pt;
+            }
+            
+            .action-buttons {
+                display: none;
+            }
+            
+            .document-header {
+                page-break-after: avoid;
+            }
+            
+            h1, h2, h3, h4, h5, h6 {
+                page-break-after: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <div class="action-buttons">
+        <button class="btn" onclick="window.print()" title="Descargar PDF">
+            <i class="fas fa-file-pdf"></i>
+        </button>
+        <button class="btn btn-secondary" onclick="toggleTheme()" id="theme-toggle" title="Cambiar tema">
+            <i class="fas fa-moon"></i>
+        </button>
+    </div>
+    
+    <header class="document-header">
+        
+        <h1 class="document-title"></h1>
+        
+        <div class="document-author">Anxo López Rodríguez</div>
+        
+    </header>
+    
+    <main class="document-content">
+        <h1 id="t3-muestreo-cuantización-y-reconstrucción">T3: Muestreo, Cuantización y Reconstrucción</h1>
+<p><em>APS - 1.º Grado en Inteligencia Artificial</em></p>
+
+<p><em>Anxo López Rodríguez</em></p>
+
+<p><em>Escuela Superior de Ingeniería Informática - Universidade de Vigo</em></p>
+
+<hr />
+
+<h2 id="1-muestreo">1. Muestreo</h2>
+<ul>
+  <li><strong>Muestreo</strong>: Proceso esencial en el que una señal continua o analógica se convierte en valores discretos o digitales.</li>
+  <li><strong>Reconstrucción o Interpolación</strong>: Es el proceso contrario al muestreo.</li>
+</ul>
+
+<hr />
+
+<h2 id="2-teorema-de-nyquist-shannon">2. Teorema de Nyquist-Shannon</h2>
+<p>Es el principio fundamental que define las condiciones bajo las cuales una señal puede ser muestreada y reconstruida sin pérdida de información.</p>
+
+<ul>
+  <li><strong>Frecuencia de Muestreo</strong>: Tasa a la que se toman muestras, medida en Hertz (Hz) (Muestras por segundo).</li>
+  <li><strong>Frecuencia Máxima de la Señal</strong>: Es la frecuencia más alta presente en la señal analógica.</li>
+  <li><strong>Regla del Muestreo</strong>: La frecuencia de muestreo debe ser, al menos, el doble que la frecuencia máxima de la señal. A esta frecuencia mínima se le conoce como <strong>Frecuencia de Nyquist</strong>.</li>
+  <li><strong>Aliasing</strong>: Ocurre cuando se muestrea a una tasa inferior a la Frecuencia de Nyquist. Como resultado, diferentes señales se vuelven indistinguibles una vez muestreadas. Se produce una perdida de información.</li>
+</ul>
+
+<h3 id="técnicas-de-muestreo">Técnicas de Muestreo</h3>
+<ul>
+  <li><strong>Sobremuestreo</strong>: Muestrear a una frecuencia mucho más alta que la Frecuencia de Nyquist.</li>
+  <li><strong>Submuestreo</strong>: Muestrear a una frecuencia mucho más baja que la Frecuencia de Nyquist.</li>
+  <li><strong>Uniforme</strong>: Las muestras se toman a intervalos de tiempo regulares. Es muy empleado en sistemas de audio y video porque simplifica la reconstrucción y el diseño de hardware y software. Sin embargo, no es eficiente para señales que varían poco y que, por tanto, estarían sobremuestreadas.</li>
+  <li><strong>No Uniforme</strong>: Las muestras se toman en intervalos no uniformes, usualmente debido a variaciones en la propia señal. Es útil para señales con cambios espontáneos (ej. sismos), ya que ofrece una mayor eficiencia en la captura de información, aunque complica la reconstrucción y el diseño de los sistemas de precisión.</li>
+</ul>
+
+<hr />
+
+<h2 id="3-cuantización">3. Cuantización</h2>
+<ul>
+  <li><strong>Resolución o Profundidad de bits</strong>: Es el número de niveles discretos que se pueden usar para representar una muestra.
+    <ul>
+      <li>A mayor profundidad, se obtiene una mejor aproximación de la señal y se reduce el error.</li>
+      <li>A menor profundidad, hay una mayor distorsión o <strong>ruido de cuantización</strong>.</li>
+    </ul>
+  </li>
+  <li><strong>Impacto de la resolución</strong>:
+    <ul>
+      <li><strong>Calidad de la Señal</strong>: Una alta resolución mejora la fidelidad de la señal, pero a costa de aumentar el tamaño de los datos.</li>
+      <li><strong>Ruido de cuantización</strong>: Es la diferencia entre el valor real de la muestra y el valor cuantizado. A mayor resolución, menor es este ruido.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="relación-señal-a-ruido-snr">Relación Señal a Ruido (SNR)</h3>
+<ul>
+  <li><strong>Definición</strong>: Es una medida crítica en el procesamiento de señales que compara el nivel de la señal deseada con el nivel del ruido de fondo (incluyendo el ruido de cuantización).</li>
+  <li><strong>Importancia</strong>: Una SNR alta indica una señal clara con poco ruido y alta fidelidad. Por el contrario, una SNR baja indica una señal degradada por el ruido.</li>
+  <li><strong>Cálculo</strong>: $SNR = 6.02 * N + 1.76$ (donde <strong>N</strong> es el número de bits de la cuantización).</li>
+  <li><strong>Aplicación práctica</strong>: En sistemas de audio, una SNR alta es crucial para mantener la calidad y la fidelidad de la señal.</li>
+</ul>
+
+<hr />
+
+<h2 id="4-técnicas-de-conversión">4. Técnicas de Conversión</h2>
+
+<h3 id="conversión-digital-analógica-da">Conversión Digital-Analógica (DA)</h3>
+<ul>
+  <li>Se utilizan <strong>resistencias ponderadas</strong> y redes <strong>R-2R</strong> para generar una salida analógica.</li>
+  <li>Se emplean <strong>amplificadores operacionales</strong> para sumar las contribuciones de los bits individuales. Las configuraciones básicas incluyen el modo inversor, no inversor y diferencial.</li>
+</ul>
+
+<h3 id="conversión-analógica-digital-ad">Conversión Analógica-Digital (A/D)</h3>
+<ul>
+  <li>Se basan en métodos de <strong>muestreo y retención</strong> para capturar señales continuas.</li>
+  <li><strong>Tipos de convertidores</strong>:
+    <ul>
+      <li><strong>Destello (Flash)</strong>: Utiliza comparadores en paralelo para una conversión de muy alta rapidez.</li>
+      <li><strong>Escalera</strong>: Usa un convertidor DA y un contador para aproximar el valor de la señal.</li>
+      <li><strong>Aproximación Sucesiva</strong>: Realiza una comparación iterativa para lograr mayor eficiencia.</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="5-aplicaciones-en-inteligencia-artificial">5. Aplicaciones en Inteligencia Artificial</h2>
+
+<ul>
+  <li><strong>Muestreo y cuantización</strong>: Son fundamentales para la precisión y eficiencia de los algoritmos y sistemas.</li>
+  <li><strong>Procesamiento de señales</strong>:
+    <ul>
+      <li>Transformación de datos para alimentar modelos de IA - Convertidores A/D</li>
+      <li>El número de bits y la velocidad de muestreo tienen un impacto directo en la precisión de los modelos.</li>
+      <li>Eficiencia computacional.</li>
+    </ul>
+  </li>
+  <li><strong>Reducción de dimensionalidad</strong>: Consiste en disminuir el número de variables a considerar en un problema para obtener un conjunto de características principales.</li>
+  <li><strong>PCA (Análisis de Componentes Principales)</strong>: Técnica de análisis multivariante usada para reducir la dimensionalidad de un conjunto de datos, manteniendo a su vez la mayor cantidad posible de información.</li>
+</ul>
+
+    </main>
+    
+    <footer class="document-footer">
+        <p>© 2026 Anxo López Rodríguez</p>
+        
+    </footer>
+    
+    <script>
+        function toggleTheme() {
+            const html = document.documentElement;
+            const themeToggle = document.getElementById('theme-toggle');
+            const icon = themeToggle.querySelector('i');
+            
+            if (html.getAttribute('data-theme') === 'dark') {
+                html.removeAttribute('data-theme');
+                icon.className = 'fas fa-moon';
+                localStorage.setItem('theme', 'light');
+            } else {
+                html.setAttribute('data-theme', 'dark');
+                icon.className = 'fas fa-sun';
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedTheme = localStorage.getItem('theme');
+            const themeToggle = document.getElementById('theme-toggle');
+            const icon = themeToggle.querySelector('i');
+            
+            if (savedTheme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                icon.className = 'fas fa-sun';
+            } else {
+                icon.className = 'fas fa-moon';
+            }
+            
+            
+            document.addEventListener('keydown', function(e) {
+                if (e.ctrlKey && e.key === 'p') {
+                    e.preventDefault();
+                    window.print();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

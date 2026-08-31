@@ -1,24 +1,27 @@
 ---
-layout: default
+layout: new_default_es
 title: Contacto
 lang: es
+trans_gl: "/gl/contactme"
+trans_es: "/es/contactme"
+trans_en: "/en/contactme"
 ---
 <main class="flex-grow pt-24 pb-8">
 <div class="container mx-auto px-4 max-w-4xl">
 <h1 class="text-4xl md:text-5xl font-bold text-left mb-4" style="color: var(--text-color);">Contacto</h1>
-<p class="text-lg mb-12" style="color: var(--subtitle-color);">¿Tienes alguna pregunta o propuesta? Contáctame a través de cualquiera de estas plataformas</p>
+<p class="text-lg mb-12" style="color: var(--subtitle-color);">¿Tienes alguna pregunta o propuesta? Contacta comigo a través de calquera destas plataformas</p>
 
 
-<!-- Enlaces de contacto en grid -->
+<!-- Ligazóns de contacto en grid -->
 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 <!-- Bluesky -->
 <a href="https://bsky.app/profile/anxolo.bsky.social" 
    target="_blank"
    rel="noopener noreferrer"
-   class="p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-200 transform hover:-translate-y-1"
+   class="p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-200 transform hover:-translate-y-1 text-left contact-link"
    style="background-color: var(--card-bg);">
-<div class="flex items-center gap-4">
-<span class="text-3xl">🦋</span>
+<div class="flex items-center gap-4 justify-start">
+<i class="fa-brands fa-bluesky contact-icon theme-text-social" aria-hidden="true" title="Bluesky"></i>
 <div>
 <h3 class="font-bold text-lg" style="color: var(--text-color);">Bluesky</h3>
 <p class="text-sm" style="color: var(--subtitle-color);">anxolo.bsky.social</p>
@@ -30,10 +33,10 @@ lang: es
 <a href="https://github.com/anxolo" 
    target="_blank"
    rel="noopener noreferrer"
-   class="p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-200 transform hover:-translate-y-1"
+   class="p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-200 transform hover:-translate-y-1 text-left contact-link"
    style="background-color: var(--card-bg);">
-<div class="flex items-center gap-4">
-<span class="text-3xl">💻</span>
+<div class="flex items-center gap-4 justify-start">
+<i class="fa-brands fa-github contact-icon theme-text-social" aria-hidden="true" title="GitHub"></i>
 <div>
 <h3 class="font-bold text-lg" style="color: var(--text-color);">GitHub</h3>
 <p class="text-sm" style="color: var(--subtitle-color);">@anxolo</p>
@@ -45,10 +48,10 @@ lang: es
 <a href="https://es.linkedin.com/in/anxo-lopez-rodriguez" 
    target="_blank"
    rel="noopener noreferrer"
-   class="p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-200 transform hover:-translate-y-1"
+   class="p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-200 transform hover:-translate-y-1 text-left contact-link"
    style="background-color: var(--card-bg);">
-<div class="flex items-center gap-4">
-<span class="text-3xl">💼</span>
+<div class="flex items-center gap-4 justify-start">
+<i class="fa-brands fa-linkedin-in contact-icon theme-text-social" aria-hidden="true" title="LinkedIn"></i>
 <div>
 <h3 class="font-bold text-lg" style="color: var(--text-color);">LinkedIn</h3>
 <p class="text-sm" style="color: var(--subtitle-color);">Anxo López Rodríguez</p>
@@ -60,10 +63,10 @@ lang: es
 <a href="https://www.x.com/anxolo_/" 
    target="_blank"
    rel="noopener noreferrer"
-   class="p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-200 transform hover:-translate-y-1"
+   class="p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-200 transform hover:-translate-y-1 text-left contact-link"
    style="background-color: var(--card-bg);">
-<div class="flex items-center gap-4">
-<span class="text-3xl">🐦</span>
+<div class="flex items-center gap-4 justify-start">
+<i class="fa-brands fa-x-twitter contact-icon theme-text-social" aria-hidden="true" title="X (Twitter)"></i>
 <div>
 <h3 class="font-bold text-lg" style="color: var(--text-color);">X (Twitter)</h3>
 <p class="text-sm" style="color: var(--subtitle-color);">@anxolo_</p>
@@ -73,10 +76,10 @@ lang: es
 
 <!-- Email -->
 <a href="mailto:lopezrodriguezanxo@gmail.com" 
-   class="p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-200 transform hover:-translate-y-1 md:col-span-2"
+   class="p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-200 transform hover:-translate-y-1 md:col-span-2 text-left contact-link"
    style="background-color: var(--card-bg);">
-<div class="flex items-center gap-4 justify-center md:justify-start">
-<span class="text-3xl">📩</span>
+<div class="flex items-center gap-4 justify-start">
+<i class="fa-solid fa-envelope contact-icon theme-text-social" aria-hidden="true" title="Email"></i>
 <div>
 <h3 class="font-bold text-lg" style="color: var(--text-color);">Email</h3>
 <p class="text-sm" style="color: var(--subtitle-color);">lopezrodriguezanxo@gmail.com</p>

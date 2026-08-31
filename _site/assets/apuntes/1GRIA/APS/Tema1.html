@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="gl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anxo López Rodríguez</title>
+    
+    <script src=""></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true,
+                processEnvironments: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+    
+    <style>
+        :root {
+            --bg-color: #faf5ff;
+            --text-color: #4c1d95;
+            --heading-color: #581c87;
+            --accent-color: #8b5cf6;
+            --border-color: #d8b4fe;
+            --code-bg: #f3e8ff;
+            --blockquote-bg: #ede9fe;
+            --shadow: 0 4px 6px rgba(139, 92, 246, 0.1);
+        }
+        
+        [data-theme="dark"] {
+            --bg-color: #1e1b4b;
+            --text-color: #c4b5fd;
+            --heading-color: #e0e7ff;
+            --accent-color: #a78bfa;
+            --border-color: #6d28d9;
+            --code-bg: #312e81;
+            --blockquote-bg: #4c1d95;
+            --shadow: 0 4px 6px rgba(167, 139, 250, 0.3);
+        }
+        
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: #1e1b4b;
+                --text-color: #c4b5fd;
+                --heading-color: #e0e7ff;
+                --accent-color: #a78bfa;
+                --border-color: #6d28d9;
+                --code-bg: #312e81;
+                --blockquote-bg: #4c1d95;
+                --shadow: 0 4px 6px rgba(167, 139, 250, 0.3);
+            }
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Calibri', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.7;
+            font-size: 16px;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            min-height: 150vh;
+            transition: all 0.3s ease;
+        }
+        
+        .document-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+        
+        .course-info {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .year-badge {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 1rem;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+        
+        .course-name {
+            color: var(--text-color);
+            font-weight: 500;
+        }
+        
+        .document-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--heading-color);
+            margin-bottom: 1rem;
+        }
+        
+        .document-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-color);
+            opacity: 0.8;
+            margin-bottom: 0.5rem;
+        }
+        
+        .document-author {
+            font-style: italic;
+            color: var(--accent-color);
+            font-size: 1.1rem;
+        }
+        
+        .action-buttons {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 12px;
+            z-index: 1000;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border: 2px solid var(--accent-color);
+            border-radius: 12px;
+            background: var(--accent-color);
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn:hover {
+            background: transparent;
+            color: var(--accent-color);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            border-color: var(--border-color);
+            color: var(--text-color);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--accent-color);
+            border-color: var(--accent-color);
+            color: white;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--heading-color);
+            font-weight: bold;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        h1 { font-size: 2.25rem; }
+        h2 { font-size: 1.875rem; }
+        h3 { font-size: 1.5rem; }
+        h4 { font-size: 1.25rem; }
+        
+        p {
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+        
+        ul, ol {
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+        }
+        
+        li {
+            margin-bottom: 0.5rem;
+        }
+        
+        code {
+            background: var(--code-bg);
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+        
+        pre {
+            background: var(--code-bg);
+            padding: 1rem;
+            border-radius: 6px;
+            overflow-x: auto;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--accent-color);
+        }
+        
+        blockquote {
+            background: var(--blockquote-bg);
+            padding: 1rem;
+            border-left: 4px solid var(--accent-color);
+            margin: 1rem 0;
+            font-style: italic;
+            border-radius: 0 6px 6px 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1rem;
+            background: var(--bg-color);
+            box-shadow: var(--shadow);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+        
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        th {
+            background: var(--accent-color);
+            color: white;
+            font-weight: 600;
+        }
+        
+        .MathJax {
+            font-size: 1.1rem !important;
+        }
+        
+        .document-footer {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            color: var(--text-color);
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+                font-size: 14px;
+            }
+            
+            .document-title {
+                font-size: 2rem;
+            }
+            
+            .action-buttons {
+                position: static;
+                justify-content: center;
+                margin-bottom: 2rem;
+            }
+        }
+        
+        @media print {
+            body {
+                max-width: none;
+                padding: 0;
+                font-size: 12pt;
+            }
+            
+            .action-buttons {
+                display: none;
+            }
+            
+            .document-header {
+                page-break-after: avoid;
+            }
+            
+            h1, h2, h3, h4, h5, h6 {
+                page-break-after: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <div class="action-buttons">
+        <button class="btn" onclick="window.print()" title="Descargar PDF">
+            <i class="fas fa-file-pdf"></i>
+        </button>
+        <button class="btn btn-secondary" onclick="toggleTheme()" id="theme-toggle" title="Cambiar tema">
+            <i class="fas fa-moon"></i>
+        </button>
+    </div>
+    
+    <header class="document-header">
+        
+        <h1 class="document-title"></h1>
+        
+        <div class="document-author">Anxo López Rodríguez</div>
+        
+    </header>
+    
+    <main class="document-content">
+        <h1 id="t1-adquisición-y-procesamiento-de-la-señal">T1: Adquisición y Procesamiento de la Señal</h1>
+<p><em>1.º Grado en Inteligencia Artificial</em></p>
+
+<p><em>Anxo López Rodríguez</em></p>
+
+<p><em>Escuela Superior de Ingeniería Informática - Universidade de Vigo</em></p>
+
+<hr />
+
+<h2 id="digitalización-de-señales">Digitalización de Señales</h2>
+<p>Es el proceso de convertir señales analógicas (continuas) a digitales (discretas) mediante <strong>muestreo</strong> y <strong>cuantificación</strong>. Este proceso es fundamental para que un ordenador pueda interpretar y trabajar con información del mundo real.</p>
+
+<p>Generalmente, se compone de 3 fases:</p>
+<ol>
+  <li><strong>Conversión de señal analógica a digital (CAD):</strong> Se toma la señal del mundo real y se transforma en datos binarios.</li>
+  <li><strong>Procesamiento de la señal digital (DSP):</strong> Se aplican algoritmos (conjuntos de instrucciones matemáticas y lógicas) para transformar, filtrar o analizar estas señales digitales.</li>
+  <li><strong>Conversión de la señal procesada a una forma analógica (CDA):</strong> Si es necesario, la señal digital se vuelve a convertir a una forma analógica (por ejemplo, para producir sonido a través de un altavoz).</li>
+</ol>
+
+<hr />
+
+<h2 id="los-sensores">Los Sensores</h2>
+<p>Un <strong>sensor</strong> es un dispositivo que capta eventos o cambios en su entorno físico (como la temperatura, la luz o el movimiento) y envía dicha información a un dispositivo electrónico. La <strong>sensorización</strong> es el proceso de usar sensores para obtener datos del entorno, transformando una entrada física en una señal eléctrica medible y analizable.</p>
+
+<h3 id="tipos-de-sensores-según-su-energía">Tipos de Sensores (según su energía)</h3>
+<ul>
+  <li><strong>Pasivos:</strong> Responden al entorno sin necesidad de una fuente de energía externa (ej: un termómetro de mercurio).</li>
+  <li><strong>Activos:</strong> Requieren energía para funcionar y activar su respuesta (ej: un sensor ultrasónico que emite un pulso de sonido).</li>
+</ul>
+
+<h3 id="tipos-de-señales">Tipos de Señales</h3>
+<ul>
+  <li><strong>Analógicas:</strong> Señales continuas que pueden tener un número infinito de valores dentro de un rango (ej: el voltaje que genera un micrófono).</li>
+  <li><strong>Digitales:</strong> Señales discretas y binarias, que solo pueden tomar un número finito de valores (generalmente 0 y 1).</li>
+</ul>
+
+<h3 id="características-de-un-sensor">Características de un Sensor</h3>
+<ul>
+  <li><strong>Sensibilidad:</strong> Capacidad para detectar pequeños cambios en la magnitud que se está midiendo.</li>
+  <li><strong>Rango:</strong> El intervalo de valores en el que un sensor puede medir con una precisión aceptable.</li>
+  <li><strong>Exactitud:</strong> Cuán cercanas están las mediciones del sensor al valor real o de referencia.</li>
+  <li><strong>Linealidad:</strong> Capacidad de mantener una relación proporcional entre la entrada (magnitud física) y la salida (señal eléctrica). Los sensores lineales son más fáciles de calibrar.</li>
+  <li><strong>Resolución:</strong> La menor diferencia en una señal que un sensor puede detectar. Una alta resolución permite detectar cambios muy sutiles.</li>
+</ul>
+
+<h3 id="parámetros-críticos-en-aplicaciones-dinámicas">Parámetros Críticos en Aplicaciones Dinámicas</h3>
+<ul>
+  <li><strong>Tiempo de Respuesta:</strong> El tiempo que tarda un sensor en reaccionar a un cambio en el medio.</li>
+  <li><strong>Frecuencia de Operación:</strong> La rapidez con la que un sensor puede realizar mediciones sucesivas.</li>
+</ul>
+
+<hr />
+
+<h2 id="tipos-de-sensores-comunes">Tipos de Sensores Comunes</h2>
+
+<h3 id="termopar-y-termistor">Termopar y Termistor</h3>
+<ul>
+  <li><strong>Termopar:</strong> Unión de dos metales diferentes que generan un voltaje proporcional a la temperatura. Son duraderos y funcionan en un rango de temperaturas muy amplio (uso industrial y científico).</li>
+  <li><strong>Termistor:</strong> Una resistencia que cambia su valor con la temperatura (NTC o PTC). Son muy sensibles y precisos en rangos de temperatura limitados (uso en electrónica de consumo y medicina).</li>
+</ul>
+
+<h3 id="sensores-de-proximidad">Sensores de Proximidad</h3>
+<ul>
+  <li><strong>Por Infrarrojos (IR):</strong> Emite luz infrarroja y detecta su reflejo en un objeto cercano. Son para distancias cortas y pueden ser afectados por la luz ambiental o superficies reflectantes. Se usan en electrónica y sistemas de seguridad.</li>
+  <li><strong>Por Ultrasonidos:</strong> Emite ondas de sonido de alta frecuencia y mide el tiempo que tarda en regresar el eco. Tienen mayor rango que los IR y detectan todo tipo de materiales. Se usan en automoción (aparcamiento), robótica y manufactura.</li>
+</ul>
+
+<h3 id="sensores-biométricos">Sensores Biométricos</h3>
+<ul>
+  <li><strong>Sensor de Huella Digital:</strong> Captura la imagen de las crestas y valles de una huella dactilar usando tecnologías ópticas, capacitivas o ultrasónicas. Ofrece un alto nivel de seguridad en móviles y controles de acceso.</li>
+  <li><strong>Sensor de Reconocimiento Facial:</strong> Usa algoritmos de visión por computador para identificar a una persona por su rostro. Es versátil, poco invasivo y se aplica en seguridad, vigilancia y sistemas de pago.</li>
+</ul>
+
+<hr />
+
+<h2 id="procesamiento-y-análisis-de-datos">Procesamiento y Análisis de Datos</h2>
+
+<p>Una vez que los sensores han capturado los datos, estos deben ser procesados para que sean útiles. Esto incluye varias técnicas.</p>
+
+<h3 id="mecanismos-de-transducción">Mecanismos de Transducción</h3>
+<p>Un <strong>transductor</strong> es el componente del sensor que realiza la conversión de una forma de energía a otra.</p>
+<ul>
+  <li><strong>Mecánicos:</strong> Convierten energía mecánica (presión, vibración) en señales eléctricas. Ejemplo: un micrófono.</li>
+  <li><strong>Térmicos:</strong> Convierten cambios de temperatura en señales eléctricas. Ejemplo: un termistor.</li>
+  <li><strong>Fotónicos:</strong> Convierten energía luminosa en una señal eléctrica. Ejemplo: un fotodiodo.</li>
+  <li><strong>Químicos:</strong> Reaccionan a sustancias químicas para generar una señal eléctrica. Ejemplo: un sensor de pH.</li>
+</ul>
+
+<h3 id="filtrado-de-datos">Filtrado de Datos</h3>
+<p>Proceso para eliminar el <strong>ruido</strong> y los componentes no deseados de los datos del sensor.</p>
+<ul>
+  <li><strong>Filtro Digital:</strong> Un filtro paso bajo, por ejemplo, elimina las altas frecuencias para suavizar la señal y reducir el ruido.</li>
+  <li><strong>Filtro de Media Móvil:</strong> Calcula el promedio de los datos en una ventana deslizante para suavizar fluctuaciones bruscas.</li>
+</ul>
+
+<h3 id="normalización-de-datos">Normalización de Datos</h3>
+<p>Proceso de ajustar rangos de datos a una escala común (ej. 0 a 1) para facilitar su comparación y análisis.</p>
+<ul>
+  <li><strong>Normalización Mín-Máx:</strong> Escala los datos a un rango definido, generalmente [0, 1].</li>
+  <li><strong>Estandarización (Z-Score):</strong> Ajusta los datos para que tengan una media de 0 y una desviación estándar de 1.</li>
+</ul>
+
+<h3 id="análisis-estadístico">Análisis Estadístico</h3>
+<p>Permite identificar tendencias, patrones y anomalías en los datos.</p>
+<ul>
+  <li><strong>Estadísticas Descriptivas:</strong> Media, mediana, desviación estándar, etc.</li>
+  <li><strong>Análisis de Series Temporales:</strong> Estudio de datos que cambian con el tiempo para predecir tendencias.</li>
+  <li><strong>Detección de Anomalías:</strong> Identificación de datos que se desvían del comportamiento normal.</li>
+</ul>
+
+<h3 id="visualización-de-datos">Visualización de Datos</h3>
+<p>Facilita la interpretación y comprensión de datos complejos mediante representaciones gráficas.</p>
+<ul>
+  <li><strong>Gráficos y Diagramas:</strong> Gráficos de líneas, barras, mapas de calor, etc.</li>
+  <li><strong>Herramientas Interactivas:</strong> Software que permite una exploración dinámica de los datos.</li>
+</ul>
+
+<h3 id="integración-y-fusión-de-datos">Integración y Fusión de Datos</h3>
+<ul>
+  <li><strong>Fusión de Datos:</strong> Proceso de combinar datos de múltiples sensores para obtener una visión más completa y precisa de la situación.</li>
+  <li><strong>Análisis Multivariable:</strong> Exploración de las relaciones que existen entre las diferentes variables medidas por los sensores.</li>
+</ul>
+
+    </main>
+    
+    <footer class="document-footer">
+        <p>© 2026 Anxo López Rodríguez</p>
+        
+    </footer>
+    
+    <script>
+        function toggleTheme() {
+            const html = document.documentElement;
+            const themeToggle = document.getElementById('theme-toggle');
+            const icon = themeToggle.querySelector('i');
+            
+            if (html.getAttribute('data-theme') === 'dark') {
+                html.removeAttribute('data-theme');
+                icon.className = 'fas fa-moon';
+                localStorage.setItem('theme', 'light');
+            } else {
+                html.setAttribute('data-theme', 'dark');
+                icon.className = 'fas fa-sun';
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedTheme = localStorage.getItem('theme');
+            const themeToggle = document.getElementById('theme-toggle');
+            const icon = themeToggle.querySelector('i');
+            
+            if (savedTheme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                icon.className = 'fas fa-sun';
+            } else {
+                icon.className = 'fas fa-moon';
+            }
+            
+            
+            document.addEventListener('keydown', function(e) {
+                if (e.ctrlKey && e.key === 'p') {
+                    e.preventDefault();
+                    window.print();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

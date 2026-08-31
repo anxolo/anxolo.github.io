@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="gl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anxo López Rodríguez</title>
+    
+    <script src=""></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true,
+                processEnvironments: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+    
+    <style>
+        :root {
+            --bg-color: #faf5ff;
+            --text-color: #4c1d95;
+            --heading-color: #581c87;
+            --accent-color: #8b5cf6;
+            --border-color: #d8b4fe;
+            --code-bg: #f3e8ff;
+            --blockquote-bg: #ede9fe;
+            --shadow: 0 4px 6px rgba(139, 92, 246, 0.1);
+        }
+        
+        [data-theme="dark"] {
+            --bg-color: #1e1b4b;
+            --text-color: #c4b5fd;
+            --heading-color: #e0e7ff;
+            --accent-color: #a78bfa;
+            --border-color: #6d28d9;
+            --code-bg: #312e81;
+            --blockquote-bg: #4c1d95;
+            --shadow: 0 4px 6px rgba(167, 139, 250, 0.3);
+        }
+        
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: #1e1b4b;
+                --text-color: #c4b5fd;
+                --heading-color: #e0e7ff;
+                --accent-color: #a78bfa;
+                --border-color: #6d28d9;
+                --code-bg: #312e81;
+                --blockquote-bg: #4c1d95;
+                --shadow: 0 4px 6px rgba(167, 139, 250, 0.3);
+            }
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Calibri', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.7;
+            font-size: 16px;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            min-height: 150vh;
+            transition: all 0.3s ease;
+        }
+        
+        .document-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+        
+        .course-info {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .year-badge {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 1rem;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+        
+        .course-name {
+            color: var(--text-color);
+            font-weight: 500;
+        }
+        
+        .document-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--heading-color);
+            margin-bottom: 1rem;
+        }
+        
+        .document-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-color);
+            opacity: 0.8;
+            margin-bottom: 0.5rem;
+        }
+        
+        .document-author {
+            font-style: italic;
+            color: var(--accent-color);
+            font-size: 1.1rem;
+        }
+        
+        .action-buttons {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 12px;
+            z-index: 1000;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border: 2px solid var(--accent-color);
+            border-radius: 12px;
+            background: var(--accent-color);
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn:hover {
+            background: transparent;
+            color: var(--accent-color);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            border-color: var(--border-color);
+            color: var(--text-color);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--accent-color);
+            border-color: var(--accent-color);
+            color: white;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--heading-color);
+            font-weight: bold;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        h1 { font-size: 2.25rem; }
+        h2 { font-size: 1.875rem; }
+        h3 { font-size: 1.5rem; }
+        h4 { font-size: 1.25rem; }
+        
+        p {
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+        
+        ul, ol {
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+        }
+        
+        li {
+            margin-bottom: 0.5rem;
+        }
+        
+        code {
+            background: var(--code-bg);
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+        
+        pre {
+            background: var(--code-bg);
+            padding: 1rem;
+            border-radius: 6px;
+            overflow-x: auto;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--accent-color);
+        }
+        
+        blockquote {
+            background: var(--blockquote-bg);
+            padding: 1rem;
+            border-left: 4px solid var(--accent-color);
+            margin: 1rem 0;
+            font-style: italic;
+            border-radius: 0 6px 6px 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1rem;
+            background: var(--bg-color);
+            box-shadow: var(--shadow);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+        
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        th {
+            background: var(--accent-color);
+            color: white;
+            font-weight: 600;
+        }
+        
+        .MathJax {
+            font-size: 1.1rem !important;
+        }
+        
+        .document-footer {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            color: var(--text-color);
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+                font-size: 14px;
+            }
+            
+            .document-title {
+                font-size: 2rem;
+            }
+            
+            .action-buttons {
+                position: static;
+                justify-content: center;
+                margin-bottom: 2rem;
+            }
+        }
+        
+        @media print {
+            body {
+                max-width: none;
+                padding: 0;
+                font-size: 12pt;
+            }
+            
+            .action-buttons {
+                display: none;
+            }
+            
+            .document-header {
+                page-break-after: avoid;
+            }
+            
+            h1, h2, h3, h4, h5, h6 {
+                page-break-after: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <div class="action-buttons">
+        <button class="btn" onclick="window.print()" title="Descargar PDF">
+            <i class="fas fa-file-pdf"></i>
+        </button>
+        <button class="btn btn-secondary" onclick="toggleTheme()" id="theme-toggle" title="Cambiar tema">
+            <i class="fas fa-moon"></i>
+        </button>
+    </div>
+    
+    <header class="document-header">
+        
+        <h1 class="document-title"></h1>
+        
+        <div class="document-author">Anxo López Rodríguez</div>
+        
+    </header>
+    
+    <main class="document-content">
+        <h1 id="t2-acondicionamiento-de-señal-y-conversión-analógico-digital">T2: Acondicionamiento de Señal y Conversión Analógico-Digital</h1>
+<p><em>APS - 1.º Grado en Inteligencia Artificial</em></p>
+
+<p><em>Anxo López Rodríguez</em></p>
+
+<p><em>Escuela Superior de Ingeniería Informática - Universidade de Vigo</em></p>
+
+<hr />
+
+<h3 id="aplicación-de-filtrado">Aplicación de Filtrado</h3>
+<p>El filtrado consiste en limitar las frecuencias de una señal a un umbral establecido.</p>
+
+<p><strong>Tipos de Filtros:</strong></p>
+<ul>
+  <li><strong>Paso bajo:</strong> Permiten pasar las frecuencias más bajas que un límite establecido (frecuencia de corte).</li>
+  <li><strong>Paso alto:</strong> Contrario al anterior, permite pasar las frecuencias que sobrepasan un umbral.</li>
+  <li><strong>Paso banda:</strong> Permiten que pase un rango determinado de frecuencias.</li>
+  <li><strong>Rechazo de banda:</strong> Contrario al anterior, no permite que pase un rango determinado de frecuencias.</li>
+</ul>
+
+<p><img src="https://raw.githubusercontent.com/anxolo/anxolo.github.io/refs/heads/main/assets/apuntes/1GRIA/APS/FILTRADOS%20-%20T2%20APS.png" alt="Tipos Filtrados" /></p>
+
+<p><strong>Aplicaciones del filtrado:</strong></p>
+
+<ul>
+  <li><strong>Industria Musical:</strong> Modifica y mejora la calidad del sonido.</li>
+  <li><strong>Telecomunicaciones:</strong> En la transmisión y recepción de señales.</li>
+  <li><strong>Instrumentación y control:</strong> Obtención de lecturas precisas de los sensores.</li>
+  <li><strong>Medicina:</strong> En electrocardiogramas (ECG) y electroencefalogramas (EEG) para eliminar ruido.</li>
+  <li><strong>Señales Financieras y Económicas:</strong> Para analizar series temporales de datos financieros.</li>
+  <li><strong>Procesamiento de imagen y visión por computador:</strong> Mejoran la calidad visual, eliminan ruido y realzan bordes.</li>
+  <li><strong>Astronomía y Física:</strong> En telescopios para mejorar la visualización y en sondas experimentales para extraer información relevante.</li>
+  <li><strong>Automoción y transporte:</strong> En sensores de sistemas de navegación, mejorando la seguridad y eficiencia.</li>
+  <li><strong>Investigación científica:</strong> Para separar la información útil del ruido de fondo.</li>
+</ul>
+
+<hr />
+
+<h3 id="acondicionamiento-de-señales">Acondicionamiento de Señales</h3>
+
+<h4 id="amplificación-de-señales">Amplificación de Señales</h4>
+
+<p>Consiste en aumentar la amplitud de una señal, haciendo mas notoria la relación señal-ruido y adecuándola para su procesamiento posterior. Se utilizan <strong>amplificadores operacionales</strong>, que son componentes esenciales en muchos circuitos electrónicos y presentan diversas configuraciones (inversor, no inversor, seguidor de voltaje, sumador, etc.).</p>
+
+<h4 id="aislamiento-de-señales">Aislamiento de Señales</h4>
+
+<p>Protege los componentes sensibles de otras partes del sistema, evitando interferencias. Los dos tipos principales son los <strong>optoacopladores</strong> y los <strong>transformadores</strong>.</p>
+
+<hr />
+
+<h3 id="conversión-analógico-digital-ad">Conversión Analógico-Digital (A/D)</h3>
+
+<p>Es el proceso que permite el tratamiento digital de las señales analógicas.</p>
+
+<p><strong>Fases de la conversión A/D:</strong></p>
+
+<ol>
+  <li>
+    <p><strong>Muestreo:</strong> Una señal continua se convierte en una serie de valores discretos. La frecuencia de muestreo ($f_s$) debe ser, como mínimo, el doble de la frecuencia máxima de la señal ($f_{max}$), según el Teorema de Nyquist-Shannon: $f_s \ge 2 \cdot f_{max}$</p>
+  </li>
+  <li><strong>Cuantización:</strong> Cada valor muestreado se aproxima a un valor discreto dentro de un rango definido. El tamaño del paso de cuantización (Q), o resolución, se calcula como:
+$Q  = \frac{V_{max} - V_{min}}{2^n}$ 
+donde <em>n</em> es el número de bits del conversor, y $V_{max} - V_{min}$ es el rango de voltaje de la señal. El error máximo de cuantización es la mitad de este paso, es decir, $\pm \frac{Q}{2}$.</li>
+  <li><strong>Codificación:</strong> Los valores cuantizados se convierten a formato binario.</li>
+</ol>
+
+<h4 id="impacto-en-la-inteligencia-artificial">Impacto en la Inteligencia Artificial</h4>
+
+<p>La conversión A/D permite que la IA interprete y analice señales del mundo real (sonido, imágenes). Una conversión de alta calidad es esencial para el aprendizaje automático, ya que los modelos necesitan captar cada detalle en su etapa de entrenamiento.</p>
+
+<p><strong>Aplicaciones en IA:</strong></p>
+
+<ul>
+  <li><strong>Reconocimiento de voz:</strong> La conversión A/D transforma la voz en datos digitales, permitiendo que las redes neuronales identifiquen tonos, palabras y acentos.</li>
+  <li><strong>Procesamiento de imágenes y visión por computadora:</strong> Las cámaras convierten las imágenes en señales digitales mediante A/D, lo que permite reconocer patrones, rostros u objetos.</li>
+  <li><strong>Sensores y robótica:</strong> Los robots traducen señales físicas a datos digitales para interactuar con el entorno y trabajar de forma autónoma.</li>
+  <li><strong>Medicina y diagnóstico:</strong> Los equipos médicos usan A/D para crear imágenes digitales (resonancias, tomografías), que son esenciales para el diagnóstico y tratamiento de enfermedades.</li>
+</ul>
+
+<hr />
+
+<h3 id="ejemplos-y-casos-prácticos">Ejemplos y Casos Prácticos</h3>
+
+<h4 id="electrocardiogramas-ecg">Electrocardiogramas (ECG)</h4>
+
+<p>Un ECG mide la actividad eléctrica del corazón. El acondicionamiento de la señal es vital para filtrar el ruido y mejorar su calidad. Debido a que son señales débiles, se amplifican y se aíslan para proteger tanto al paciente como al equipo de posibles descargas eléctricas.</p>
+
+<p><img src="https://raw.githubusercontent.com/anxolo/anxolo.github.io/acfba18c49db4ce8658eea25699671a4257a123b/assets/apuntes/1GRIA/APS/T2%20ESQUEMA%20ELECTRO.svg" alt="Esquema" /></p>
+
+<h4 id="electroencefalogramas-eeg">Electroencefalogramas (EEG)</h4>
+
+<p>Registran la actividad eléctrica del cerebro. El acondicionamiento es esencial para obtener lecturas claras, ya que las señales cerebrales son muy sutiles. Se debe filtrar el ruido ambiental, amplificar la señal y aislarla para reducir interferencias y garantizar la seguridad del paciente.</p>
+
+<hr />
+
+<h3 id="teoría-de-señales">Teoría de Señales</h3>
+<h4 id="aplicaciones">Aplicaciones</h4>
+
+<p>La teoria de señales se puede aplicar en numerosos ámbitos:</p>
+<ul>
+  <li>Comunicación: Esencial desde la trasmisión de voz hasta la transefencia de datos mediante redes</li>
+  <li>Procesamiento de imagenes: Las señales representan intensidades de píxeles y se usan para mejorar imagenes y detectar objetos</li>
+  <li>Análisis de datos científicos: Permite analizar datos desde señales sísmicas hasta señales neuronales
+    <h4 id="transformada-de-fourrier">Transformada de Fourrier</h4>
+  </li>
+  <li><strong>Transformada de Fourier:</strong> Es una herramienta matemática que descompone una señal en las frecuencias que la constituyen. Esencial para entender cómo contribuyen los diferentes componentes de frecuencia a la señal general.
+    <ul>
+      <li><strong>Espectro de frecuencia:</strong> Es la representación gráfica de la transformada de Fourier. Muestra la amplitud de cada frecuencia presente en la señal.</li>
+    </ul>
+  </li>
+  <li><strong>Tipos de Transformada de Fourier:</strong>
+    <ul>
+      <li><strong>Continua (FT):</strong> Para señales continuas y no periódicas.</li>
+      <li><strong>Discreta (DFT):</strong> Para señales discretas. Es la base para algoritmos computacionales, especialmente la FFT.</li>
+    </ul>
+  </li>
+  <li><strong>Transformada Rápida de Fourier (FFT):</strong> Es un algoritmo muy eficiente para calcular la DFT. Mientras que un cálculo directo tiene una complejidad computacional de $O(N^2)$, la FFT la reduce a $O(N \log N)$, siendo mucho más rápida para conjuntos de datos grandes.</li>
+  <li><strong>Transformada de Fourier de Tiempo Corto (STFT):</strong> Una extensión que permite analizar la variación del contenido espectral a lo largo del tiempo, aplicando la transformada de Fourier a pequeños segmentos de la señal.
+    <h4 id="principios-básicos-del-dsp">Principios básicos del DSP</h4>
+  </li>
+  <li>Digitalización de señales: Conversión de señal analógica a digital mediante muestreo y cuantificación</li>
+  <li>Algoritmos DSP: Conjunto de instrucciones matemáticas y lógicas para transformar señales digitales</li>
+</ul>
+
+    </main>
+    
+    <footer class="document-footer">
+        <p>© 2026 Anxo López Rodríguez</p>
+        
+    </footer>
+    
+    <script>
+        function toggleTheme() {
+            const html = document.documentElement;
+            const themeToggle = document.getElementById('theme-toggle');
+            const icon = themeToggle.querySelector('i');
+            
+            if (html.getAttribute('data-theme') === 'dark') {
+                html.removeAttribute('data-theme');
+                icon.className = 'fas fa-moon';
+                localStorage.setItem('theme', 'light');
+            } else {
+                html.setAttribute('data-theme', 'dark');
+                icon.className = 'fas fa-sun';
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedTheme = localStorage.getItem('theme');
+            const themeToggle = document.getElementById('theme-toggle');
+            const icon = themeToggle.querySelector('i');
+            
+            if (savedTheme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                icon.className = 'fas fa-sun';
+            } else {
+                icon.className = 'fas fa-moon';
+            }
+            
+            
+            document.addEventListener('keydown', function(e) {
+                if (e.ctrlKey && e.key === 'p') {
+                    e.preventDefault();
+                    window.print();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,15 +1,21 @@
 ---
-layout: default
-title: Sobre Mi
-lang: gl
+layout: new_default_es
+title: Sobre mi
+lang: es
+trans_gl: "/gl/sobre-min"
+trans_es: "/es/sobre-mi"
+trans_en: "/en/aboutme"
 ---
+
 
     <main class="flex-grow pt-24 pb-8 flex items-center justify-center">
         <div class="container mx-auto px-4">
             
             <div class="flex flex-col md:flex-row justify-center items-center md:items-start mb-8">
                 <div class="mb-6 md:mb-0 md:w-1/3 flex-shrink-0 flex justify-center md:justify-end md:mr-8">
-                    <img src="https://avatars.githubusercontent.com/u/50779387?v=4" alt="Foto de perfil" class="w-48 h-48 md:w-64 md:h-64 rounded-full object-cover border-4 border-[var(--accent-color)] shadow-lg">
+                    <div class="relative w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden border-4 theme-border-avatar shadow-xl">
+                        <img src="https://avatars.githubusercontent.com/u/50779387?v=4" alt="Foto de perfil" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='https://placehold.co/400x400/768cb6/ffffff?text=Anxo';">
+                    </div>
                 </div>
 
                 <div class="md:w-2/3 md:pl-8 text-center md:text-left flex flex-col justify-center">
@@ -20,181 +26,220 @@ lang: gl
                         Estudante de IA | ESEI - UVigo
                     </h3>
                     
-                    <div class="flex flex-wrap justify-center md:justify-start space-x-4 mt-4">
-                        <a href="https://www.x.com/anxolo_/" class="w-8 h-8 opacity-80 hover:opacity-100 transition-opacity duration-200">
-                            <img src="/assets/pictures/x.png" alt="X logo" class="w-full h-full">
+
+                    <div class="flex flex-wrap justify-center md:justify-start space-x-4 mt-4" style="align-items:center;">
+                        <a href="https://www.x.com/anxolo_/" title="X (Twitter)" target="_blank" rel="noopener noreferrer">
+                            <i class="fa-brands fa-x-twitter" style="font-size: 24px; color: #6f7d95;" aria-hidden="true"></i>
                         </a>
-                        <a href="https://bsky.app/profile/anxolo.bsky.social" class="w-8 h-8 opacity-80 hover:opacity-100 transition-opacity duration-200">
-                            <img src="/assets/pictures/bluesky.png" alt="Bluesky logo" class="w-full h-full">
+                        <a href="https://bsky.app/profile/anxolo.bsky.social" title="Bluesky" target="_blank" rel="noopener noreferrer">
+                            <i class="fa-brands fa-bluesky" style="font-size: 24px; color: #6f7d95;" aria-hidden="true"></i>
                         </a>
-                        <a href="https://es.linkedin.com/in/anxo-lopez-rodriguez" class="w-8 h-8 opacity-80 hover:opacity-100 transition-opacity duration-200">
-                            <img src="/assets/pictures/linkedin_blue.png" alt="LinkedIn logo" class="w-full h-full">
+                        <a href="https://es.linkedin.com/in/anxo-lopez-rodriguez" title="LinkedIn" target="_blank" rel="noopener noreferrer">
+                            <i class="fa-brands fa-linkedin-in" style="font-size: 24px; color: #6f7d95;" aria-hidden="true"></i>
                         </a>
-                        <a href="mailto:lopezrodriguezanxo@gmail.com" class="w-8 h-8 opacity-80 hover:opacity-100 transition-opacity duration-200">
-                            <img src="/assets/pictures/email.png" alt="Email icon" class="w-full h-full">
+                        <a href="mailto:lopezrodriguezanxo@gmail.com" title="Email">
+                            <i class="fa-solid fa-envelope" style="font-size: 24px; color: #6f7d95;" aria-hidden="true"></i>
                         </a>
-                        <a href="https://github.com/anxolo" class="w-8 h-8 opacity-80 hover:opacity-100 transition-opacity duration-200">
-                            <img src="/assets/pictures/github.png" alt="GitHub logo" class="w-full h-full">
+                        <a href="https://github.com/anxolo" title="GitHub" target="_blank" rel="noopener noreferrer">
+                            <i class="fa-brands fa-github" style="font-size: 24px; color: #6f7d95;" aria-hidden="true"></i>
                         </a>
                     </div>
+
+
+
                 </div>
             </div>
 
             <div class="grid grid-cols-1 gap-6">
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden main-content-section p-8">
-                    <h2 class="text-2xl font-bold section-header text-gray-800">Sobre Min</h2>
-                    <p class="text-gray-700 leading-relaxed">
+                <div class="rounded-xl shadow-lg overflow-hidden main-content-section p-8" style="background-color: var(--card-bg); color: var(--text-color);">
+                    <h2 class="text-2xl font-bold section-header">Sobre Min</h2>
+                    <p class="opacity-90 leading-relaxed">
                         Estudiante del Grado Interuniversitario en Inteligencia Artificial en la Escuela Superior de Ingeniería Informática de la Universidade de Vigo. A lo largo de mi vida académica, realicé diversos proyectos, tanto de ámbito social como tecnológico, a través de programas de entidades como la Fundación La Caixa o ANFAIA.
                     </p>
-                    <p class="text-gray-700 leading-relaxed">
+                    <p class="opacity-90 leading-relaxed">
                         Actualmente, colaboro en proyectos de mi especialidad y participo activamente en el entorno académico, siendo representante estudiantil y participando en diversas comisiones y acciones de mentoría para nuevos alumnos del centro.
                     </p>
                 </div>
                 
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden main-content-section p-8">
-                    <h2 class="text-2xl font-bold section-header text-gray-800">Educación</h2>
+                <div class="rounded-xl shadow-lg overflow-hidden main-content-section p-8" style="background-color: var(--card-bg); color: var(--text-color);">
+                    <h2 class="text-2xl font-bold section-header">Educación</h2>
                     <div class="relative space-y-6">
-                        <div class="absolute left-3 top-0 h-full w-0.5 bg-gray-300"></div>
+                        <div class="absolute left-3 top-0 h-full w-0.5" style="background-color: var(--text-color); opacity: 0.2;"></div>
 
                         <div class="flex items-start space-x-4">
-                            <div class="relative flex-shrink-0 w-6 h-6 rounded-full bg-purple-500 z-10"></div>
+                            <div class="relative flex-shrink-0 w-6 h-6 rounded-full z-10" style="background-color:#6f7d95;"></div>
                             <div class="flex-grow">
-                                <img src="/assets/pictures/logos/esei.jpg" alt="Logo de ESEI" class="w-10 h-10 object-contain mb-2">
+                                <img src="/assets/pictures/logos/esei.jpg" alt="Logo de ESEI" class="w-12 h-12 object-contain mb-2" style="border-radius:4px;">
                                 <div>
-                                    <h3 class="text-xl font-semibold text-gray-800">Grado en Inteligencia Artificial</h3>
-                                    <p class="text-lg text-gray-600">ESEI - Universidade de Vigo</p>
+                                    <h3 class="text-xl font-semibold">Grado en Inteligencia Artificial</h3>
+                                    <p class="text-lg opacity-80">ESEI - Universidade de Vigo</p>
                                 </div>
-                                <p class="text-gray-700 leading-relaxed mt-2">Septiembre 2024 - Actualidad</p>
+                                <p class="opacity-90 leading-relaxed mt-2">Septiembre 2024 - Actualidad</p>
                             </div>
                         </div>
                         <div class="flex items-start space-x-4">
-                            <div class="relative flex-shrink-0 w-6 h-6 rounded-full bg-purple-500 z-10"></div>
+                            <div class="relative flex-shrink-0 w-6 h-6 rounded-full z-10" style="background-color:#6f7d95;"></div>
                             <div class="flex-grow">
-                                <img src="/assets/pictures/logos/12outubro.jpeg" alt="Logo de IES 12 De Outubro" class="w-10 h-10 object-contain mb-2">
+                                <img src="/assets/pictures/logos/12outubro.jpeg" alt="Logo de IES 12 De Outubro" class="w-12 h-12 object-contain mb-2" style="border-radius:4px;">
                                 <div>
-                                    <h3 class="text-xl font-semibold text-gray-800">Bachillerato - Ciencias y tecnología</h3>
-                                    <p class="text-lg text-gray-600">IES 12 De Outubro - Ourense</p>
+                                    <h3 class="text-xl font-semibold">Bachillerato - Ciencias y tecnología</h3>
+                                    <p class="text-lg opacity-80">IES 12 De Outubro - Ourense</p>
                                 </div>
-                                <p class="text-gray-700 leading-relaxed mt-2">Septiembre 2022 - Junio 2024 | Representante de Alumnado en el Consejo Escolar</p>
+                                <p class="opacity-90 leading-relaxed mt-2">Septiembre 2022 - Junio 2024 | Representante de Alumnado en el Consejo Escolar</p>
                             </div>
                         </div>
                         <div class="flex items-start space-x-4">
-                            <div class="relative flex-shrink-0 w-6 h-6 rounded-full bg-purple-500 z-10"></div>
+                            <div class="relative flex-shrink-0 w-6 h-6 rounded-full z-10" style="background-color:#6f7d95;"></div>
                             <div class="flex-grow">
-                                <img src="/assets/pictures/logos/12outubro.jpeg" alt="Logo de IES 12 De Outubro" class="w-10 h-10 object-contain mb-2">
+                                <img src="/assets/pictures/logos/12outubro.jpeg" alt="Logo de IES 12 De Outubro" class="w-12 h-12 object-contain mb-2">
                                 <div>
-                                    <h3 class="text-xl font-semibold text-gray-800">Educación Secundaria Obligatoria (ESO)</h3>
-                                    <p class="text-lg text-gray-600">IES 12 De Outubro - Ourense</p>
+                                    <h3 class="text-xl font-semibold">Educación Secundaria Obligatoria (ESO)</h3>
+                                    <p class="text-lg opacity-80">IES 12 De Outubro - Ourense</p>
                                 </div>
-                                <p class="text-gray-700 leading-relaxed mt-2">Septiembre 2018 - Junio 2022</p>
+                                <p class="opacity-90 leading-relaxed mt-2">Septiembre 2018 - Junio 2022</p>
                             </div>
                         </div>
                     </div>
                 </div>
                 
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden main-content-section p-8">
-                    <h2 class="text-2xl font-bold section-header text-gray-800">Experiencia</h2>
+<div class="rounded-xl shadow-lg overflow-hidden main-content-section p-8" style="background-color: var(--card-bg); color: var(--text-color);">
+                    <h2 class="text-2xl font-bold section-header">Experiencia</h2>
+
+                         <br>
+
                     <div class="relative space-y-6">
                         <div class="flex items-start space-x-4">
                             <div class="flex-grow">
                                 <img src="/assets/pictures/logos/anfaia.png" alt="Logo de Anfaia" class="w-12 h-12 object-contain mb-2">
                                 <div>
-                                    <h3 class="text-xl font-semibold text-gray-800">GLPI AssistIA</h3>
-                                    <p class="text-lg text-gray-600">ANFAIA - Asociación Faro para la Aceleración de la Inteligencia Artificial</p>
+                                    <h3 class="text-xl font-semibold">GLPI AssistIA</h3>
+                                    <p class="text-lg opacity-80">ANFAIA - Asociación Faro para la Aceleración de la Inteligencia Artificial</p>
                                 </div>
-                                <p class="text-gray-700 leading-relaxed mt-2">GLPI AI Automation - Proyecto realizado como becario, con el objetivo de integrar agentes de inteligencia artificial en la plataforma de software libre GLPI</p>
+                                <p class="opacity-90 leading-relaxed mt-2">Jun 2025 - Sep 2025 | GLPI AI Automation - Proyecto realizado como becario, con el objetivo de integrar agentes de inteligencia artificial en la plataforma de software libre GLPI</p>
                             </div>
                         </div>
+
+<div class="flex items-start space-x-4">
+                            <div class="flex-grow">
+                                <img src="/assets/pictures/logos/educaixa.png" alt="Logo de Educaixa" class="w-12 h-12 object-contain mb-2">
+                                <div>
+                                    <h3 class="text-xl font-semibold">Los Klimatas</h3>
+                                    <p class="text-lg opacity-80">Educaixa | Fundación "la Caixa"</p>
+                                </div>
+                                <p class="opacity-90 leading-relaxed mt-2">Ene 2022 - Ago 2023 | Proyecto de concienciación centrado en reducir la contaminación y las emisiones de CO₂ combinando análisis de datos y promoviendo iniciativas en varias comunidades locales. Reconocido en The Challenge por Educaixa y promovido por la incubadora EduCaixa NEXT de la Fundación "la Caixa".</p>
+                            </div>
+                        </div>
+
+
                     </div>
                 </div>
 
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden main-content-section p-8">
-                    <h2 class="text-2xl font-bold section-header text-gray-800">Voluntariado, Proyectos y Representación</h2>
+                <div class="rounded-xl shadow-lg overflow-hidden main-content-section p-8" style="background-color: var(--card-bg); color: var(--text-color);">
+                    <h2 class="text-2xl font-bold section-header">Voluntariado, Proyectos y Representación</h2>
                     <div class="relative space-y-6">
 
-                        <!-- ESEIDA -->
-                        <div class="flex items-start space-x-4">
-                            <div class="flex-grow">
-                                <img src="/assets/pictures/logos/eseida.png" alt="Logo de ESEIDA" class="w-12 h-12 object-contain mb-2">
-                                <div>
-                                    <h3 class="text-xl font-semibold text-gray-800">Membro Delegado</h3>
-                                    <p class="text-lg text-gray-600">Eseida - Escola Superior de Enxeñaría Informática, Delegación de Alumnos</p>
-                                </div>
-                                <p class="text-gray-700 leading-relaxed mt-2">Mayo 2025 - Actualidad | Miembro de la Delegación de Alumnos como estudiante del Grado en Inteligencia Artificial (GrIA), miembro de la Junta Directiva como Vocal y Responsable de Comunicaciones. Participante en diversos Órganos de Gobierno (Junta de Centro, Mesa de la Junta de Centro, Comisión Permanente y Comisión de Calidad).</p>
-                            </div>
-                        </div>
 
-                        <!-- RITSI -->
+                        <br>
                         <div class="flex items-start space-x-4">
                             <div class="flex-grow">
                                 <img src="/assets/pictures/logos/ritsi.png" alt="Logo de RITSI" class="w-12 h-12 object-contain mb-2">
                                 <div>
-                                    <h3 class="text-xl font-semibold text-gray-800">Representante acreditado da Universidade de Vigo</h3>
-                                    <p class="text-lg text-gray-600">RITSI - Reunión de Estudiantes de Ingenierías Técnicas y Superiores en Informática</p>
+                                    <h3 class="text-xl font-semibold">Miembro acreditado por la UVigo y Coordinador de Zona III</h3>
+                                    <p class="text-lg opacity-80">RITSI - Reunión de Estudiantes de Ingenierías Técnicas y Superiores en Informática</p>
                                 </div>
-                                <p class="text-gray-700 leading-relaxed mt-2">Noviembre 2025 - Actualidad | Acreditado en RITSI representando al alumnado de la UVigo, participando en la comunicación entre estudiantes de informática a nivel nacional, fomentando la colaboración entre universidades y promoviendo iniciativas formativas y profesionales.</p>
+                                <p class="opacity-90 leading-relaxed mt-2">Jun 2026 - Actualidad | Rol de enlace entre la asociación y los socios universitarios de la zona (Asturias, Cantabria, Galicia, La Rioja, Navarra y País Vasco), encargado de facilitar la comunicación, coordinar actividades, apoyar a la directiva y captar nuevos miembros.</p>
+                                <br>
+                                <p class="opacity-90 leading-relaxed mt-2">Nov 2025 - Actualidad | Acreditado en la RITSI representando al alumnado de la UVigo, participando en la comunicación entre estudiantes de informática a nivel nacional, fomentando la colaboración entre universidades y promoviendo iniciativas formativas y profesionales.</p>
+
                             </div>
                         </div>
 
-                        <!-- EduCaixa -->
+                
                         <div class="flex items-start space-x-4">
                             <div class="flex-grow">
-                                <img src="/assets/pictures/logos/educaixa.png" alt="Logo de Educaixa" class="w-12 h-12 object-contain mb-2">
+                                <img src="/assets/pictures/uvigo_logo.jpeg" alt="Logo UVIGO" class="w-12 h-12 object-contain mb-2" style="border-radius:4px;">
                                 <div>
-                                    <h3 class="text-xl font-semibold text-gray-800">Los Klimatas</h3>
-                                    <p class="text-lg text-gray-600">Educaixa | Fundación "la Caixa"</p>
+                                    <h3 class="text-xl font-semibold">Miembro Claustral y representante en comisión de Seguimiento del Plan estratégico</h3>
+                                    <p class="text-lg opacity-80">Universidad de Vigo</p>
                                 </div>
-                                <p class="text-gray-700 leading-relaxed mt-2">Ene 2022 - Ago 2023 | Proyecto de concienciación centrado en reducir la contaminación y las emisiones de CO₂ combinando análisis de datos y promoviendo iniciativas en varias comunidades locales. Reconocido en The Challenge por Educaixa y promovido por la incubadora EduCaixa NEXT de la Fundación "la Caixa".</p>
+                                <p class="opacity-90 leading-relaxed mt-2">Feb 2026 - Actualidad | Participación en comisión de Seguimiento del Plan estratégico de la Universidad de Vigo, colaborando en la elaboración e implementación de estrategias e iniciativas para el desarrollo de la universidad.</p>
+                                <br>
+                                <p class="opacity-90 leading-relaxed mt-2">May 2026 - Actualidad | Miembro claustral electo de la Universidad de Vigo y representante CEUVI por la E.S. Superior de Ingeniería Informática.</p>
+
                             </div>
                         </div>
 
+                        <div class="flex items-start space-x-4">
+                            <div class="flex-grow">
+                                <img src="/assets/pictures/logos/esei.jpg" alt="Logo de ESEI" class="w-12 h-12 object-contain mb-2" style="border-radius:4px;">
+                                <div>
+                                    <h3 class="text-xl font-semibold">Miembro Junta de Centro y Comisiones</h3>
+                                    <p class="text-lg opacity-80">Escuela Superior de Ingeniería Informática</p>
+                                </div>
+                                <p class="opacity-90 leading-relaxed mt-2"> Oct 2025 - Actualidad | Representante estudiantil en Junta de Centro, Comisión permanente y Comisión de Calidad de la ESEI.</p>
+                            </div>
+                        </div>
+
+
+                        <div class="flex items-start space-x-4">
+                            <div class="flex-grow">
+                                <img src="/assets/pictures/logos/eseida.png" alt="Logo de ESEIDA" class="w-12 h-12 object-contain mb-2">
+                                <div>
+                                    <h3 class="text-xl font-semibold">Representante Estudiantil</h3>
+                                    <p class="text-lg opacity-80">ESEIDA - Delegación de Estudiantado de la Escuela Superior de Ingeniería Informática</p>
+                                </div>
+                                <p class="opacity-90 leading-relaxed mt-2"> Marzo 2025 - Actualidad | Representante de estudiantes en la ESEIDA, colaborando en la gestión de la misma y garantizando el cumplimiento de los derechos del estudiantado</p>
+                                <br>
+                                <p class="opacity-90 leading-relaxed mt-2">Oct 2025 - May 2026 | Vocalía y Responsable de Comunicaciones - Gestión de Comunicación y Marca de la ESEIDA y escucha y atención de la diversidad de opiniones en la delegación.</p>
+                            </div>
+                        </div>
+
+                     
                     </div>
                 </div>
-
-
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden main-content-section p-8">
-                    <h2 class="text-2xl font-bold section-header text-gray-800">Habilidades</h2>
+                <div class="rounded-xl shadow-lg overflow-hidden main-content-section p-8" style="background-color: var(--card-bg); color: var(--text-color);">
+                    <h2 class="text-2xl font-bold section-header">Habilidades</h2>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                         <div>
-                            <h3 class="text-xl font-semibold text-gray-800 mb-4">Hard Skills - Habilidades Técnicas</h3>
+                            <h3 class="text-xl font-semibold mb-4">Hard Skills - Habilidades Técnicas</h3>
                             <div class="flex flex-wrap gap-2">
-                                <span class="bg-indigo-200 text-indigo-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Herramientas de Ofimática (Excel, Word, PowerPoint)</span>
-                                <span class="bg-indigo-200 text-indigo-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Certificado ComDix - Uso de herramientas básicas</span>
+                                <span style="background-color:#768cb6;color:#ffffff;" class="text-indigo-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Herramientas de Ofimática (Excel, Word, PowerPoint)</span>
+                                <span style="background-color:#768cb6;color:#ffffff;" class="text-indigo-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Certificado ComDix - Uso de herramientas básicas</span>
 
-                                <span class="bg-indigo-200 text-indigo-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Linux (Terminal)</span>
-                                <span class="bg-indigo-200 text-indigo-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Python (Básico/Medio)</span>
-                                <span class="bg-indigo-200 text-indigo-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Bash (Medio)</span>
-                                <span class="bg-indigo-200 text-indigo-800 text-xs font-medium px-2.5 py-0.5 rounded-full">HTML (Básico)</span>
-                                <span class="bg-indigo-200 text-indigo-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Uso de Markdown y Jupyter Notebook</span>
-                                <span class="bg-indigo-200 text-indigo-800 text-xs font-medium px-2.5 py-0.5 rounded-full">LaTeX (Básico)</span>
+                                <span style="background-color:#768cb6;color:#ffffff;" class="text-indigo-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Linux (Terminal)</span>
+                                <span style="background-color:#768cb6;color:#ffffff;" class="text-indigo-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Python (Básico/Medio)</span>
+                                <span style="background-color:#768cb6;color:#ffffff;" class="text-indigo-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Bash (Medio)</span>
+                                <span style="background-color:#768cb6;color:#ffffff;" class="text-indigo-800 text-xs font-medium px-2.5 py-0.5 rounded-full">HTML (Básico)</span>
+                                <span style="background-color:#768cb6;color:#ffffff;" class="text-indigo-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Uso de Markdown y Jupyter Notebook</span>
+                                <span style="background-color:#768cb6;color:#ffffff;" class="text-indigo-800 text-xs font-medium px-2.5 py-0.5 rounded-full">LaTeX (Básico)</span>
 
 
                             </div>
                         </div>
                         <div>
-                            <h3 class="text-xl font-semibold text-gray-800 mb-4">Soft Skills - Habilidades Brandas</h3>
+                            <h3 class="text-xl font-semibold mb-4">Soft Skills - Habilidades Brandas</h3>
                             <div class="flex flex-wrap gap-2">
-                                <span class="bg-purple-200 text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Trabajo en Equipo</span>
-                                <span class="bg-purple-200 text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Resolución de Problemas</span>
-                                <span class="bg-purple-200 text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Adaptabilidad</span>
-                                <span class="bg-purple-200 text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Pensamiento Crítico</span>
-                                <span class="bg-purple-200 text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Curiosidad y Aprendizaje Continuo</span>
-                                <span class="bg-purple-200 text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Autodidacta</span>
-                                <span class="bg-purple-200 text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Comunicativo</span>
+                                <span style="background-color:#6f7d95;color:#ffffff;" class="text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Trabajo en Equipo</span>
+                                <span style="background-color:#6f7d95;color:#ffffff;" class="text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Resolución de Problemas</span>
+                                <span style="background-color:#6f7d95;color:#ffffff;" class="text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Adaptabilidad</span>
+                                <span style="background-color:#6f7d95;color:#ffffff;" class="text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Pensamiento Crítico</span>
+                                <span style="background-color:#6f7d95;color:#ffffff;" class="text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Curiosidad y Aprendizaje Continuo</span>
+                                <span style="background-color:#6f7d95;color:#ffffff;" class="text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Autodidacta</span>
+                                <span style="background-color:#6f7d95;color:#ffffff;" class="text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Comunicativo</span>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden main-content-section p-8">
-                    <h2 class="text-2xl font-bold section-header text-gray-800">Idiomas</h2>
+                <div class="rounded-xl shadow-lg overflow-hidden main-content-section p-8" style="background-color: var(--card-bg); color: var(--text-color);">
+                    <h2 class="text-2xl font-bold section-header">Idiomas</h2>
                     <div class="grid grid-cols-1 gap-8">
                         <div>
                             <div class="flex flex-wrap gap-2">
-                                <span class="bg-green-200 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Español (Nativo)</span>
-                                <span class="bg-green-200 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Galego (Nativo)</span>
-                                <span class="bg-green-200 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Inglés (B2 - Intermedio)</span>
-                                <span class="bg-green-200 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Portugués (Intermedio)</span>
+                                <span style="background-color:#7ba1a1;color:#ffffff;" class="text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Español (Nativo)</span>
+                                <span style="background-color:#7ba1a1;color:#ffffff;" class="text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Galego (Nativo)</span>
+                                <span style="background-color:#7ba1a1;color:#ffffff;" class="text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Inglés (B2 - Intermedio)</span>
+                                <span style="background-color:#7ba1a1;color:#ffffff;" class="text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Portugués (Intermedio)</span>
                             </div>
                         </div>
                     </div>

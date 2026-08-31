@@ -1,33 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GLPI AssistIA</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="../../assets/js/layout.js"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-        
-        html, body {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-            overflow-x: hidden;
-            scroll-behavior: smooth;
-        }
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f7fafc; 
-            color: #333;
-        }
-        .section-card {
-            background-color: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(5px);
-            border-radius: 1rem;
-            padding: 2.5rem;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
+---
+layout: new_default_en
+title: GLPI AssistIA
+lang: en
+trans_gl: "/gl/GLPI-AssistIA/"
+trans_es: "/es/GLPI-AssistIA"
+trans_en: "/en/GLPI-AssistIA"
+---
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    html, body { height: 100%; margin: 0; padding: 0; overflow-x: hidden; scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background-color: var(--bg-body); color: var(--text-color); }
+    .section-card { background-color: var(--card-bg); backdrop-filter: blur(5px); border-radius: 1rem; padding: 2.5rem; box-shadow: 0 10px 20px var(--shadow-dark); color: var(--text-color); }
         .youtube-container {
             position: relative;
             width: 100%;
@@ -89,13 +73,13 @@
             height: 15px;
             width: 15px;
             margin: 0 5px;
-            background-color: #bbb;
+            background-color: rgba(128, 128, 128, 0.5);
             border-radius: 50%;
             display: inline-block;
             transition: background-color 0.6s ease;
         }
         .active-dot, .dot:hover {
-            background-color: #717171;
+            background-color: var(--text-color);
         }
         img {
             border-radius: 0.5rem;
@@ -107,19 +91,16 @@
         }
 
         .case-row {
-            align-items: stretch; 
-        .metrics-row { align-items: stretch; }      
+            align-items: stretch;
+        }
+        .metrics-row { align-items: stretch; }        
         .metrics-illustration img {
         width: 100%;
         height: 100%;
         object-fit: contain;                         
         }
 
-        .case-illustration img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain; 
-        }
+        .case-illustration img { width: 100%; height: 100%; object-fit: contain; }
         @keyframes bounce {
             0%, 20%, 50%, 80%, 100% {
                 transform: translateY(0);
@@ -149,7 +130,8 @@
             top: 0;
             width: 4px;
             height: 100%;
-            background: #cbd5e1;
+            background-color: var(--text-color);
+            opacity: 0.2;
             transform: translateX(-50%);
         }
         .timeline-point {
@@ -160,7 +142,8 @@
             margin-bottom: 2rem;
         }
         .timeline-point .content {
-            background-color: white;
+            background-color: rgba(128, 128, 128, 0.1);
+            color: var(--text-color);
             padding: 1.5rem;
             border-radius: 0.75rem;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -228,36 +211,28 @@
             }
         }
     </style>
-</head>
-<body class="flex flex-col">
 
-    <div id="header-output"></div>
-
-    <main class="flex-grow pt-0 pb-16 flex flex-col items-center">
+        <main class="flex-grow pt-0 pb-16 flex flex-col items-center">
     
         <section class="relative h-screen w-full flex items-center justify-center text-center text-white p-4" id="hero-section" style="background-image: url('/assets/pictures/glpi/portada.png'); background-size: cover; background-position: center;">
             <div class="absolute inset-0 bg-black opacity-50 z-0"></div>
             
             <div class="relative z-10 flex flex-col items-center justify-center h-full">
-                <h1 class="text-5xl md:text-6xl font-extrabold leading-tight">GLPI AssistIA</h1>
-                <p class="mt-4 text-xl md:text-2xl text-opacity-80">
-                Optimize your GLPI Help Desk with the help of artificial intelligence.
-                </p>
+                <h1 class="text-5xl md:text-6xl font-extrabold leading-tight theme-title">GLPI AssistIA</h1>
+                <p class="mt-4 text-xl md:text-2xl theme-body text-opacity-80">Optimize your GLPI HelpDesk with the help of artificial intelligence.</p>
                 <a href="https://github.com/ANFAIA/GLPI-AssistIA" class="mt-8 px-6 py-3 bg-purple-600 text-white font-semibold rounded-full shadow-lg hover:bg-blue-700 transition-colors duration-300 transform hover:scale-105">
-                    Repository on GitHub
+                    GitHub Repository
                 </a>
             </div>
             
-                        <a href="#case-study" class="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white animate-bounce-custom z-20">
+            <a href="#case-study" class="absolute bottom-8 left-1/2 transform -translate-x-1/2 theme-body animate-bounce-custom z-20">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-12 h-12">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
                 </svg>
             </a>
         </section>
 
-                <div class="container mx-auto px-4 space-y-16 mt-16" id="case-study">
-
-
+        <div class="container mx-auto px-4 space-y-16 mt-16" id="case-study">
 
 
             </section>
@@ -265,45 +240,44 @@
             <section class="section-card">
             <div class="flex flex-col md:flex-row md:space-x-8 space-y-4 md:space-y-0 case-row">
                 <div class="md:w-1/2 case-illustration">
-                <img src="/assets/pictures/glpi/viñeta1.png" alt="Información adicional" class="no-frame w-full h-full">
+                <img src="/assets/pictures/glpi/viñeta1.png" alt="Additional information" class="no-frame w-full h-full">
                 </div>
 
                 <div class="md:w-1/2 flex flex-col justify-center">
-                <h2 class="text-3xl font-bold text-gray-800 mb-4 text-center md:text-left">Use Case</h2>
-                <p class="text-gray-700 leading-relaxed">
-                    Incident management, especially in IT departments, requires tasks that are often repetitive, such as reviewing wikis, documentation, or executing verification commands on specific servers. GLPI AssistIA aims to serve as a foundation for reducing all this workload by providing a preliminary report on the incident to be handled. Once an incident is registered in the system, it is sent to a server (GLPI AssistIA Server) which searches for all related information and generates a report with possible solutions. This report will be visible to the agent handling the incident as a private note at the moment they take the case, so they only have to worry about providing the best possible service to the client.                </p>
+                <h2 class="text-3xl font-bold mb-4 text-center md:text-left">Use Case</h2>
+                <p class="opacity-90 leading-relaxed">
+                    Incident management, especially in IT departments, requires tasks that are often repetitive such as reviewing wikis, documentation, or executing verification commands to specific servers. GLPI AssistIA seeks to serve as a baseline to reduce all this workload by providing a preliminary report of the incident to be addressed. Once an incident is registered in the system, it is sent to a server (GLPI AssistIA Server) that searches for all related information and generates a report with possible solutions. This report will be visible to the agent handling this incident as a private note the moment they take the case, so they only have to worry about providing the best possible service to the client.
+                </p>
                 </div>
             </div>
             </section>
 
-
-            
             
             <section class="section-card">
-                <h2 class="text-3xl font-bold text-gray-800 mb-6">Evolution of the Agents</h2>
-                <p class="text-gray-700 leading-relaxed">
-                    The GLPI AssistIA agents have evolved through several prototypes, each one adding new functionalities and capabilities to improve incident management. Next, the main milestones in this evolution are described.
+                <h2 class="text-3xl font-bold mb-6">Evolution of the Agents</h2>
+                <p class="opacity-90 leading-relaxed">
+                The GLPI AssistIA agents have evolved through several prototypes, each adding new functionalities and capabilities to improve incident management. Below, the main milestones in this evolution are described:    
                 </p>
                 <div class="timeline-container">
-                    
-                                        <div class="timeline-point">
+
+                        <div class="timeline-point">
                         <div class="content md:text-right">
                             <h3 class="text-xl font-semibold mb-2">Prototype 1 </h3>
-                            <p>A basic agent was implemented with a single function to summarize a GLPI ticket, sending the result to a file on the server.</p>
+                            <p>A basic agent was implemented with a single summarization function for a GLPI ticket, sending the result to a file on the server.</p>
                         </div>
                         <div class="number-circle bg-blue-500"></div>
                     </div>
-                                        <div class="timeline-point">
+                        <div class="timeline-point">
                         <div class="content md:text-left">
                             <h3 class="text-xl font-semibold mb-2">Prototype 2 </h3>
-                            <p>The ability to perform a ping to an IP address provided in the ticket was introduced, and the reading of Wiki.js documentation was improved. This allowed the agent to respond more effectively to connectivity incidents.</p>
+                            <p>The ability to ping an IP address provided in the ticket was introduced, and the reading of Wiki.js documentation was improved. This allowed the agent to respond more effectively to connectivity incidents.</p>
                         </div>
                         <div class="number-circle bg-purple-500"></div>
                     </div>
-                                        <div class="timeline-point">
+                        <div class="timeline-point">
                         <div class="content md:text-right">
                             <h3 class="text-xl font-semibold mb-2">Prototype 3 </h3>
-                            <p>Multiple agents with specific roles (Analyst, Resolver) were integrated, and a workflow was implemented to allow agents to interact and collaborate on resolving more complex problems. The concept of an MCP data bus was introduced.</p>
+                            <p>Multiple agents with specific roles (Analyst, Resolver) were integrated, and a workflow was implemented so that agents could interact and collaborate in solving more complex problems. The concept of an MCP data bus was introduced.</p>
                         </div>
                         <div class="number-circle bg-green-500"></div>
                     </div>
@@ -312,22 +286,23 @@
 
 
 
+
                         <section class="section-card">
-                <h2 class="text-3xl font-bold text-gray-800 mb-6">LLM Model Analysis</h2>
+                <h2 class="text-3xl font-bold mb-6">LLM Models Analysis</h2>
                 <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-8">
                     <div class="md:w-1/2">
-                        <p class="text-gray-700 leading-relaxed">
-                            For the development of GLPI AssistIA, a comparative analysis of several language models was conducted to determine which one would be most suitable for the project. The goal was to find a model that offered a balance between processing capabilities, cost, and the ability to be self-hosted to ensure data privacy.
+                        <p class="opacity-90 leading-relaxed">
+                            For the development of GLPI AssistIA, a comparative analysis of several language models was performed to determine which would be the most suitable for the project. The goal was to find a model that offered a balance between processing capabilities, cost, and the ability to be self-hosted to ensure data privacy.
                         </p>
-                        <p class="text-gray-700 leading-relaxed mt-4">
-                            The orchestration of the agents was carried out using the CrewAI library, which facilitates collaboration between different specialized agents. Both open-source and proprietary models were considered, with special attention paid to their flexibility for integration into the server. This analysis was crucial for optimizing the system's performance and efficiency in the GLPI environment.
+                        <p class="opacity-90 leading-relaxed mt-4">
+                            The orchestration of the agents was carried out using the CrewAI library, which facilitates collaboration between different specialized agents. Both open-source and proprietary models were considered, paying special attention to the flexibility for their integration into the server. This analysis was crucial to optimize the performance and efficiency of the system in the GLPI environment.
                         </p>
-                        <p class="text-gray-700 mt-4">For more details on this analysis, you can consult the full document in the project's repository.</p>
-                        <a href="https://github.com/ANFAIA/GLPI-AssistIA/blob/main/docs/analisis_LLM_para_CrewAi.md" class="text-blue-600 hover:underline">See the full analysis document (Spanish)</a>
+                        <p class="opacity-90 mt-4">For more details, you can consult the full document in the project repository.</p>
+                        <a href="https://github.com/ANFAIA/GLPI-AssistIA/blob/main/docs/analisis_LLM_para_CrewAi.md" class="text-indigo-500 hover:text-purple-600 hover:underline transition-colors duration-200">View full analysis document</a>
                     </div>
                     <div class="md:w-1/2 flex flex-col items-center justify-center">
-                        <img src="/assets/pictures/glpi/viñeta2.png" alt="Información LLM" class="no-frame w-full h-auto">
-                        <ul class="list-disc list-inside text-gray-700 leading-relaxed">
+                        <img src="/assets/pictures/glpi/viñeta2.png" alt="LLM Information" class="no-frame w-full h-auto">
+                        <ul class="list-disc list-inside opacity-90 leading-relaxed">
                                 
                                 
                         </ul>
@@ -335,43 +310,44 @@
                 </div>
             </section>
 
-                        <section class="section-card">
-                <h2 class="text-3xl font-bold text-gray-800 mb-6">Architecture and Overview</h2>
-                <p class="text-gray-700 leading-relaxed mb-8">
-                    The core of the system is designed around a workflow that is activated when a ticket is created in GLPI. The ticket information is processed by a system of intelligent agents (CrewAI) that collaborate to analyze, enrich, and propose solutions. This CrewAI connects to external tools (knowledge bases, monitoring systems) through a MCP (Model Context Protocol) Server, which acts as a data bus.
+            <section class="section-card">
+                <h2 class="text-3xl font-bold mb-6">Architecture and Overview</h2>
+                <p class="opacity-90 leading-relaxed mb-8">
+                    The core of the system is designed around a workflow triggered by the creation of a ticket in GLPI. The ticket information is processed by a system of intelligent agents (CrewAI) that collaborate to analyze, enrich, and propose solutions. This CrewAI connects to external tools (knowledge bases, monitoring systems) through an MCP (Model Context Protocol) Server, which acts as a data bus.
                 </p>
-                <h3 class="text-2xl font-semibold text-gray-800 mt-8 mb-4">Ticket Workflow</h3>
+                <h3 class="text-2xl font-semibold mt-8 mb-4">Ticket Workflow</h3>
                 <div class="flex justify-center mb-8">
-                    <img src="https://raw.githubusercontent.com/ANFAIA/GLPI-AssistIA/b0f1cb55bdc569c4f83b0b36e34c96536fe1d644/docs/BigPicture_VersionActual.svg" alt="Architecture Diagram V3" class="w-full h-auto rounded-xl">
+                    <img src="https://raw.githubusercontent.com/ANFAIA/GLPI-AssistIA/b0f1cb55bdc569c4f83b0b36e34c96536fe1d644/docs/BigPicture_VersionActual.svg" alt="V3 Architecture Diagram" class="w-full h-auto rounded-xl">
                 </div>
-                <ul class="list-decimal list-inside text-gray-700 leading-relaxed space-y-2">
+                <ul class="list-decimal list-inside opacity-90 leading-relaxed space-y-2">
                     <li>GLPI Entry: A user or technician creates an incident ticket.</li>
-                    <li>Agent Activation: The incident is transferred to the CrewAI system hosted on GLPI AssistIA Server for processing.</li>
-                    <li>AI Agent Analysis: A team of agents evaluates the urgency, classifies the incident, and reviews historical data to propose a solution.</li>
-                    <li>GLPI Response: The generated solution and analysis are published in the GLPI ticket, assisting the technician or responding directly to the user.</li>
+                    <li>Agent Activation: The incident is transferred to the CrewAI system hosted on the GLPI AssistIA Server for processing.</li>
+                    <li>Analysis by AI Agents: A team of agents evaluates the urgency, classifies the incident, and reviews historical data to propose a solution.</li>
+                    <li>Response in GLPI: The generated solution and analysis are published on the GLPI ticket, assisting the technician or responding directly to the user.</li>
                 </ul>
             </section>
 
-                        <section class="section-card">
-                <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">Configuration and Usage Example</h2>
+            <section class="section-card">
+                <h2 class="text-3xl font-bold mb-6 text-center">Configuration and Usage Example</h2>
                 <div class="youtube-container">
-                    <div class="w-full h-full bg-gray-200 flex items-center justify-center text-center text-gray-500 rounded-xl">
-                        <iframe width="560" height="315" src="https://www.youtube.com/embed/dWSrIz5tcgw?si=wDxobK4LCjXMofVE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                                        
+                                        <div class="w-full h-full flex items-center justify-center text-center rounded-xl" style="background-color: rgba(128, 128, 128, 0.1);">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/dWSrIz5tcgw?si=CyAWBFVjUdnSOeJt" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                     </div>
                 </div>
             </section>
 
-                        <section class="section-card">
-                <h2 class="text-3xl font-bold text-gray-800 mb-6">Key Features</h2>
-                <ul class="list-disc list-inside text-gray-700 leading-relaxed space-y-2">
-                    <li>Ticket Summary and Enrichment: The AI analyzes and summarizes the user's problem, adding technical context.</li>
+            <section class="section-card">
+                <h2 class="text-3xl font-bold mb-6">Main Features</h2>
+                <ul class="list-disc list-inside opacity-90 leading-relaxed space-y-2">
+                    <li>Ticket Summarization and Enrichment: The AI analyzes and summarizes the user's problem, adding technical context.</li>
                     <li>MCP Architecture: A decoupled data bus to facilitate communication and scalability.</li>
                     <li>Intelligent Contextual Information: Provides relevant information to both technicians and users.</li>
                 </ul>
             </section>
 
-                        <section class="section-card">
-                <h2 class="text-3xl font-bold text-gray-800 mb-6">Practical Cases</h2>
+            <section class="section-card">
+                <h2 class="text-3xl font-bold mb-6">Practical Cases</h2>
                 <div class="image-slider">
                     <div class="slides">
                         <img src="https://github.com/user-attachments/assets/06465e4f-4ed0-4f21-8a60-67f224985b2a" alt="Incident Opening" class="w-full h-auto slide">
@@ -379,7 +355,8 @@
                         <img src="https://github.com/user-attachments/assets/cbfadd07-f0a8-4314-9fbb-fb51cc9aae94" alt="Processing Result 1" class="w-full h-auto slide">
                         <img src="https://github.com/user-attachments/assets/b2a81c28-b1f1-43b0-a075-8c82ee3dcdc6" alt="Processing Result 2" class="w-full h-auto slide">
                     </div>
-                                        <button class="prev-btn" onclick="plusSlides(-1)">
+                                        
+                    <button class="prev-btn" onclick="plusSlides(-1)">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-8 h-8">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
                         </svg>
@@ -390,57 +367,61 @@
                         </svg>
                     </button>
                 </div>
-                                <div class="dot-container">
+                                
+                <div class="dot-container">
                     <span class="dot" onclick="currentSlide(1)"></span>
                     <span class="dot" onclick="currentSlide(2)"></span>
                     <span class="dot" onclick="currentSlide(3)"></span>
                     <span class="dot" onclick="currentSlide(4)"></span>
                 </div>
                 
-                <h3 class="text-2xl font-semibold text-gray-800 mt-12 mb-4">Plugin Interface</h3>
+                <h3 class="text-2xl font-semibold mt-12 mb-4">Plugin Interface</h3>
                 <div class="flex justify-center">
                     <img src="https://github.com/user-attachments/assets/58d67305-c90a-48a0-8980-1af7b5af24fa" alt="Plugin Configuration" class="w-full md:w-3/4 lg:w-1/2 h-auto">
                 </div>
             </section>
 
+
+
+
             <section class="section-card">
-                <h2 class="text-3xl font-bold text-gray-800 mb-6">Success Metrics</h2>
+            <h2 class="text-3xl font-bold mb-6">Success Metrics</h2>
 
             <div class="flex flex-col md:flex-row md:space-x-8 space-y-4 md:space-y-0 metrics-row">
                 <div class="md:w-1/2 metrics-illustration">
-                <img src="/assets/pictures/glpi/viñeta3.png" alt="Foto de Métricas de Éxito" class="no-frame w-full h-full">
+                <img src="/assets/pictures/glpi/viñeta3.png" alt="Success Metrics Photo" class="no-frame w-full h-full">
                 </div>
 
                 <div class="md:w-1/2">
-                        <p>The project’s success will be measured by achieving the following objectives:</p>
-                        <ul class="list-disc list-inside text-gray-700 leading-relaxed space-y-2">
-                            <li>Reduction of over <strong>70%</strong> in first response time.</li>
-                            <li>Accuracy of over <strong>85%</strong> in automatically generated responses.</li>
-                            <li>Reduction of over <strong>50%</strong> in tickets that need to be manually escalated.</li>
-                            <li>Reduction of over <strong>40%</strong> in average incident resolution time.</li>
+                        <p class="opacity-90">The success of the project will be measured by achieving the following objectives:</p>
+                        <ul class="list-disc list-inside opacity-90 leading-relaxed space-y-2 mt-2">
+                            <li>Reduction of more than <strong>70%</strong> in first response time.</li>
+                            <li>Accuracy higher than <strong>85%</strong> in the generated automatic responses.</li>
+                            <li>Reduction of more than <strong>50%</strong> in tickets that need to be escalated manually.</li>
+                            <li>Reduction of more than <strong>40%</strong> in average incident resolution time.</li>
                             <li>User satisfaction level above <strong>4.0/5.0</strong>.</li>
                         </ul>
-                    </div>
+                </div>
             </div>
             </section>
 
-                        <section class="section-card">
-                <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">Collaboration</h2>
-                <p class="text-gray-700 leading-relaxed text-center mb-8">
-                    This project was made possible thanks to the ANFAIA Summer Grants program and the collaboration of Aitire.
+
+
+
+            <section class="section-card">
+                <h2 class="text-3xl font-bold mb-6 text-center">Collaboration</h2>
+                <p class="opacity-90 leading-relaxed text-center mb-8">
+                    This project has been made possible thanks to the ANFAIA Summer Scholarship program and the collaboration of Aitire.
                 </p>
                 <div class="flex justify-center items-center space-x-8">
                     <div class="w-28 h-auto">
                         <a href="https://anfaia.org"><img src="/assets/pictures/glpi/anfaia.png" alt="ANFAIA Logo" class="w-full h-auto"></a>
                     </div>
-
                 </div>
             </section>
 
         </div>
     </main>
-
-    <div id="footer-output"></div>
 
     <script>
         const langButton = document.getElementById('lang-button');
@@ -503,32 +484,32 @@
         showSlides(slideIndex);
 
         function plusSlides(n) {
-          showSlides(slideIndex += n);
+            showSlides(slideIndex += n);
         }
 
         function currentSlide(n) {
-          showSlides(slideIndex = n);
+            showSlides(slideIndex = n);
         }
 
         function showSlides(n) {
-          let i;
-          let slides = document.getElementsByClassName("slide");
-          let dots = document.getElementsByClassName("dot");
-          let slider = document.querySelector(".slides");
+            let i;
+            let slides = document.getElementsByClassName("slide");
+            let dots = document.getElementsByClassName("dot");
+            let slider = document.querySelector(".slides");
 
-          if (n > slides.length) {
-              slideIndex = 1;
-          }     
-          if (n < 1) {
-              slideIndex = slides.length;
-          }
+            if (n > slides.length) {
+                slideIndex = 1;
+            }    
+            if (n < 1) {
+                slideIndex = slides.length;
+            }
 
-          slider.style.transform = `translateX(-${(slideIndex - 1) * 100}%)`;
+            slider.style.transform = `translateX(-${(slideIndex - 1) * 100}%)`;
 
-          for (i = 0; i < dots.length; i++) {
-            dots[i].classList.remove("active-dot");
-          }
-          dots[slideIndex-1].classList.add("active-dot");
+            for (i = 0; i < dots.length; i++) {
+                dots[i].classList.remove("active-dot");
+            }
+            dots[slideIndex-1].classList.add("active-dot");
         }
     </script>
 </body>

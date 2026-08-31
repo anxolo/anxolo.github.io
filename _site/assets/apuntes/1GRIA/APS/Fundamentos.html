@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="gl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anxo López Rodríguez</title>
+    
+    <script src=""></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true,
+                processEnvironments: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+    
+    <style>
+        :root {
+            --bg-color: #faf5ff;
+            --text-color: #4c1d95;
+            --heading-color: #581c87;
+            --accent-color: #8b5cf6;
+            --border-color: #d8b4fe;
+            --code-bg: #f3e8ff;
+            --blockquote-bg: #ede9fe;
+            --shadow: 0 4px 6px rgba(139, 92, 246, 0.1);
+        }
+        
+        [data-theme="dark"] {
+            --bg-color: #1e1b4b;
+            --text-color: #c4b5fd;
+            --heading-color: #e0e7ff;
+            --accent-color: #a78bfa;
+            --border-color: #6d28d9;
+            --code-bg: #312e81;
+            --blockquote-bg: #4c1d95;
+            --shadow: 0 4px 6px rgba(167, 139, 250, 0.3);
+        }
+        
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: #1e1b4b;
+                --text-color: #c4b5fd;
+                --heading-color: #e0e7ff;
+                --accent-color: #a78bfa;
+                --border-color: #6d28d9;
+                --code-bg: #312e81;
+                --blockquote-bg: #4c1d95;
+                --shadow: 0 4px 6px rgba(167, 139, 250, 0.3);
+            }
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Calibri', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.7;
+            font-size: 16px;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            min-height: 150vh;
+            transition: all 0.3s ease;
+        }
+        
+        .document-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+        
+        .course-info {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .year-badge {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 1rem;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+        
+        .course-name {
+            color: var(--text-color);
+            font-weight: 500;
+        }
+        
+        .document-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--heading-color);
+            margin-bottom: 1rem;
+        }
+        
+        .document-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-color);
+            opacity: 0.8;
+            margin-bottom: 0.5rem;
+        }
+        
+        .document-author {
+            font-style: italic;
+            color: var(--accent-color);
+            font-size: 1.1rem;
+        }
+        
+        .action-buttons {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 12px;
+            z-index: 1000;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border: 2px solid var(--accent-color);
+            border-radius: 12px;
+            background: var(--accent-color);
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn:hover {
+            background: transparent;
+            color: var(--accent-color);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            border-color: var(--border-color);
+            color: var(--text-color);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--accent-color);
+            border-color: var(--accent-color);
+            color: white;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--heading-color);
+            font-weight: bold;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        h1 { font-size: 2.25rem; }
+        h2 { font-size: 1.875rem; }
+        h3 { font-size: 1.5rem; }
+        h4 { font-size: 1.25rem; }
+        
+        p {
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+        
+        ul, ol {
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+        }
+        
+        li {
+            margin-bottom: 0.5rem;
+        }
+        
+        code {
+            background: var(--code-bg);
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+        
+        pre {
+            background: var(--code-bg);
+            padding: 1rem;
+            border-radius: 6px;
+            overflow-x: auto;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--accent-color);
+        }
+        
+        blockquote {
+            background: var(--blockquote-bg);
+            padding: 1rem;
+            border-left: 4px solid var(--accent-color);
+            margin: 1rem 0;
+            font-style: italic;
+            border-radius: 0 6px 6px 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1rem;
+            background: var(--bg-color);
+            box-shadow: var(--shadow);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+        
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        th {
+            background: var(--accent-color);
+            color: white;
+            font-weight: 600;
+        }
+        
+        .MathJax {
+            font-size: 1.1rem !important;
+        }
+        
+        .document-footer {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            color: var(--text-color);
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+                font-size: 14px;
+            }
+            
+            .document-title {
+                font-size: 2rem;
+            }
+            
+            .action-buttons {
+                position: static;
+                justify-content: center;
+                margin-bottom: 2rem;
+            }
+        }
+        
+        @media print {
+            body {
+                max-width: none;
+                padding: 0;
+                font-size: 12pt;
+            }
+            
+            .action-buttons {
+                display: none;
+            }
+            
+            .document-header {
+                page-break-after: avoid;
+            }
+            
+            h1, h2, h3, h4, h5, h6 {
+                page-break-after: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <div class="action-buttons">
+        <button class="btn" onclick="window.print()" title="Descargar PDF">
+            <i class="fas fa-file-pdf"></i>
+        </button>
+        <button class="btn btn-secondary" onclick="toggleTheme()" id="theme-toggle" title="Cambiar tema">
+            <i class="fas fa-moon"></i>
+        </button>
+    </div>
+    
+    <header class="document-header">
+        
+        <h1 class="document-title"></h1>
+        
+        <div class="document-author">Anxo López Rodríguez</div>
+        
+    </header>
+    
+    <main class="document-content">
+        <h1 id="fundamentos-del-proc-de-señales">Fundamentos del proc. de señales</h1>
+<p><em>APS - 1.º Grado en Inteligencia Artificial</em></p>
+
+<p><em>Anxo López Rodríguez</em></p>
+
+<p><em>Escuela Superior de Enxeñaría Informática - Universidade de Vigo</em></p>
+
+<hr />
+<h1 id="fundamentos-del-procesamiento-digital-de-señales">Fundamentos del procesamiento digital de señales</h1>
+
+<h2 id="procesamiento-digital-de-señales-dsp">Procesamiento Digital de Señales (DSP)</h2>
+<p>Manipulación y análisis de señales de forma digital. Conversión de señales analógicas a digital, proc. mediante algor. matemáticos y técnicas computacionales. Es crucial en telecomunicación, proc. de Audio y Video, instrumentación médica.</p>
+
+<h2 id="transformada-de-fourier-continua">Transformada de Fourier Continua</h2>
+<p>Herramienta matemática usada para descomponer una función de tiempo continuo en sus componentes de frecuencia. A diferencia de la Trans. de Fou. Discreta (DFT), se aplica a señales continuas en el tiempo.</p>
+
+<ul>
+  <li><strong>Fórmula:</strong>
+  \(X(w) = \int_{-\infty}^{\infty} x(t)e^{-iwt} dt\)</li>
+  <li><strong>Inversa:</strong>
+  \(x(t) = \frac{1}{2\pi} \int_{-\infty}^{\infty} X(w)e^{-iwt} dw\)</li>
+</ul>
+
+<h2 id="transformada-de-fourier-discreta-dft">Transformada de Fourier Discreta (DFT)</h2>
+<p>Herramienta esencial en el proc. de señales, permitiendo la transf. de valores num. en el dominio del tiempo a una rep. en el dominio de la frecuencia.</p>
+
+<ul>
+  <li><strong>Propiedades:</strong>
+    <ul>
+      <li>Periodicidad</li>
+      <li>Simetría</li>
+      <li>Linealidad</li>
+      <li>Inversión (IDFT)</li>
+    </ul>
+  </li>
+  <li><strong>Fórmula:</strong>
+  \(X[k] = \sum_{n=0}^{N-1} x[n]e^{-i2\pi kn/N}\)</li>
+  <li><strong>Inversa (IDFT):</strong>
+  \(x[n] = (\frac{1}{N}) \sum_{k=0}^{N-1} X[k]e^{-i2\pi kn/N}\)</li>
+</ul>
+
+<hr />
+
+<h2 id="introducción-al-análisis-espectral">Introducción al análisis espectral</h2>
+<p>El espectro de una señal proporciona una representación de la variación de su amplitud y f., esencial para entender la naturaleza de la señal.</p>
+
+<ul>
+  <li><strong>Fundamentos de la transf. de Fourier:</strong>
+    <ul>
+      <li><strong>Continua / Discreta:</strong> Versión adaptada para señales y sist. digitales.</li>
+      <li><strong>Rápida (FFT):</strong> Implementación eficiente de la DFT, menos compleja computacionalmente.</li>
+    </ul>
+  </li>
+  <li><strong>Amplitud vs Frecuencia:</strong> Muestra las intensidades de las dif. frecuencias presentes en la señal.</li>
+  <li><strong>Análisis espectral en Tiempo Real:</strong> Permite identificar y responder a cambios dinámicos en señales.</li>
+  <li><strong>Espectrogramas:</strong> Herramienta visual que muestra cómo el espectro varía con el tiempo, mediante una visión tridimensional.</li>
+</ul>
+
+<h3 id="ventanas-temporales">Ventanas temporales</h3>
+<p>Selección de un segmento específico de tiempo de una señal para analizar su contenido de frecuencia.</p>
+
+<ul>
+  <li><strong>Compromisos:</strong>
+    <ul>
+      <li>Resolución de Frecuencia vs Pendiente de lóbulo espectral</li>
+      <li>Ventana de compresión vs Compromiso entre Tiempo y Frecuencia</li>
+    </ul>
+  </li>
+  <li><strong>Tipos de ventanas:</strong>
+    <ul>
+      <li>Rectangular (Boxcar)</li>
+      <li>Hanning, Hamming</li>
+      <li>Gauss</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="aspectos-clave-de-sistemas-discretos">Aspectos clave de sistemas discretos</h2>
+
+<h3 id="--representación-y-análisis-de-sistemas-lineales-e-invariantes-en-el-tiempo">-&gt; Representación y Análisis de Sistemas Lineales e Invariantes en el tiempo</h3>
+
+<ul>
+  <li><strong>Linealidad:</strong> Se cumple con el principio de Superposición. Si la salida del sist. para una combi. lineal de entradas es igual a la combi. lineal de las salidas corresp.</li>
+  <li><strong>Invarianza en el tiempo:</strong> Un sist. desplazado en el tiempo produce una salida desplazada en el mismo grado.</li>
+  <li><strong>Representación:</strong> Los sist. LTI se representan por su resp. al impulso.</li>
+</ul>
+
+<h3 id="--convolución-y-respuesta-en-frecuencia">-&gt; Convolución y Respuesta en Frecuencia</h3>
+
+<ul>
+  <li><strong>Convolución:</strong> Operación matemática fundamental en sist. LTI que describe como se combina la entrada con la resp. al impulso del sist. para producir la salida.
+    <ul>
+      <li><strong>Convolución discreta:</strong> La salida y[n] es la convolución de la entrada x[n] con la respuesta al impulso h[n].</li>
+    </ul>
+  </li>
+  <li><strong>Respuesta en Frecuencia:</strong> Describe como el sist. modifica las frec. de una señal de entrada. Se calcula aplicando la T. de Fourier a la respuesta al imp. del sist.</li>
+</ul>
+
+<hr />
+
+<h2 id="--técnicas-avanzadas-de-análisis-espectral">-&gt; Técnicas avanzadas de análisis espectral</h2>
+
+<h3 id="transformada-de-fourier-de-tiempo-corto-stft">Transformada de Fourier de tiempo corto (STFT)</h3>
+<p>Combinación de elementos del dominio del tiempo y de la frec. para analizar la evolución temporal de la frecuencia. Útil para señales no estacionarias.</p>
+
+<ul>
+  <li><strong>Principio de Funcionamiento:</strong> La STFT divide la señal en segmentos cortos de distintos tiempos y aplica la transformada de Fourier a cada segmento.</li>
+  <li><strong>Ventanas Temporales:</strong> Una ventana más estrecha ofrece mejor resolución en tiempo y una más ancha una mejor resolución en frecuencia.</li>
+  <li><strong>Aplicación:</strong> Análisis de señales de audio, procesamiento voz…</li>
+</ul>
+
+<h3 id="análisis-wavelet">Análisis Wavelet</h3>
+<p>Proporciona una alternativa a la STFT para analizar señales temporales que varían. El análisis wavelet utiliza ventanas que varían en tamaño, permitiendo una mejor representación de las caract. de alta y baja frecuencia.</p>
+
+<ul>
+  <li><strong>Wavelets:</strong> Funciones que se concentran en el tiempo y frecuencia, conocidas por ser de duración limitada y media cero.</li>
+  <li><strong>Escalado y Traslación:</strong> Se pueden escalar y trasladar, brindando un análisis detallado a diferentes escalas de tiempo y frec.</li>
+  <li><strong>Aplicación:</strong> Útil en campos como proces. de imágenes, detección de sismos y análisis de señales biomédicas.</li>
+</ul>
+
+<h3 id="análisis-multirresolución">Análisis Multirresolución</h3>
+<p>Descompone una señal en comp. a diferentes escalas. Útil si se requiere un análisis detallado a varias escalas.</p>
+
+<ul>
+  <li><strong>Descomposición multinivel:</strong> Descomposición en aproximación y detalle, útil en diferentes bandas de frec. y niveles de detalle.</li>
+  <li><strong>Reconstrucción:</strong> Es posible reconstruir la señal original, útil en reducción de ruido y compresión de datos.</li>
+  <li><strong>Aplicaciones:</strong> Aplicaciones en áreas como la reducción de ruido en señales, compresión y codificación de imágenes/video…</li>
+</ul>
+
+    </main>
+    
+    <footer class="document-footer">
+        <p>© 2026 Anxo López Rodríguez</p>
+        
+    </footer>
+    
+    <script>
+        function toggleTheme() {
+            const html = document.documentElement;
+            const themeToggle = document.getElementById('theme-toggle');
+            const icon = themeToggle.querySelector('i');
+            
+            if (html.getAttribute('data-theme') === 'dark') {
+                html.removeAttribute('data-theme');
+                icon.className = 'fas fa-moon';
+                localStorage.setItem('theme', 'light');
+            } else {
+                html.setAttribute('data-theme', 'dark');
+                icon.className = 'fas fa-sun';
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedTheme = localStorage.getItem('theme');
+            const themeToggle = document.getElementById('theme-toggle');
+            const icon = themeToggle.querySelector('i');
+            
+            if (savedTheme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                icon.className = 'fas fa-sun';
+            } else {
+                icon.className = 'fas fa-moon';
+            }
+            
+            
+            document.addEventListener('keydown', function(e) {
+                if (e.ctrlKey && e.key === 'p') {
+                    e.preventDefault();
+                    window.print();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

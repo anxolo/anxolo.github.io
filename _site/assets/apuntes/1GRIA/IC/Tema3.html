@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="gl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anxo López Rodríguez</title>
+    
+    <script src=""></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true,
+                processEnvironments: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+    
+    <style>
+        :root {
+            --bg-color: #faf5ff;
+            --text-color: #4c1d95;
+            --heading-color: #581c87;
+            --accent-color: #8b5cf6;
+            --border-color: #d8b4fe;
+            --code-bg: #f3e8ff;
+            --blockquote-bg: #ede9fe;
+            --shadow: 0 4px 6px rgba(139, 92, 246, 0.1);
+        }
+        
+        [data-theme="dark"] {
+            --bg-color: #1e1b4b;
+            --text-color: #c4b5fd;
+            --heading-color: #e0e7ff;
+            --accent-color: #a78bfa;
+            --border-color: #6d28d9;
+            --code-bg: #312e81;
+            --blockquote-bg: #4c1d95;
+            --shadow: 0 4px 6px rgba(167, 139, 250, 0.3);
+        }
+        
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: #1e1b4b;
+                --text-color: #c4b5fd;
+                --heading-color: #e0e7ff;
+                --accent-color: #a78bfa;
+                --border-color: #6d28d9;
+                --code-bg: #312e81;
+                --blockquote-bg: #4c1d95;
+                --shadow: 0 4px 6px rgba(167, 139, 250, 0.3);
+            }
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Calibri', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.7;
+            font-size: 16px;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            min-height: 150vh;
+            transition: all 0.3s ease;
+        }
+        
+        .document-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+        
+        .course-info {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .year-badge {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 1rem;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+        
+        .course-name {
+            color: var(--text-color);
+            font-weight: 500;
+        }
+        
+        .document-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--heading-color);
+            margin-bottom: 1rem;
+        }
+        
+        .document-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-color);
+            opacity: 0.8;
+            margin-bottom: 0.5rem;
+        }
+        
+        .document-author {
+            font-style: italic;
+            color: var(--accent-color);
+            font-size: 1.1rem;
+        }
+        
+        .action-buttons {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 12px;
+            z-index: 1000;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border: 2px solid var(--accent-color);
+            border-radius: 12px;
+            background: var(--accent-color);
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn:hover {
+            background: transparent;
+            color: var(--accent-color);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            border-color: var(--border-color);
+            color: var(--text-color);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--accent-color);
+            border-color: var(--accent-color);
+            color: white;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--heading-color);
+            font-weight: bold;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        h1 { font-size: 2.25rem; }
+        h2 { font-size: 1.875rem; }
+        h3 { font-size: 1.5rem; }
+        h4 { font-size: 1.25rem; }
+        
+        p {
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+        
+        ul, ol {
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+        }
+        
+        li {
+            margin-bottom: 0.5rem;
+        }
+        
+        code {
+            background: var(--code-bg);
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+        
+        pre {
+            background: var(--code-bg);
+            padding: 1rem;
+            border-radius: 6px;
+            overflow-x: auto;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--accent-color);
+        }
+        
+        blockquote {
+            background: var(--blockquote-bg);
+            padding: 1rem;
+            border-left: 4px solid var(--accent-color);
+            margin: 1rem 0;
+            font-style: italic;
+            border-radius: 0 6px 6px 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1rem;
+            background: var(--bg-color);
+            box-shadow: var(--shadow);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+        
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        th {
+            background: var(--accent-color);
+            color: white;
+            font-weight: 600;
+        }
+        
+        .MathJax {
+            font-size: 1.1rem !important;
+        }
+        
+        .document-footer {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            color: var(--text-color);
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+                font-size: 14px;
+            }
+            
+            .document-title {
+                font-size: 2rem;
+            }
+            
+            .action-buttons {
+                position: static;
+                justify-content: center;
+                margin-bottom: 2rem;
+            }
+        }
+        
+        @media print {
+            body {
+                max-width: none;
+                padding: 0;
+                font-size: 12pt;
+            }
+            
+            .action-buttons {
+                display: none;
+            }
+            
+            .document-header {
+                page-break-after: avoid;
+            }
+            
+            h1, h2, h3, h4, h5, h6 {
+                page-break-after: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <div class="action-buttons">
+        <button class="btn" onclick="window.print()" title="Descargar PDF">
+            <i class="fas fa-file-pdf"></i>
+        </button>
+        <button class="btn btn-secondary" onclick="toggleTheme()" id="theme-toggle" title="Cambiar tema">
+            <i class="fas fa-moon"></i>
+        </button>
+    </div>
+    
+    <header class="document-header">
+        
+        <h1 class="document-title"></h1>
+        
+        <div class="document-author">Anxo López Rodríguez</div>
+        
+    </header>
+    
+    <main class="document-content">
+        <h1 id="t3---hardware">T3 - Hardware</h1>
+<p><em>IC - 1.º Grado en Inteligencia Artificial</em></p>
+
+<p><em>Anxo López Rodríguez</em></p>
+
+<p><em>Escuela Superior de Enxeñaría Informática - Universidade de Vigo</em></p>
+
+<hr />
+
+<h2 id="placa-base--motherboard">Placa base / Motherboard</h2>
+<p>Es la columna vertebral del ordenador, donde se conectan y comunican todos los dispositivos de hardware.</p>
+
+<h2 id="procesadorcpu-unidad-central-de-procesamiento">Procesador/CPU (Unidad central de procesamiento)</h2>
+<p>Encargado de ejecutar instrucciones de los programas y coordinar operaciones en un sistema informático (Es el cerebro del ordenador). Fundamental en PCS, teléfonos inteligentes y otros dispositivos programables. Se inserta en un zócalo, es muy importante verificar si son compatibles (Ya que un zócalo incorrecto no permitirá la instalación de ciertas CPUs).</p>
+<h3 id="partes">Partes</h3>
+<ul>
+  <li><strong>Físicas</strong>
+    <ul>
+      <li><strong>Substrato/PCB:</strong> Base, la placa que integra circuitos para interconectarse con el resto del ordenador</li>
+      <li><strong>Dic o Matriz:</strong> Está en el medio del procesador, es un trozo de sílicio donde está esculpido el circuito. En este se realizan los cálculos, interpretación de instrucciones y se guardan componentes internos (núcleo caché…)</li>
+      <li><strong>IHS:</strong> Cubierta metálica, donde se imprime marca y modelo. Se usa para conducir el calor del interior al exterior del componente, permitiéndo la instalación de disipadores o sistemas de refrigeración líquida.</li>
+    </ul>
+  </li>
+  <li><strong>No físicas</strong>
+    <ul>
+      <li><strong>Unidad aritmética (ALU):</strong> Operaciones lógicas y matemáticas</li>
+      <li><strong>Unidad de control:</strong> Gestiona y coordina acciones en el procesador.</li>
+      <li><strong>Registros:</strong> Áreas de almacenamiento rápidas y temporales,. Guarda datos e instrucciones durante su procesamiento.</li>
+      <li><strong>Memoria caché:</strong> Memoria de acceso ultra rápido que almacenada datos e instrucciones empleadas con mucha frecuencia, reduciendo el tiempo de acceso a la RAM.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="tipos-de-procesador">Tipos de Procesador</h2>
+
+<p>Un procesador o CPU (Unidad Central de Procesamiento) es el cerebro del ordenador. Su arquitectura determina cómo ejecuta las instrucciones.</p>
+
+<ul>
+  <li><strong>CISC (Complex Instruction Set Computer):</strong> Se caracteriza por tener un conjunto de instrucciones que pueden realizar operaciones muy complejas en un solo comando, aunque la ejecución de dicho comando pueda requerir varios ciclos de reloj.</li>
+  <li><strong>RISC (Reduced Instruction Set Computer):</strong> Utiliza un conjunto de instrucciones más pequeño y simple, donde cada instrucción se ejecuta, por lo general, en un solo ciclo de reloj. Busca optimizar la velocidad y la eficiencia a través de la simplicidad.</li>
+  <li><strong>ASIC (Application-Specific Integrated Circuit):</strong> Son circuitos integrados diseñados para una tarea muy específica (por ejemplo, minería de criptomonedas o procesamiento de audio). Son extremadamente rápidos y eficientes para su función, pero no son flexibles para otras tareas.</li>
+</ul>
+
+<h3 id="características-principales">Características Principales</h3>
+
+<ul>
+  <li><strong>Frecuencia de Reloj:</strong> Mide la velocidad a la que un procesador ejecuta operaciones. Se mide en Gigahercios (GHz), que representan miles de millones de ciclos por segundo. A mayor frecuencia, más operaciones puede realizar por segundo.</li>
+  <li><strong>Número de Núcleos:</strong> Un procesador puede contener varias unidades de procesamiento independientes llamadas núcleos. Cada núcleo puede ejecutar una tarea o proceso de forma autónoma, permitiendo la ejecución paralela de múltiples procesos (multitarea real).</li>
+  <li><strong>Hilos de Procesamiento (Threads):</strong> Son secuencias de instrucciones que un núcleo puede gestionar. Gracias a tecnologías como el <em>Hyper-Threading</em> o <em>SMT</em>, un solo núcleo físico puede manejar dos hilos simultáneamente, actuando como dos núcleos lógicos para el sistema operativo y mejorando la eficiencia en la multitarea.</li>
+  <li><strong>Memoria Caché:</strong> Es una memoria ultrarrápida integrada en el procesador para almacenar los datos e instrucciones más utilizados y acelerar el acceso a ellos. Se organiza en niveles (L1, L2, L3).</li>
+</ul>
+
+<h2 id="unidad-de-almacenamiento">Unidad de Almacenamiento</h2>
+
+<p>Es la memoria no volátil donde se almacena de forma permanente el sistema operativo, las aplicaciones y los archivos del usuario.</p>
+
+<ul>
+  <li><strong>Características:</strong>
+    <ul>
+      <li><strong>Memoria Permanente:</strong> Retiene los datos incluso cuando el ordenador se apaga (no volátil).</li>
+      <li><strong>Capacidad de Almacenamiento:</strong> Mucho mayor que la memoria RAM, medida en Gigabytes (GB), Terabytes (TB) o incluso Petabytes (PB).</li>
+    </ul>
+  </li>
+  <li><strong>Tipos:</strong>
+    <ul>
+      <li><strong>HDD (Hard Disk Drive):</strong> Almacena datos en discos magnéticos que giran a alta velocidad. Un cabezal de lectura/escritura se mueve sobre los discos para acceder a la información. Están siendo reemplazados por los SSD debido a su menor velocidad y mayor fragilidad al tener partes móviles.</li>
+      <li><strong>SSD (Solid-State Drive):</strong> Utiliza memoria Flash (similar a la de los pendrives o tarjetas SD). No tiene partes móviles, lo que le permite acceder a los datos de forma casi instantánea. Un controlador interno gestiona la ubicación de los datos para una lectura y escritura mucho más rápida y eficiente que en los HDD.</li>
+      <li><strong>M.2:</strong> Es un <strong>factor de forma</strong> (un tipo de conector), no un tipo de almacenamiento en sí mismo. Las unidades M.2 son muy compactas y se conectan directamente a la placa base. Pueden utilizar dos tipos de protocolos: <strong>SATA</strong> (con velocidades similares a los SSD de 2.5”) o <strong>NVMe</strong> (que utiliza el bus PCIe para alcanzar velocidades de transferencia de datos muy superiores), reduciendo drásticamente los tiempos de carga.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="ram-random-access-memory">RAM (Random Access Memory)</h2>
+
+<p>Es una memoria <strong>volátil</strong> (pierde sus datos al apagarse) que actúa como intermediario de alta velocidad entre el procesador y la unidad de almacenamiento. Almacena temporalmente los datos e instrucciones que el sistema está utilizando activamente, permitiendo un acceso casi instantáneo. Su capacidad (medida en GB) determina la cantidad de aplicaciones y tareas que se pueden ejecutar simultáneamente de forma fluida. Evoluciona en generaciones (DDR3, DDR4, DDR5), cada una mejorando la velocidad y la eficiencia energética.</p>
+
+<h2 id="memoria-caché">Memoria Caché</h2>
+
+<p>Memoria de acceso extremadamente rápido utilizada para almacenar temporalmente los datos e instrucciones más usados por el procesador, reduciendo la latencia.</p>
+
+<ul>
+  <li><strong>Caché de Nivel 1 (L1):</strong> Es la más pequeña y rápida, integrada directamente en cada núcleo del procesador. Suele estar dividida en dos partes: una para datos y otra para instrucciones.</li>
+  <li><strong>Caché de Nivel 2 (L2):</strong> Más grande que la L1, actúa como intermediaria entre esta y la memoria RAM (o la L3). Proporciona un acceso rápido a datos usados con frecuencia.</li>
+  <li><strong>Caché de Nivel 3 (L3):</strong> Es la más grande y es compartida por varios núcleos del procesador. Almacena datos e instrucciones para que todos los núcleos puedan acceder a ellos eficientemente.</li>
+</ul>
+
+<h2 id="jerarquía-de-memoria">Jerarquía de Memoria</h2>
+
+<p>Es la organización estructurada de los diferentes tipos de memoria en un sistema informático, clasificados por su velocidad y coste. La jerarquía va desde las memorias más pequeñas, rápidas y caras (Registros del procesador, Caché L1) hasta las más grandes, lentas y económicas (Almacenamiento secundario como SSD/HDD).</p>
+
+<p><code class="language-plaintext highlighter-rouge">[DIAGRAMA: Registros &gt; L1 &gt; L2 &gt; L3 &gt; RAM &gt; Almacenamiento (SSD/HDD)]</code></p>
+
+<h2 id="sistema-de-alimentación">Sistema de Alimentación</h2>
+
+<p>La <strong>Fuente de Alimentación (PSU)</strong> es el componente que convierte la corriente alterna (AC) del enchufe en corriente continua (DC) con los voltajes adecuados para el hardware del ordenador. Distribuye esta energía a través de diferentes conectores, como el <strong>ATX</strong> de 24 pines para la placa base y el <strong>EPS/ATX12V</strong> de 4+4 u 8 pines para la CPU.</p>
+
+<h3 id="sistemas-de-regulación-de-voltaje">Sistemas de Regulación de Voltaje</h3>
+
+<p>Son cruciales para que cada componente reciba la cantidad de energía exacta y estable que necesita.</p>
+
+<ul>
+  <li><strong>VRM (Voltage Regulator Module):</strong> Circuitos integrados en la placa base (normalmente cerca del zócalo de la CPU) que regulan y convierten el voltaje de entrada a niveles más bajos y precisos, garantizando un suministro estable y continuo.</li>
+  <li><strong>Fases de Alimentación:</strong> Son subdivisiones de un VRM que distribuyen la carga eléctrica entre varios circuitos. A más fases, mejor es la capacidad para manejar altas demandas de energía de forma estable y sin generar calor excesivo.</li>
+</ul>
+
+<h2 id="métodos-de-refrigeración">Métodos de Refrigeración</h2>
+
+<p>El procesador genera una gran cantidad de calor al realizar cálculos. Es fundamental disipar este calor para evitar el sobrecalentamiento y posibles daños.</p>
+
+<ul>
+  <li><strong>Disipador por Aire:</strong> Una pieza de metal (generalmente aluminio con una base de cobre) con láminas que aumentan la superficie de contacto con el aire. Un ventilador fuerza el paso del aire a través de las láminas para enfriar el metal y, por ende, el procesador.</li>
+  <li><strong>Refrigeración Líquida:</strong> Un sistema que utiliza un bloque de contacto para absorber el calor del procesador, una bomba que mueve un líquido refrigerante a través de tubos, y un radiador con ventiladores que enfría el líquido antes de que vuelva al bloque.</li>
+  <li><strong>Pasta Térmica:</strong> Un compuesto de alta conductividad térmica (a base de cerámica o metal) que se aplica entre el procesador y el disipador. Rellena las imperfecciones microscópicas de ambas superficies para garantizar una transferencia de calor óptima.</li>
+</ul>
+
+<h2 id="chipset">Chipset</h2>
+
+<p>Es el centro neurálgico de la placa base. Se encarga de gestionar el flujo de datos entre el procesador (CPU), la memoria RAM, las unidades de almacenamiento y los periféricos (como el ratón o el teclado). El modelo de chipset determina en gran medida las capacidades de la placa base, como el tipo de CPU y RAM compatibles, el número de puertos USB, o la capacidad de hacer <em>overclocking</em>.</p>
+
+<h2 id="pch-platform-controller-hub">PCH (Platform Controller Hub)</h2>
+
+<p>En las arquitecturas de placas base modernas, el PCH es, en esencia, el <strong>chipset</strong>. Antiguamente, las funciones del chipset se dividían en dos puentes: el <strong>Northbridge</strong> (que conectaba la CPU con la RAM y la tarjeta gráfica) y el <strong>Southbridge</strong> (que gestionaba los componentes más lentos). Para mejorar la eficiencia, los procesadores modernos han integrado las funciones del Northbridge, dejando que un único chip, el PCH, se encargue del resto de comunicaciones.</p>
+
+<h2 id="tarjetas-gráficas-gpu">Tarjetas Gráficas (GPU)</h2>
+
+<p>Componente especializado en procesar y renderizar imágenes y gráficos, esencial para tareas como videojuegos, diseño 3D o edición de vídeo.</p>
+
+<ul>
+  <li>Contiene su propia <strong>Unidad de Procesamiento Gráfico (GPU)</strong>.</li>
+  <li>Dispone de su propia memoria de alta velocidad, la <strong>VRAM</strong>, para almacenar texturas y modelos 3D.</li>
+  <li>Pueden ser <strong>dedicadas</strong> (una tarjeta física independiente) o <strong>integradas</strong> (incluidas dentro de la propia CPU, para tareas menos exigentes).</li>
+  <li>Disponen de salidas de vídeo como <strong>HDMI</strong> o <strong>DisplayPort</strong> para conectar monitores.</li>
+</ul>
+
+<h2 id="slots-ranuras-de-expansión">Slots (Ranuras de Expansión)</h2>
+
+<p>Son los zócalos de la placa base donde se conectan tarjetas de expansión.</p>
+
+<ul>
+  <li><strong>PCI Express (PCIe):</strong> Es el estándar actual. Una interfaz de alta velocidad que se utiliza para conectar componentes como tarjetas gráficas, SSDs NVMe o tarjetas de red. Su diseño modular funciona con “carriles” (lanes), lo que permite diferentes tamaños de ranura (x1, x4, x8, x16) para adaptarse al ancho de banda que necesita cada componente.</li>
+</ul>
+
+<h2 id="buses">Buses</h2>
+
+<p>Son los canales de comunicación que permiten la transferencia de datos entre los distintos componentes del ordenador. El chipset se encarga de gestionar su tráfico. Existen principalmente tres tipos:</p>
+
+<ul>
+  <li><strong>Bus de Direcciones:</strong> Transporta las direcciones de memoria a las que la CPU quiere acceder.</li>
+  <li><strong>Bus de Datos:</strong> Transfiere los datos entre la CPU, la memoria y los periféricos.</li>
+  <li><strong>Bus de Control:</strong> Envía señales de control y temporización para coordinar las operaciones de todo el sistema.</li>
+</ul>
+
+<h2 id="bios-y-uefi">BIOS y UEFI</h2>
+
+<ul>
+  <li><strong>BIOS (Basic Input/Output System):</strong> Es un firmware almacenado en un chip de memoria no volátil en la placa base. Es el primer software que se ejecuta al encender el ordenador. Realiza una autoprueba de arranque (<strong>POST</strong>), inicializa el hardware y carga el sistema operativo.</li>
+  <li><strong>UEFI (Unified Extensible Firmware Interface):</strong> Es el sucesor moderno de la BIOS. Ofrece una interfaz gráfica más amigable, mayor seguridad, tiempos de arranque más rápidos y soporte para discos duros de más de 2 TB.</li>
+</ul>
+
+    </main>
+    
+    <footer class="document-footer">
+        <p>© 2026 Anxo López Rodríguez</p>
+        
+    </footer>
+    
+    <script>
+        function toggleTheme() {
+            const html = document.documentElement;
+            const themeToggle = document.getElementById('theme-toggle');
+            const icon = themeToggle.querySelector('i');
+            
+            if (html.getAttribute('data-theme') === 'dark') {
+                html.removeAttribute('data-theme');
+                icon.className = 'fas fa-moon';
+                localStorage.setItem('theme', 'light');
+            } else {
+                html.setAttribute('data-theme', 'dark');
+                icon.className = 'fas fa-sun';
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedTheme = localStorage.getItem('theme');
+            const themeToggle = document.getElementById('theme-toggle');
+            const icon = themeToggle.querySelector('i');
+            
+            if (savedTheme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                icon.className = 'fas fa-sun';
+            } else {
+                icon.className = 'fas fa-moon';
+            }
+            
+            
+            document.addEventListener('keydown', function(e) {
+                if (e.ctrlKey && e.key === 'p') {
+                    e.preventDefault();
+                    window.print();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

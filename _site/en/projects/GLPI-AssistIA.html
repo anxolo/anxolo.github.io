@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GLPI AssistIA | Anxo López Rodríguez</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class'
+        }
+    </script>
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link rel="stylesheet" href="/assets/css/style.css">
+
+    <style>
+        :root {
+            --bg-body: #F8FAFC !important;
+            --text-title: #0F172A !important; /* slate-900 */
+            --text-body: #334155 !important;  /* slate-700 */
+            --text-muted: #64748B !important; /* slate-500 */
+            --bg-projects: #768CB6; /* Blue */
+            --bg-notes: #958FA7;    /* Purple */
+            --bg-news: #7BA1A1;     /* Aqua */
+            --bg-footer: #6F7D95 !important;
+            --border-avatar: #E2E8F0 !important;
+            --border-social: #94A3B8 !important;
+            --text-social: #334155 !important;
+        }
+
+        body.dark-mode {
+            --bg-body: #0F172A !important;
+            --text-title: #FFFFFF !important;
+            --text-body: #CBD5E1 !important;  /* slate-300 */
+            --text-muted: #94A3B8 !important; /* slate-400 */
+            --bg-footer: #1E293B !important; 
+            --border-avatar: #334155 !important;
+            --border-social: #475569 !important;
+            --text-social: #F1F5F9 !important;
+        }
+
+        .theme-bg { background-color: var(--bg-body); transition: background-color 0.3s ease; }
+        .theme-title { color: var(--text-title); transition: color 0.3s ease; }
+        .theme-body { color: var(--text-body); transition: color 0.3s ease; }
+        .theme-muted { color: var(--text-muted); transition: color 0.3s ease; }
+        .theme-border-avatar { border-color: var(--border-avatar); transition: border-color 0.3s ease; }
+        .theme-border-social { border-color: var(--border-social); transition: border-color 0.3s ease; }
+        .theme-text-social { color: var(--text-social); transition: color 0.3s ease; }
+
+        body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+    </style>
+
+    <script>
+        (function() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        })();
+    </script>
+</head>
+<body class="min-h-screen flex flex-col justify-between theme-bg transition-colors duration-300">
+    <script>
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark-mode');
+        }
+    </script>
+
+    <!-- Header -->
+    <header class="w-full max-w-7xl mx-auto px-6 py-6 flex justify-between items-center z-50 relative">
+        <div class="text-xl font-bold tracking-tight theme-title">
+            <a href="/">Anxo López Rodríguez</a>
+        </div>
+        
+        <!-- Desktop menu -->
+        <nav class="hidden md:flex items-center gap-8">
+            <a href="/en/" class="text-sm font-semibold theme-title hover:text-[#6f7d95] transition-colors">Home</a>
+            <a href="/en/aboutme" class="text-sm font-semibold theme-title hover:text-[#6f7d95] transition-colors">About me</a>
+            <a href="/en/projects" class="text-sm font-semibold theme-title hover:text-[#6f7d95] transition-colors">Projects</a>
+            <a href="/en/notes" class="text-sm font-semibold theme-title hover:text-[#6f7d95] transition-colors">Notes</a>
+            <a href="/en/contactme" class="text-sm font-semibold theme-title hover:text-[#6f7d95] transition-colors">Contact</a>
+
+            <div class="flex items-center gap-3 ml-4 pl-4 border-l theme-border-social relative">
+                <div class="relative inline-block text-left">
+                    <button id="lang-menu-btn" class="flex items-center gap-1 text-sm font-semibold theme-text-social hover:opacity-80 focus:outline-none" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa-solid fa-globe"></i>
+                        <span>
+                            EN
+                        </span>
+                        <i class="fa-solid fa-chevron-down text-[10px]"></i>
+                    </button>
+                    <div id="lang-dropdown" class="hidden absolute right-0 mt-2 w-32 rounded-xl bg-white dark:bg-slate-800 shadow-xl border border-slate-200 dark:border-slate-700 z-50 transition-all duration-200">
+                        <div class="py-1">
+                            <a href="/gl/GLPI-AssistIA/" class="block px-4 py-2 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700">Galego (GL)</a>
+                            <a href="/es/GLPI-AssistIA" class="block px-4 py-2 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700">Español (ES)</a>
+                            <a href="/en/GLPI-AssistIA" class="block px-4 py-2 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700">English (EN)</a>
+                        </div>
+                    </div>
+                </div>
+                <button class="theme-text-social hover:opacity-80 ml-2" id="theme-toggle" aria-label="Toggle theme">
+                    <i class="fa-solid fa-moon text-lg"></i>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Mobile button -->
+        <button id="mobile-menu-open" class="md:hidden theme-text-social hover:opacity-80 p-2" aria-label="Open menu">
+            <i class="fa-solid fa-bars text-2xl"></i>
+        </button>
+    </header>
+
+    <!-- Mobile drawer -->
+    <div id="mobile-menu" class="fixed inset-y-0 right-0 w-72 theme-bg border-l theme-border-social z-50 transform translate-x-full transition-transform duration-300 ease-in-out shadow-2xl md:hidden flex flex-col p-6 pointer-events-auto">
+        <div class="flex justify-between items-center mb-8">
+            <span class="text-sm font-bold theme-muted uppercase tracking-wider"></span>
+            <button id="mobile-menu-close" class="theme-text-social hover:opacity-80 p-2" aria-label="Close menu">
+                <i class="fa-solid fa-xmark text-2xl"></i>
+            </button>
+        </div>
+        
+        <nav class="flex flex-col gap-6 text-lg font-bold">
+            <a href="/en/#home" class="theme-title hover:text-[#6f7d95] transition-colors mobile-nav-link">Home</a>
+            <a href="/en/#home" class="theme-title hover:text-[#6f7d95] transition-colors mobile-nav-link">About me</a>
+            <a href="/en/#projects" class="theme-title hover:text-[#6f7d95] transition-colors mobile-nav-link">Projects</a>
+            <a href="/en/#notes" class="theme-title hover:text-[#6f7d95] transition-colors mobile-nav-link">Notes</a>
+            <a href="#contactme" class="theme-title hover:text-[#6f7d95] transition-colors mobile-nav-link">Contact</a>
+        </nav>
+
+        <div class="flex flex-col gap-4 mt-auto pt-8 border-t theme-border-social col-span-1">
+            <div class="flex items-center justify-between relative">
+                <span class="text-sm font-semibold theme-muted">Language</span>
+                <div class="relative">
+                    <button id="mobile-lang-menu-btn" class="flex items-center gap-1 text-sm font-semibold theme-text-social hover:opacity-80 focus:outline-none">
+                        <i class="fa-solid fa-globe"></i>
+                        <span>EN</span>
+                        <i class="fa-solid fa-chevron-down text-[10px]"></i>
+                    </button>
+                    <div id="mobile-lang-dropdown" class="hidden absolute right-0 bottom-8 mt-2 w-32 rounded-xl bg-white dark:bg-slate-800 shadow-xl border border-slate-200 dark:border-slate-700 z-50">
+                        <div class="py-1">
+                            <a href="/gl/GLPI-AssistIA/" class="block px-4 py-2 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700">Galego (GL)</a>
+                            <a href="/es/GLPI-AssistIA" class="block px-4 py-2 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700">Español (ES)</a>
+                            <a href="/en/GLPI-AssistIA" class="block px-4 py-2 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700">English (EN)</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex items-center justify-between">
+                <span class="text-sm font-semibold theme-muted">Theme</span>
+                <button class="theme-text-social hover:opacity-80 flex items-center gap-2" id="mobile-theme-toggle" aria-label="Toggle theme">
+                    <i class="fa-solid fa-moon text-lg"></i>
+                    <span class="text-sm font-semibold">Dark Mode</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="mobile-menu-overlay" class="fixed inset-0 bg-black/40 z-40 hidden transition-opacity duration-300 pointer-events-auto md:hidden"></div>
+
+    <main class="flex-grow">
+        <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    html, body { height: 100%; margin: 0; padding: 0; overflow-x: hidden; scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background-color: var(--bg-body); color: var(--text-color); }
+    .section-card { background-color: var(--card-bg); backdrop-filter: blur(5px); border-radius: 1rem; padding: 2.5rem; box-shadow: 0 10px 20px var(--shadow-dark); color: var(--text-color); }
+        .youtube-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        .youtube-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .image-slider {
+            position: relative;
+            max-width: 800px;
+            margin: auto;
+            overflow: hidden;
+        }
+        .slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        .slides img {
+            min-width: 100%;
+            display: block;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .prev-btn, .next-btn {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            padding: 16px;
+            color: white;
+            font-weight: bold;
+            font-size: 20px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        .next-btn {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+        .prev-btn:hover, .next-btn:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+        .dot-container {
+            text-align: center;
+            padding-top: 1rem;
+        }
+        .dot {
+            cursor: pointer;
+            height: 15px;
+            width: 15px;
+            margin: 0 5px;
+            background-color: rgba(128, 128, 128, 0.5);
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.6s ease;
+        }
+        .active-dot, .dot:hover {
+            background-color: var(--text-color);
+        }
+        img {
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .no-frame {
+            box-shadow: none !important;
+            border-radius: 0 !important;
+        }
+
+        .case-row {
+            align-items: stretch;
+        }
+        .metrics-row { align-items: stretch; }        
+        .metrics-illustration img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;                         
+        }
+
+        .case-illustration img { width: 100%; height: 100%; object-fit: contain; }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-20px);
+            }
+            60% {
+                transform: translateY(-10px);
+            }
+        }
+        .animate-bounce-custom {
+            animation: bounce 2s infinite;
+        }
+
+        .timeline-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            padding-top: 2rem;
+        }
+        .timeline-container::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            width: 4px;
+            height: 100%;
+            background-color: var(--text-color);
+            opacity: 0.2;
+            transform: translateX(-50%);
+        }
+        .timeline-point {
+            position: relative;
+            display: flex;
+            align-items: center;
+            width: 100%;
+            margin-bottom: 2rem;
+        }
+        .timeline-point .content {
+            background-color: rgba(128, 128, 128, 0.1);
+            color: var(--text-color);
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+            width: 45%;
+        }
+        .timeline-point:nth-child(odd) {
+            justify-content: flex-start;
+        }
+        .timeline-point:nth-child(even) {
+            justify-content: flex-end;
+        }
+        .timeline-point:nth-child(odd) .content {
+            margin-right: 2rem;
+        }
+        .timeline-point:nth-child(even) .content {
+            margin-left: 2rem;
+        }
+        .timeline-point .number-circle {
+            width: 4rem;
+            height: 4rem;
+            border-radius: 50%;
+            background-color: #4c51bf;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+        }
+
+        @media (max-width: 768px) {
+            .timeline-container::before {
+                left: 2rem;
+            }
+            .timeline-point {
+                justify-content: flex-end;
+                width: 90%;
+            }
+            .timeline-point:nth-child(odd) {
+                justify-content: flex-start;
+            }
+            .timeline-point:nth-child(odd) .content,
+            .timeline-point:nth-child(even) .content {
+                width: 100%;
+                margin: 0;
+            }
+            .timeline-point:nth-child(odd) .content {
+                margin-left: 3rem;
+            }
+            .timeline-point:nth-child(even) .content {
+                margin-left: 3rem;
+            }
+            .timeline-point .number-circle {
+                left: 2rem;
+                transform: translateX(-50%);
+            }
+            .timeline-point .content.md\:text-right,
+            .timeline-point .content.md\:text-left {
+                text-align: left;
+            }
+        }
+    </style>
+
+        <main class="flex-grow pt-0 pb-16 flex flex-col items-center">
+    
+        <section class="relative h-screen w-full flex items-center justify-center text-center text-white p-4" id="hero-section" style="background-image: url('/assets/pictures/glpi/portada.png'); background-size: cover; background-position: center;">
+            <div class="absolute inset-0 bg-black opacity-50 z-0"></div>
+            
+            <div class="relative z-10 flex flex-col items-center justify-center h-full">
+                <h1 class="text-5xl md:text-6xl font-extrabold leading-tight theme-title">GLPI AssistIA</h1>
+                <p class="mt-4 text-xl md:text-2xl theme-body text-opacity-80">Optimize your GLPI HelpDesk with the help of artificial intelligence.</p>
+                <a href="https://github.com/ANFAIA/GLPI-AssistIA" class="mt-8 px-6 py-3 bg-purple-600 text-white font-semibold rounded-full shadow-lg hover:bg-blue-700 transition-colors duration-300 transform hover:scale-105">
+                    GitHub Repository
+                </a>
+            </div>
+            
+            <a href="#case-study" class="absolute bottom-8 left-1/2 transform -translate-x-1/2 theme-body animate-bounce-custom z-20">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-12 h-12">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                </svg>
+            </a>
+        </section>
+
+        <div class="container mx-auto px-4 space-y-16 mt-16" id="case-study">
+
+
+            </section>
+
+            <section class="section-card">
+            <div class="flex flex-col md:flex-row md:space-x-8 space-y-4 md:space-y-0 case-row">
+                <div class="md:w-1/2 case-illustration">
+                <img src="/assets/pictures/glpi/viñeta1.png" alt="Additional information" class="no-frame w-full h-full">
+                </div>
+
+                <div class="md:w-1/2 flex flex-col justify-center">
+                <h2 class="text-3xl font-bold mb-4 text-center md:text-left">Use Case</h2>
+                <p class="opacity-90 leading-relaxed">
+                    Incident management, especially in IT departments, requires tasks that are often repetitive such as reviewing wikis, documentation, or executing verification commands to specific servers. GLPI AssistIA seeks to serve as a baseline to reduce all this workload by providing a preliminary report of the incident to be addressed. Once an incident is registered in the system, it is sent to a server (GLPI AssistIA Server) that searches for all related information and generates a report with possible solutions. This report will be visible to the agent handling this incident as a private note the moment they take the case, so they only have to worry about providing the best possible service to the client.
+                </p>
+                </div>
+            </div>
+            </section>
+
+            
+            <section class="section-card">
+                <h2 class="text-3xl font-bold mb-6">Evolution of the Agents</h2>
+                <p class="opacity-90 leading-relaxed">
+                The GLPI AssistIA agents have evolved through several prototypes, each adding new functionalities and capabilities to improve incident management. Below, the main milestones in this evolution are described:    
+                </p>
+                <div class="timeline-container">
+
+                        <div class="timeline-point">
+                        <div class="content md:text-right">
+                            <h3 class="text-xl font-semibold mb-2">Prototype 1 </h3>
+                            <p>A basic agent was implemented with a single summarization function for a GLPI ticket, sending the result to a file on the server.</p>
+                        </div>
+                        <div class="number-circle bg-blue-500"></div>
+                    </div>
+                        <div class="timeline-point">
+                        <div class="content md:text-left">
+                            <h3 class="text-xl font-semibold mb-2">Prototype 2 </h3>
+                            <p>The ability to ping an IP address provided in the ticket was introduced, and the reading of Wiki.js documentation was improved. This allowed the agent to respond more effectively to connectivity incidents.</p>
+                        </div>
+                        <div class="number-circle bg-purple-500"></div>
+                    </div>
+                        <div class="timeline-point">
+                        <div class="content md:text-right">
+                            <h3 class="text-xl font-semibold mb-2">Prototype 3 </h3>
+                            <p>Multiple agents with specific roles (Analyst, Resolver) were integrated, and a workflow was implemented so that agents could interact and collaborate in solving more complex problems. The concept of an MCP data bus was introduced.</p>
+                        </div>
+                        <div class="number-circle bg-green-500"></div>
+                    </div>
+                </div>
+            </section>
+
+
+
+
+                        <section class="section-card">
+                <h2 class="text-3xl font-bold mb-6">LLM Models Analysis</h2>
+                <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-8">
+                    <div class="md:w-1/2">
+                        <p class="opacity-90 leading-relaxed">
+                            For the development of GLPI AssistIA, a comparative analysis of several language models was performed to determine which would be the most suitable for the project. The goal was to find a model that offered a balance between processing capabilities, cost, and the ability to be self-hosted to ensure data privacy.
+                        </p>
+                        <p class="opacity-90 leading-relaxed mt-4">
+                            The orchestration of the agents was carried out using the CrewAI library, which facilitates collaboration between different specialized agents. Both open-source and proprietary models were considered, paying special attention to the flexibility for their integration into the server. This analysis was crucial to optimize the performance and efficiency of the system in the GLPI environment.
+                        </p>
+                        <p class="opacity-90 mt-4">For more details, you can consult the full document in the project repository.</p>
+                        <a href="https://github.com/ANFAIA/GLPI-AssistIA/blob/main/docs/analisis_LLM_para_CrewAi.md" class="text-indigo-500 hover:text-purple-600 hover:underline transition-colors duration-200">View full analysis document</a>
+                    </div>
+                    <div class="md:w-1/2 flex flex-col items-center justify-center">
+                        <img src="/assets/pictures/glpi/viñeta2.png" alt="LLM Information" class="no-frame w-full h-auto">
+                        <ul class="list-disc list-inside opacity-90 leading-relaxed">
+                                
+                                
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section-card">
+                <h2 class="text-3xl font-bold mb-6">Architecture and Overview</h2>
+                <p class="opacity-90 leading-relaxed mb-8">
+                    The core of the system is designed around a workflow triggered by the creation of a ticket in GLPI. The ticket information is processed by a system of intelligent agents (CrewAI) that collaborate to analyze, enrich, and propose solutions. This CrewAI connects to external tools (knowledge bases, monitoring systems) through an MCP (Model Context Protocol) Server, which acts as a data bus.
+                </p>
+                <h3 class="text-2xl font-semibold mt-8 mb-4">Ticket Workflow</h3>
+                <div class="flex justify-center mb-8">
+                    <img src="https://raw.githubusercontent.com/ANFAIA/GLPI-AssistIA/b0f1cb55bdc569c4f83b0b36e34c96536fe1d644/docs/BigPicture_VersionActual.svg" alt="V3 Architecture Diagram" class="w-full h-auto rounded-xl">
+                </div>
+                <ul class="list-decimal list-inside opacity-90 leading-relaxed space-y-2">
+                    <li>GLPI Entry: A user or technician creates an incident ticket.</li>
+                    <li>Agent Activation: The incident is transferred to the CrewAI system hosted on the GLPI AssistIA Server for processing.</li>
+                    <li>Analysis by AI Agents: A team of agents evaluates the urgency, classifies the incident, and reviews historical data to propose a solution.</li>
+                    <li>Response in GLPI: The generated solution and analysis are published on the GLPI ticket, assisting the technician or responding directly to the user.</li>
+                </ul>
+            </section>
+
+            <section class="section-card">
+                <h2 class="text-3xl font-bold mb-6 text-center">Configuration and Usage Example</h2>
+                <div class="youtube-container">
+                                        
+                                        <div class="w-full h-full flex items-center justify-center text-center rounded-xl" style="background-color: rgba(128, 128, 128, 0.1);">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/dWSrIz5tcgw?si=CyAWBFVjUdnSOeJt" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section-card">
+                <h2 class="text-3xl font-bold mb-6">Main Features</h2>
+                <ul class="list-disc list-inside opacity-90 leading-relaxed space-y-2">
+                    <li>Ticket Summarization and Enrichment: The AI analyzes and summarizes the user's problem, adding technical context.</li>
+                    <li>MCP Architecture: A decoupled data bus to facilitate communication and scalability.</li>
+                    <li>Intelligent Contextual Information: Provides relevant information to both technicians and users.</li>
+                </ul>
+            </section>
+
+            <section class="section-card">
+                <h2 class="text-3xl font-bold mb-6">Practical Cases</h2>
+                <div class="image-slider">
+                    <div class="slides">
+                        <img src="https://github.com/user-attachments/assets/06465e4f-4ed0-4f21-8a60-67f224985b2a" alt="Incident Opening" class="w-full h-auto slide">
+                        <img src="https://github.com/user-attachments/assets/2547cee4-0c46-48ef-a622-03cb887ab306" alt="Incident Processing" class="w-full h-auto slide">
+                        <img src="https://github.com/user-attachments/assets/cbfadd07-f0a8-4314-9fbb-fb51cc9aae94" alt="Processing Result 1" class="w-full h-auto slide">
+                        <img src="https://github.com/user-attachments/assets/b2a81c28-b1f1-43b0-a075-8c82ee3dcdc6" alt="Processing Result 2" class="w-full h-auto slide">
+                    </div>
+                                        
+                    <button class="prev-btn" onclick="plusSlides(-1)">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-8 h-8">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+                        </svg>
+                    </button>
+                    <button class="next-btn" onclick="plusSlides(1)">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-8 h-8">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5 15.75 12l-7.5 7.5" />
+                        </svg>
+                    </button>
+                </div>
+                                
+                <div class="dot-container">
+                    <span class="dot" onclick="currentSlide(1)"></span>
+                    <span class="dot" onclick="currentSlide(2)"></span>
+                    <span class="dot" onclick="currentSlide(3)"></span>
+                    <span class="dot" onclick="currentSlide(4)"></span>
+                </div>
+                
+                <h3 class="text-2xl font-semibold mt-12 mb-4">Plugin Interface</h3>
+                <div class="flex justify-center">
+                    <img src="https://github.com/user-attachments/assets/58d67305-c90a-48a0-8980-1af7b5af24fa" alt="Plugin Configuration" class="w-full md:w-3/4 lg:w-1/2 h-auto">
+                </div>
+            </section>
+
+
+
+
+            <section class="section-card">
+            <h2 class="text-3xl font-bold mb-6">Success Metrics</h2>
+
+            <div class="flex flex-col md:flex-row md:space-x-8 space-y-4 md:space-y-0 metrics-row">
+                <div class="md:w-1/2 metrics-illustration">
+                <img src="/assets/pictures/glpi/viñeta3.png" alt="Success Metrics Photo" class="no-frame w-full h-full">
+                </div>
+
+                <div class="md:w-1/2">
+                        <p class="opacity-90">The success of the project will be measured by achieving the following objectives:</p>
+                        <ul class="list-disc list-inside opacity-90 leading-relaxed space-y-2 mt-2">
+                            <li>Reduction of more than <strong>70%</strong> in first response time.</li>
+                            <li>Accuracy higher than <strong>85%</strong> in the generated automatic responses.</li>
+                            <li>Reduction of more than <strong>50%</strong> in tickets that need to be escalated manually.</li>
+                            <li>Reduction of more than <strong>40%</strong> in average incident resolution time.</li>
+                            <li>User satisfaction level above <strong>4.0/5.0</strong>.</li>
+                        </ul>
+                </div>
+            </div>
+            </section>
+
+
+
+
+            <section class="section-card">
+                <h2 class="text-3xl font-bold mb-6 text-center">Collaboration</h2>
+                <p class="opacity-90 leading-relaxed text-center mb-8">
+                    This project has been made possible thanks to the ANFAIA Summer Scholarship program and the collaboration of Aitire.
+                </p>
+                <div class="flex justify-center items-center space-x-8">
+                    <div class="w-28 h-auto">
+                        <a href="https://anfaia.org"><img src="/assets/pictures/glpi/anfaia.png" alt="ANFAIA Logo" class="w-full h-auto"></a>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <script>
+        const langButton = document.getElementById('lang-button');
+        const langMenu = document.getElementById('lang-menu');
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const closeMenuButton = document.getElementById('close-menu-button');
+        const mobileLangButton = document.getElementById('mobile-lang-button');
+        const mobileLangMenu = document.getElementById('mobile-lang-menu');
+
+        function toggleMenu(menu, button) {
+            const isHidden = menu.classList.contains('hidden');
+            const arrowSvg = button.querySelector('svg:last-of-type');
+            if (isHidden) {
+                menu.classList.remove('hidden');
+                setTimeout(() => {
+                    menu.classList.remove('opacity-0', 'scale-95');
+                    menu.classList.add('opacity-100', 'scale-100');
+                    if (arrowSvg) arrowSvg.classList.add('rotate-180');
+                }, 10);
+            } else {
+                menu.classList.remove('opacity-100', 'scale-100');
+                menu.classList.add('opacity-0', 'scale-95');
+                if (arrowSvg) arrowSvg.classList.remove('rotate-180');
+                setTimeout(() => {
+                    menu.classList.add('hidden');
+                }, 300);
+            }
+        }
+
+        function toggleMobileMenu() {
+            mobileMenu.classList.toggle('-translate-x-full');
+        }
+
+        if (langButton) {
+            langButton.addEventListener('click', () => toggleMenu(langMenu, langButton));
+        }
+
+        mobileMenuButton.addEventListener('click', toggleMobileMenu);
+        closeMenuButton.addEventListener('click', toggleMobileMenu);
+
+        document.addEventListener('click', (event) => {
+            if (langButton && !langButton.contains(event.target) && langMenu && !langMenu.contains(event.target)) {
+                langMenu.classList.add('hidden', 'opacity-0', 'scale-95');
+                const arrowSvg = langButton.querySelector('svg:last-of-type');
+                if (arrowSvg) arrowSvg.classList.remove('rotate-180');
+            }
+            if (mobileLangButton && !mobileLangButton.contains(event.target) && mobileLangMenu && !mobileLangMenu.contains(event.target)) {
+                mobileLangMenu.classList.add('hidden', 'opacity-0', 'scale-95');
+                const arrowSvg = mobileLangButton.querySelector('svg:last-of-type');
+                if (arrowSvg) arrowSvg.classList.remove('rotate-180');
+            }
+        });
+        
+        if (mobileLangButton) {
+            mobileLangButton.addEventListener('click', () => toggleMenu(mobileLangMenu, mobileLangButton));
+        }
+
+        let slideIndex = 1;
+        showSlides(slideIndex);
+
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+
+        function currentSlide(n) {
+            showSlides(slideIndex = n);
+        }
+
+        function showSlides(n) {
+            let i;
+            let slides = document.getElementsByClassName("slide");
+            let dots = document.getElementsByClassName("dot");
+            let slider = document.querySelector(".slides");
+
+            if (n > slides.length) {
+                slideIndex = 1;
+            }    
+            if (n < 1) {
+                slideIndex = slides.length;
+            }
+
+            slider.style.transform = `translateX(-${(slideIndex - 1) * 100}%)`;
+
+            for (i = 0; i < dots.length; i++) {
+                dots[i].classList.remove("active-dot");
+            }
+            dots[slideIndex-1].classList.add("active-dot");
+        }
+    </script>
+</body>
+</html>
+    </main>
+
+    <footer id="contactme" class="w-full mt-12 py-8 text-white relative z-10 transition-colors duration-300" style="background-color: var(--bg-footer);">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="text-xs opacity-90 font-semibold">
+                &copy; 2026 Anxo López Rodríguez. All rights reserved.
+            </div>
+            <div class="flex gap-6 text-lg">
+                <a href="https://bsky.app/profile/anxolo.bsky.social" target="_blank" class="hover:text-slate-200 transition-colors" title="Bluesky"><i class="fa-brands fa-bluesky"></i></a>
+                <a href="https://x.com/anxolo_/" target="_blank" class="hover:text-slate-200 transition-colors" title="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="https://linkedin.com/in/anxo-lopez-rodriguez" target="_blank" class="hover:text-slate-200 transition-colors" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="https://github.com/anxolo" target="_blank" class="hover:text-slate-200 transition-colors" title="GitHub"><i class="fa-brands fa-github"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const themeToggle = document.getElementById('theme-toggle');
+        const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
+
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            document.body.classList.toggle('dark-mode');
+            const isDarkMode = document.body.classList.contains('dark-mode');
+            localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+            const desktopIcon = themeToggle.querySelector('i');
+            const mobileIcon = mobileThemeToggle.querySelector('i');
+            const mobileText = mobileThemeToggle.querySelector('span');
+            if (isDarkMode) {
+                desktopIcon.className = 'fa-solid fa-sun text-lg text-yellow-400';
+                mobileIcon.className = 'fa-solid fa-sun text-lg text-yellow-400';
+                mobileText.textContent = 'Light Mode';
+            } else {
+                desktopIcon.className = 'fa-solid fa-moon text-lg theme-text-social';
+                mobileIcon.className = 'fa-solid fa-moon text-lg theme-text-social';
+                mobileText.textContent = 'Dark Mode';
+            }
+        }
+
+        themeToggle.addEventListener('click', toggleTheme);
+        mobileThemeToggle.addEventListener('click', toggleTheme);
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const isDarkMode = document.body.classList.contains('dark-mode');
+            const desktopIcon = themeToggle.querySelector('i');
+            const mobileIcon = mobileThemeToggle.querySelector('i');
+            const mobileText = mobileThemeToggle.querySelector('span');
+            if (isDarkMode) {
+                desktopIcon.className = 'fa-solid fa-sun text-lg text-yellow-400';
+                mobileIcon.className = 'fa-solid fa-sun text-lg text-yellow-400';
+                mobileText.textContent = 'Light Mode';
+            } else {
+                desktopIcon.className = 'fa-solid fa-moon text-lg theme-text-social';
+                mobileIcon.className = 'fa-solid fa-moon text-lg theme-text-social';
+                mobileText.textContent = 'Dark Mode';
+            }
+        });
+
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+        const btnMenuOpen = document.getElementById('mobile-menu-open');
+        const btnMenuClose = document.getElementById('mobile-menu-close');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+        function openMobileMenu() {
+            mobileMenu.classList.remove('translate-x-full');
+            mobileMenuOverlay.classList.remove('hidden');
+            document.body.classList.add('overflow-hidden');
+        }
+
+        function closeMobileMenu() {
+            mobileMenu.classList.add('translate-x-full');
+            mobileMenuOverlay.classList.add('hidden');
+            document.body.classList.remove('overflow-hidden');
+            document.getElementById('mobile-lang-dropdown').classList.add('hidden');
+        }
+
+        btnMenuOpen.addEventListener('click', openMobileMenu);
+        btnMenuClose.addEventListener('click', closeMobileMenu);
+        mobileMenuOverlay.addEventListener('click', closeMobileMenu);
+        mobileNavLinks.forEach(link => link.addEventListener('click', closeMobileMenu));
+
+        const langMenuBtn = document.getElementById('lang-menu-btn');
+        const langDropdown = document.getElementById('lang-dropdown');
+        const mobileLangMenuBtn = document.getElementById('mobile-lang-menu-btn');
+        const mobileLangDropdown = document.getElementById('mobile-lang-dropdown');
+        langMenuBtn.addEventListener('click', (e) => { e.stopPropagation(); langDropdown.classList.toggle('hidden'); });
+        mobileLangMenuBtn.addEventListener('click', (e) => { e.stopPropagation(); mobileLangDropdown.classList.toggle('hidden'); });
+        document.addEventListener('click', () => { langDropdown.classList.add('hidden'); mobileLangDropdown.classList.add('hidden'); });
+    </script>
+</body>
+</html>
