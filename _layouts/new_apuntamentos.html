@@ -16,10 +16,13 @@
                 inlineMath: [['$', '$'], ['\\(', '\\)']],
                 displayMath: [['$$', '$$'], ['\\[', '\\]']],
                 processEscapes: true,
-                processEnvironments: true
+                processEnvironments: true,
+                packages: {'[+]': ['ams']}
             },
             options: {
-                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+                ignoreHtmlClass: 'tex2jax_ignore',
+                processHtmlClass: 'tex2jax_process'
             }
         };
     </script>
@@ -184,7 +187,7 @@
             background: var(--accent-soft);
         }
 
-        /* Contido dos apuntamentos: mantén a xerarquía título/subtítulo */
+        /* Contido dos apuntamentos*/
         .document-content {
             color: var(--text-body);
             font-size: 1rem;
@@ -306,7 +309,22 @@
 
         .MathJax { font-size: 1.05rem !important; }
 
-        /* Footer común coa web */
+        /* Fonte do documento */
+        .document-source {
+            margin-top: 3rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border);
+            color: var(--text-muted);
+            font-size: .82rem;
+            line-height: 1.5;
+        }
+
+        .document-source strong {
+            color: var(--text-title);
+            font-weight: 700;
+        }
+
+        /* Footer común */
         .document-footer {
             width: 100%;
             margin-top: 2rem;
@@ -349,7 +367,7 @@
 
         .footer-social a:hover { opacity: .7; }
 
-        /* A navegación superior é a mesma estrutura visual da web */
+        /* Navegación superior */
         .site-header {
             width: min(1152px, calc(100% - 3rem));
             margin: 0 auto;
@@ -462,7 +480,42 @@
             .footer-inner { flex-direction: column; text-align: center; }
         }
 
-        /* O navegador imprimirá o documento como PDF e non a interface da web */
+        .document-content pre {
+            color: var(--text-body) !important;
+            -webkit-font-smoothing: antialiased;
+            white-space: pre;
+            tab-size: 4;
+        }
+
+        .document-content pre code,
+        .document-content pre code * {
+            color: var(--text-body) !important;
+            background: transparent !important;
+            text-shadow: none !important;
+        }
+
+        /* Estilo editorial */
+        .document-header { text-align: left; }
+        .course-info { justify-content: flex-start; }
+        .document-subtitle {
+            margin-left: 0;
+            margin-right: 0;
+        }
+        .document-actions { justify-content: flex-start; }
+
+        /* LaTeX renderizado por MathJax */
+        .document-content .MathJax,
+        .document-content mjx-container {
+            color: var(--text-body) !important;
+        }
+
+        .document-content mjx-container[display="true"] {
+            margin: 1.25rem 0 !important;
+            max-width: 100%;
+            overflow-x: auto;
+            overflow-y: hidden;
+        }
+
         @media print {
             @page {
                 size: A4;
@@ -529,41 +582,91 @@
         })();
     </script>
 
-    <!-- Header da web -->
-    <header class="site-header">
-        <a class="site-brand" href="{{ '/' | relative_url }}">Anxo López Rodríguez</a>
+    <!-- Header -->
+    <header class="w-full max-w-7xl mx-auto px-6 py-6 flex justify-between items-center z-50 relative">
+        <div class="text-xl font-bold tracking-tight theme-title">
+            <a href="{{ '/' | relative_url }}">Anxo López Rodríguez · Apuntamentos</a>
+        </div>
+        
+        <!-- Desktop menu -->
+        <nav class="hidden md:flex items-center gap-8">
+            <a href="{{ '/gl/apuntamentos' | relative_url }}" class="text-sm font-semibold theme-title hover:text-[#6f7d95] transition-colors">Voltar a web principal</a>
 
-        <nav class="site-nav">
-            <a href="{{ '/gl/' | relative_url }}">Inicio</a>
-            <a href="{{ '/gl/sobre-min' | relative_url }}">Sobre min</a>
-            <a href="{{ '/gl/proxectos' | relative_url }}">Proxectos</a>
-            <a href="{{ '/gl/apuntamentos' | relative_url }}">Apuntamentos</a>
-            <a href="{{ '/gl/contactme' | relative_url }}">Contacto</a>
-
-            <div class="header-tools">
-                <div class="language-wrap">
-                    <button id="lang-menu-btn" class="language-button" aria-haspopup="true" aria-expanded="false">
+            <div class="flex items-center gap-3 ml-4 pl-4 border-l theme-border-social relative">
+                <div class="relative inline-block text-left">
+                    <button id="lang-menu-btn" class="flex items-center gap-1 text-sm font-semibold theme-text-social hover:opacity-80 focus:outline-none" aria-haspopup="true" aria-expanded="false">
                         <i class="fa-solid fa-globe"></i>
-                        {% if page.lang == 'en' %}EN{% elsif page.lang == 'es' %}ES{% else %}GL{% endif %}
-                        <i class="fa-solid fa-chevron-down" style="font-size:.6rem"></i>
+                        <span>
+                            {% if page.lang == 'en' %}EN{% elsif page.lang == 'es' %}ES{% else %}GL{% endif %}
+                        </span>
+                        <i class="fa-solid fa-chevron-down text-[10px]"></i>
                     </button>
-                    <div id="lang-dropdown" class="language-dropdown hidden">
-                        <a href="{{ page.trans_gl | default: '/gl/' | relative_url }}">Galego (GL)</a>
-                        <a href="{{ page.trans_es | default: '/es/' | relative_url }}">Español (ES)</a>
-                        <a href="{{ page.trans_en | default: '/en/' | relative_url }}">English (EN)</a>
+                    <div id="lang-dropdown" class="hidden absolute right-0 mt-2 w-32 rounded-xl bg-white dark:bg-slate-800 shadow-xl border border-slate-200 dark:border-slate-700 z-50 transition-all duration-200">
+                        <div class="py-1">
+                            <a href="{{ page.trans_gl | default: '/gl/' | relative_url }}" class="block px-4 py-2 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700">Galego (GL)</a>
+                            <a href="{{ page.trans_es | default: '/es/' | relative_url }}" class="block px-4 py-2 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700">Español (ES)</a>
+                            <a href="{{ page.trans_en | default: '/en/' | relative_url }}" class="block px-4 py-2 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700">English (EN)</a>
+                        </div>
                     </div>
                 </div>
-
-                <button class="theme-control" id="theme-toggle" aria-label="Cambiar tema">
-                    <i class="fa-solid fa-moon"></i>
+                <button class="theme-text-social hover:opacity-80 ml-2" id="theme-toggle" aria-label="Toggle theme">
+                    <i class="fa-solid fa-moon text-lg"></i>
                 </button>
             </div>
         </nav>
 
-        <button id="mobile-menu-open" class="mobile-menu-button" aria-label="Abrir menú">
-            <i class="fa-solid fa-bars"></i>
+        <!-- Mobile button -->
+        <button id="mobile-menu-open" class="md:hidden theme-text-social hover:opacity-80 p-2" aria-label="Open menu">
+            <i class="fa-solid fa-bars text-2xl"></i>
         </button>
     </header>
+
+    <!-- Mobile drawer -->
+    <div id="mobile-menu" class="fixed inset-y-0 right-0 w-72 theme-bg border-l theme-border-social z-50 transform translate-x-full transition-transform duration-300 ease-in-out shadow-2xl md:hidden flex flex-col p-6 pointer-events-auto">
+        <div class="flex justify-between items-center mb-8">
+            <span class="text-sm font-bold theme-muted uppercase tracking-wider"></span>
+            <button id="mobile-menu-close" class="theme-text-social hover:opacity-80 p-2" aria-label="Close menu">
+                <i class="fa-solid fa-xmark text-2xl"></i>
+            </button>
+        </div>
+        
+        <nav class="flex flex-col gap-6 text-lg font-bold">
+            <a href="{{ '/gl/' | relative_url }}" class="theme-title hover:text-[#6f7d95] transition-colors mobile-nav-link">Inicio</a>
+            <a href="{{ '/gl/sobre-min' | relative_url }}" class="theme-title hover:text-[#6f7d95] transition-colors mobile-nav-link">Sobre min</a>
+            <a href="{{ '/gl/proxectos' | relative_url }}" class="theme-title hover:text-[#6f7d95] transition-colors mobile-nav-link">Proxectos</a>
+            <a href="{{ '/gl/apuntamentos' | relative_url }}" class="theme-title hover:text-[#6f7d95] transition-colors mobile-nav-link">Apuntamentos</a>
+            <a href="/gl/contactme" class="theme-title hover:text-[#6f7d95] transition-colors mobile-nav-link">Contacto</a>
+        </nav>
+
+        <div class="flex flex-col gap-4 mt-auto pt-8 border-t theme-border-social col-span-1">
+            <div class="flex items-center justify-between relative">
+                <span class="text-sm font-semibold theme-muted">Idioma</span>
+                <div class="relative">
+                    <button id="mobile-lang-menu-btn" class="flex items-center gap-1 text-sm font-semibold theme-text-social hover:opacity-80 focus:outline-none">
+                        <i class="fa-solid fa-globe"></i>
+                        <span>{% if page.lang == 'en' %}EN{% elsif page.lang == 'es' %}ES{% else %}GL{% endif %}</span>
+                        <i class="fa-solid fa-chevron-down text-[10px]"></i>
+                    </button>
+                    <div id="mobile-lang-dropdown" class="hidden absolute right-0 bottom-8 mt-2 w-32 rounded-xl bg-white dark:bg-slate-800 shadow-xl border border-slate-200 dark:border-slate-700 z-50">
+                        <div class="py-1">
+                            <a href="{{ page.trans_gl | default: '/gl/' | relative_url }}" class="block px-4 py-2 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700">Galego (GL)</a>
+                            <a href="{{ page.trans_es | default: '/es/' | relative_url }}" class="block px-4 py-2 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700">Español (ES)</a>
+                            <a href="{{ page.trans_en | default: '/en/' | relative_url }}" class="block px-4 py-2 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700">English (EN)</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex items-center justify-between">
+                <span class="text-sm font-semibold theme-muted">Tema</span>
+                <button class="theme-text-social hover:opacity-80 flex items-center gap-2" id="mobile-theme-toggle" aria-label="Toggle theme">
+                    <i class="fa-solid fa-moon text-lg"></i>
+                    <span class="text-sm font-semibold">Modo Oscuro</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="mobile-menu-overlay" class="fixed inset-0 bg-black/40 z-40 hidden transition-opacity duration-300 pointer-events-auto md:hidden"></div>
 
     <main class="notes-shell">
 
@@ -587,7 +690,6 @@
             <div class="document-date">{{ page.date | date: "%d/%m/%Y" }}</div>
             {% endif %}
 
-            <!-- Acción de PDF -->
             <div class="document-actions">
                 <button class="document-action" onclick="window.print()" title="Descargar ou gardar como PDF">
                     <i class="fa-solid fa-file-pdf"></i>
@@ -599,57 +701,28 @@
         <article class="document-content">
             {{ content }}
         </article>
+
+        {% if page.source %}
+        <div class="document-source">
+            <strong>Fonte:</strong> {{ page.source }}
+        </div>
+        {% endif %}
     </main>
 
-    <!-- Footer da web -->
-    <footer class="document-footer">
-        <div class="footer-inner">
-            <div>
-                <div class="footer-copy">
-                    &copy; {{ "now" | date: "%Y" | default: "2026" }} Anxo López Rodríguez. Todos os dereitos reservados.
-                </div>
-                {% if page.source %}
-                <div class="footer-source">Fonte: {{ page.source }}</div>
-                {% endif %}
-            </div>
 
-            <div class="footer-social">
-                <a href="https://bsky.app/profile/anxolo.bsky.social" target="_blank" rel="noopener" title="Bluesky"><i class="fa-brands fa-bluesky"></i></a>
-                <a href="https://x.com/anxolo_/" target="_blank" rel="noopener" title="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
-                <a href="https://linkedin.com/in/anxo-lopez-rodriguez" target="_blank" rel="noopener" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-                <a href="https://github.com/anxolo" target="_blank" rel="noopener" title="GitHub"><i class="fa-brands fa-github"></i></a>
+    <footer id="contactme" class="w-full mt-12 py-8 text-white relative z-10 transition-colors duration-300" style="background-color: var(--bg-footer);">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="text-xs opacity-90 font-semibold">
+                &copy; {{ "now" | date: "%Y" | default: "2026" }} Anxo López Rodríguez. Todos os dereitos reservados.
+            </div>
+            <div class="flex gap-6 text-lg">
+                <a href="https://bsky.app/profile/anxolo.bsky.social" target="_blank" class="hover:text-slate-200 transition-colors" title="Bluesky"><i class="fa-brands fa-bluesky"></i></a>
+                <a href="https://x.com/anxolo_/" target="_blank" class="hover:text-slate-200 transition-colors" title="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="https://linkedin.com/in/anxo-lopez-rodriguez" target="_blank" class="hover:text-slate-200 transition-colors" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="https://github.com/anxolo" target="_blank" class="hover:text-slate-200 transition-colors" title="GitHub"><i class="fa-brands fa-github"></i></a>
             </div>
         </div>
     </footer>
-
-    <!-- Menú móbil -->
-    <div id="mobile-menu" class="hidden" style="
-        position:fixed; inset:0; z-index:100;
-        background:var(--bg-body); padding:1.5rem;
-        flex-direction:column;">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:2rem;">
-            <a class="site-brand" href="{{ '/' | relative_url }}">Anxo López Rodríguez</a>
-            <button id="mobile-menu-close" class="mobile-menu-button" aria-label="Pechar menú">
-                <i class="fa-solid fa-xmark"></i>
-            </button>
-        </div>
-
-        <nav style="display:flex; flex-direction:column; gap:1.25rem;">
-            <a class="site-brand" style="font-size:1rem" href="{{ '/gl/' | relative_url }}">Inicio</a>
-            <a class="site-brand" style="font-size:1rem" href="{{ '/gl/sobre-min' | relative_url }}">Sobre min</a>
-            <a class="site-brand" style="font-size:1rem" href="{{ '/gl/proxectos' | relative_url }}">Proxectos</a>
-            <a class="site-brand" style="font-size:1rem" href="{{ '/gl/apuntamentos' | relative_url }}">Apuntamentos</a>
-            <a class="site-brand" style="font-size:1rem" href="{{ '/gl/contactme' | relative_url }}">Contacto</a>
-        </nav>
-
-        <div style="margin-top:auto; padding-top:1.5rem; border-top:1px solid var(--border);">
-            <button id="mobile-theme-toggle" class="document-action">
-                <i class="fa-solid fa-moon"></i>
-                <span>Modo Oscuro</span>
-            </button>
-        </div>
-    </div>
-
     <script>
         const themeToggle = document.getElementById('theme-toggle');
         const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
