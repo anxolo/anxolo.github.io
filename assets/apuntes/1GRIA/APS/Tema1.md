@@ -1,5 +1,6 @@
 ---
-layout: apuntes
+layout: new_apuntamentos
+language: es
 use_math: true
 ---
 
