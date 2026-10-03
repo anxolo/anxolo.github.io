@@ -1,5 +1,5 @@
 ---
-layout: new_apuntamentos_ml
+layout: new_apuntamentos
 title: "Exemplo de Apuntamentos"
 subtitle: "Intelixencia Artificial - Tema 1"
 date: 2026-01-29

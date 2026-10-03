@@ -45,6 +45,7 @@
             --accent-soft: #E2E8F0;
             --border: #E2E8F0;
             --code-bg: #F1F5F9;
+            --code-text: #334155;
             --quote-bg: #F8FAFC;
             --bg-footer: #6F7D95;
             --shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
@@ -60,6 +61,7 @@
             --accent-soft: #334155;
             --border: #334155;
             --code-bg: #1E293B;
+            --code-text: #CBD5E1;
             --quote-bg: #172033;
             --bg-footer: #1E293B;
             --shadow: 0 10px 30px rgba(0, 0, 0, 0.20);
@@ -594,20 +596,6 @@
 
             <div class="flex items-center gap-3 ml-4 pl-4 border-l theme-border-social relative">
                 <div class="relative inline-block text-left">
-                    <button id="lang-menu-btn" class="flex items-center gap-1 text-sm font-semibold theme-text-social hover:opacity-80 focus:outline-none" aria-haspopup="true" aria-expanded="false">
-                        <i class="fa-solid fa-globe"></i>
-                        <span>
-                            {% if page.lang == 'en' %}EN{% elsif page.lang == 'es' %}ES{% else %}GL{% endif %}
-                        </span>
-                        <i class="fa-solid fa-chevron-down text-[10px]"></i>
-                    </button>
-                    <div id="lang-dropdown" class="hidden absolute right-0 mt-2 w-32 rounded-xl bg-white dark:bg-slate-800 shadow-xl border border-slate-200 dark:border-slate-700 z-50 transition-all duration-200">
-                        <div class="py-1">
-                            <a href="{{ page.trans_gl | default: '/gl/' | relative_url }}" class="block px-4 py-2 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700">Galego (GL)</a>
-                            <a href="{{ page.trans_es | default: '/es/' | relative_url }}" class="block px-4 py-2 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700">Español (ES)</a>
-                            <a href="{{ page.trans_en | default: '/en/' | relative_url }}" class="block px-4 py-2 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700">English (EN)</a>
-                        </div>
-                    </div>
                 </div>
                 <button class="theme-text-social hover:opacity-80 ml-2" id="theme-toggle" aria-label="Toggle theme">
                     <i class="fa-solid fa-moon text-lg"></i>
@@ -615,55 +603,6 @@
             </div>
         </nav>
 
-        <!-- Mobile button -->
-        <button id="mobile-menu-open" class="md:hidden theme-text-social hover:opacity-80 p-2" aria-label="Open menu">
-            <i class="fa-solid fa-bars text-2xl"></i>
-        </button>
-    </header>
-
-    <!-- Mobile drawer -->
-    <div id="mobile-menu" class="fixed inset-y-0 right-0 w-72 theme-bg border-l theme-border-social z-50 transform translate-x-full transition-transform duration-300 ease-in-out shadow-2xl md:hidden flex flex-col p-6 pointer-events-auto">
-        <div class="flex justify-between items-center mb-8">
-            <span class="text-sm font-bold theme-muted uppercase tracking-wider"></span>
-            <button id="mobile-menu-close" class="theme-text-social hover:opacity-80 p-2" aria-label="Close menu">
-                <i class="fa-solid fa-xmark text-2xl"></i>
-            </button>
-        </div>
-        
-        <nav class="flex flex-col gap-6 text-lg font-bold">
-            <a href="{{ '/gl/' | relative_url }}" class="theme-title hover:text-[#6f7d95] transition-colors mobile-nav-link">Inicio</a>
-            <a href="{{ '/gl/sobre-min' | relative_url }}" class="theme-title hover:text-[#6f7d95] transition-colors mobile-nav-link">Sobre min</a>
-            <a href="{{ '/gl/proxectos' | relative_url }}" class="theme-title hover:text-[#6f7d95] transition-colors mobile-nav-link">Proxectos</a>
-            <a href="{{ '/gl/apuntamentos' | relative_url }}" class="theme-title hover:text-[#6f7d95] transition-colors mobile-nav-link">Apuntamentos</a>
-            <a href="/gl/contactme" class="theme-title hover:text-[#6f7d95] transition-colors mobile-nav-link">Contacto</a>
-        </nav>
-
-        <div class="flex flex-col gap-4 mt-auto pt-8 border-t theme-border-social col-span-1">
-            <div class="flex items-center justify-between relative">
-                <span class="text-sm font-semibold theme-muted">Idioma</span>
-                <div class="relative">
-                    <button id="mobile-lang-menu-btn" class="flex items-center gap-1 text-sm font-semibold theme-text-social hover:opacity-80 focus:outline-none">
-                        <i class="fa-solid fa-globe"></i>
-                        <span>{% if page.lang == 'en' %}EN{% elsif page.lang == 'es' %}ES{% else %}GL{% endif %}</span>
-                        <i class="fa-solid fa-chevron-down text-[10px]"></i>
-                    </button>
-                    <div id="mobile-lang-dropdown" class="hidden absolute right-0 bottom-8 mt-2 w-32 rounded-xl bg-white dark:bg-slate-800 shadow-xl border border-slate-200 dark:border-slate-700 z-50">
-                        <div class="py-1">
-                            <a href="{{ page.trans_gl | default: '/gl/' | relative_url }}" class="block px-4 py-2 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700">Galego (GL)</a>
-                            <a href="{{ page.trans_es | default: '/es/' | relative_url }}" class="block px-4 py-2 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700">Español (ES)</a>
-                            <a href="{{ page.trans_en | default: '/en/' | relative_url }}" class="block px-4 py-2 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700">English (EN)</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="flex items-center justify-between">
-                <span class="text-sm font-semibold theme-muted">Tema</span>
-                <button class="theme-text-social hover:opacity-80 flex items-center gap-2" id="mobile-theme-toggle" aria-label="Toggle theme">
-                    <i class="fa-solid fa-moon text-lg"></i>
-                    <span class="text-sm font-semibold">Modo Oscuro</span>
-                </button>
-            </div>
-        </div>
     </div>
 
     <div id="mobile-menu-overlay" class="fixed inset-0 bg-black/40 z-40 hidden transition-opacity duration-300 pointer-events-auto md:hidden"></div>
