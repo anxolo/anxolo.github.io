@@ -1,7 +1,9 @@
 ---
-layout: apuntes
+layout: new_apuntamentos
+lang: gl
 use_math: true
 ---
+
 
 
 # Tema 3 - Eficiencia
