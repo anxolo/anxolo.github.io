@@ -843,6 +843,8 @@
                 ·
                 {% if page.lang == 'en' %}
                     Notes
+                {% elsif page.lang == 'es' %}
+                    Apuntes
                 {% else %}
                     Apuntamentos
                 {% endif %}
@@ -856,6 +858,8 @@
             <a href="{{ '/' | relative_url }}">
                 {% if page.lang == 'en' %}
                     Back to main website
+                {% elsif page.lang == 'es' %}
+                    Volver a la Web Principal
                 {% else %}
                     Voltar á web principal
                 {% endif %}
@@ -868,7 +872,7 @@
                     class="theme-control"
                     id="theme-toggle"
                     type="button"
-                    aria-label="{% if page.lang == 'en' %}Toggle dark mode{% else %}Cambiar modo escuro{% endif %}">
+                    aria-label="{% if page.lang == 'en' %}Toggle dark mode% elsif page.lang == 'es' %}Cambiar a modo oscuro{% else %}Cambiar modo escuro{% endif %}">
 
                     <i class="fa-solid fa-moon"></i>
 
@@ -943,7 +947,7 @@
                 <button
                     class="document-action"
                     onclick="window.print()"
-                    title="{% if page.lang == 'en' %}Print or save as PDF{% else %}Imprimir ou gardar como PDF{% endif %}">
+                    title="{% if page.lang == 'en' %}Print or save as PDF{% elsif page.lang == 'es' %}Imprimir o guardar como PDF{% else %}Imprimir ou gardar como PDF{% endif %}">
 
                     <i class="fa-solid fa-file-pdf"></i>
 
@@ -973,6 +977,8 @@
             <strong>
                 {% if page.lang == 'en' %}
                     Source:
+                {% elsif page.lang == 'es' %}
+                    Fuente:
                 {% else %}
                     Fonte:
                 {% endif %}
@@ -1001,6 +1007,8 @@
 
                 {% if page.lang == 'en' %}
                     All rights reserved.
+                {% elsif page.lang == 'es' %}
+                    Tódos los derechos reservados.
                 {% else %}
                     Todos os dereitos reservados.
                 {% endif %}

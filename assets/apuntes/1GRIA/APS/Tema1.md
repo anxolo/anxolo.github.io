@@ -1,6 +1,6 @@
 ---
 layout: new_apuntamentos
-language: es
+lang: es
 use_math: true
 ---
 
