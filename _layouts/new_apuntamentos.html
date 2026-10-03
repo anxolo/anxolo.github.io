@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="{{ page.lang | default: site.lang | default: 'gl' }}">
 
@@ -76,7 +75,7 @@
             --accent-soft: #E2E8F0;
 
             --border: #E2E8F0;
-
+            --code-text: #334155;
             --code-bg: #F1F5F9;
             --quote-bg: #F8FAFC;
 
@@ -100,6 +99,7 @@
 
             --code-bg: #1E293B;
             --quote-bg: #172033;
+            --code-text: #CBD5E1;
 
             --bg-footer: #1E293B;
 
@@ -473,9 +473,18 @@
             font-size: .88em;
         }
 
+        /* =========================================================
+        BLOQUES DE CÓDIGO
+        ========================================================= */
+
         .document-content pre {
-            margin: 1.25rem 0;
-            padding: 1rem 1.15rem;
+            display: block;
+
+            margin: 1.5rem 0;
+            padding: 1.1rem 1.25rem;
+
+            width: 100%;
+            max-width: 100%;
 
             overflow-x: auto;
 
@@ -483,23 +492,70 @@
             border-left: 3px solid var(--accent);
             border-radius: .7rem;
 
-            background: var(--code-bg);
+            background: var(--code-bg) !important;
+            color: var(--code-text) !important;
 
-            color: var(--text-body);
+            font-family:
+                ui-monospace,
+                SFMono-Regular,
+                Menlo,
+                Monaco,
+                Consolas,
+                "Liberation Mono",
+                monospace;
 
-            -webkit-font-smoothing: antialiased;
+            font-size: .88rem;
+            line-height: 1.6;
+
             white-space: pre;
             tab-size: 4;
+
+            -webkit-font-smoothing: antialiased;
         }
 
-        .document-content pre code,
-        .document-content pre code * {
+        /* Código dentro de un bloque pre */
+        .document-content pre code {
+            display: block;
+
+            margin: 0;
             padding: 0;
 
             background: transparent !important;
-            color: var(--text-body) !important;
+            color: var(--code-text) !important;
 
-            text-shadow: none !important;
+            font-family: inherit;
+            font-size: inherit;
+            line-height: inherit;
+
+            white-space: inherit;
+        }
+
+        /* Evita que resaltadores internos hereden colores incorrectos */
+        .document-content pre code span,
+        .document-content pre code div,
+        .document-content pre code * {
+            background: transparent !important;
+        }
+
+        /* Código inline: `variable`, `for`, etc. */
+        .document-content :not(pre) > code {
+            padding: .15rem .4rem;
+
+            border-radius: .4rem;
+
+            background: var(--code-bg) !important;
+            color: var(--text-title) !important;
+
+            font-family:
+                ui-monospace,
+                SFMono-Regular,
+                Menlo,
+                Monaco,
+                Consolas,
+                "Liberation Mono",
+                monospace;
+
+            font-size: .88em;
         }
 
         .document-content blockquote {
