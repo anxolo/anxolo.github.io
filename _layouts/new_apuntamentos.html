@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: 'gl' }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if page.title %}{{ page.title }} | {% endif %}Anxo López Rodríguez</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true,
+                processEnvironments: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+
+    <style>
+        :root {
+            --bg-body: #F8FAFC;
+            --bg-surface: #FFFFFF;
+            --text-title: #0F172A;
+            --text-body: #334155;
+            --text-muted: #64748B;
+            --accent: #6F7D95;
+            --accent-soft: #E2E8F0;
+            --border: #E2E8F0;
+            --code-bg: #F1F5F9;
+            --quote-bg: #F8FAFC;
+            --bg-footer: #6F7D95;
+            --shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+        }
+
+        body.dark-mode {
+            --bg-body: #0F172A;
+            --bg-surface: #111827;
+            --text-title: #FFFFFF;
+            --text-body: #CBD5E1;
+            --text-muted: #94A3B8;
+            --accent: #94A3B8;
+            --accent-soft: #334155;
+            --border: #334155;
+            --code-bg: #1E293B;
+            --quote-bg: #172033;
+            --bg-footer: #1E293B;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.20);
+        }
+
+        * { box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-body);
+            color: var(--text-body);
+            line-height: 1.75;
+            transition: background-color .3s ease, color .3s ease;
+        }
+
+        .theme-bg { background-color: var(--bg-body); }
+        .theme-title { color: var(--text-title); }
+        .theme-body { color: var(--text-body); }
+        .theme-muted { color: var(--text-muted); }
+        .theme-border { border-color: var(--border); }
+
+        /* Contedor principal dos apuntamentos */
+        .notes-shell {
+            width: min(900px, calc(100% - 3rem));
+            margin: 0 auto;
+            padding: 1.5rem 0 4rem;
+        }
+
+        /* Cabecera específica do documento */
+        .document-header {
+            text-align: center;
+            padding: 2.5rem 0 2rem;
+            margin-bottom: 2.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .course-info {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: .75rem;
+            margin-bottom: 1rem;
+        }
+
+        .year-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: .35rem .8rem;
+            border-radius: 999px;
+            background: var(--accent);
+            color: #fff;
+            font-size: .75rem;
+            font-weight: 700;
+            letter-spacing: .02em;
+        }
+
+        .course-name {
+            color: var(--text-muted);
+            font-size: .9rem;
+            font-weight: 600;
+        }
+
+        .document-title {
+            margin: 0;
+            color: var(--text-title);
+            font-size: clamp(2rem, 5vw, 3.1rem);
+            line-height: 1.15;
+            font-weight: 800;
+            letter-spacing: -.035em;
+        }
+
+        .document-subtitle {
+            max-width: 700px;
+            margin: .8rem auto 0;
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            line-height: 1.6;
+        }
+
+        .document-author {
+            margin-top: .9rem;
+            color: var(--text-muted);
+            font-size: .9rem;
+            font-weight: 500;
+        }
+
+        .document-date {
+            margin-top: .25rem;
+            color: var(--text-muted);
+            font-size: .8rem;
+        }
+
+        .document-actions {
+            display: flex;
+            justify-content: center;
+            gap: .65rem;
+            margin-top: 1.5rem;
+        }
+
+        .document-action {
+            display: inline-flex;
+            align-items: center;
+            gap: .5rem;
+            border: 1px solid var(--border);
+            border-radius: .75rem;
+            padding: .65rem .9rem;
+            background: var(--bg-surface);
+            color: var(--text-body);
+            font: inherit;
+            font-size: .82rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            transition: transform .2s ease, border-color .2s ease, background-color .2s ease;
+        }
+
+        .document-action:hover {
+            transform: translateY(-1px);
+            border-color: var(--accent);
+            background: var(--accent-soft);
+        }
+
+        /* Contido dos apuntamentos: mantén a xerarquía título/subtítulo */
+        .document-content {
+            color: var(--text-body);
+            font-size: 1rem;
+        }
+
+        .document-content h1,
+        .document-content h2,
+        .document-content h3,
+        .document-content h4,
+        .document-content h5,
+        .document-content h6 {
+            color: var(--text-title);
+            font-weight: 750;
+            line-height: 1.3;
+            letter-spacing: -.02em;
+            scroll-margin-top: 6rem;
+        }
+
+        .document-content h1 {
+            margin: 3rem 0 1rem;
+            padding-bottom: .65rem;
+            font-size: 2rem;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .document-content h2 {
+            margin: 2.6rem 0 .85rem;
+            font-size: 1.55rem;
+        }
+
+        .document-content h3 {
+            margin: 2rem 0 .7rem;
+            font-size: 1.25rem;
+        }
+
+        .document-content h4 {
+            margin: 1.6rem 0 .6rem;
+            font-size: 1.05rem;
+        }
+
+        .document-content p {
+            margin: 0 0 1rem;
+        }
+
+        .document-content ul,
+        .document-content ol {
+            margin: 0 0 1rem;
+            padding-left: 1.5rem;
+        }
+
+        .document-content li { margin-bottom: .4rem; }
+
+        .document-content a {
+            color: var(--text-title);
+            text-decoration: underline;
+            text-decoration-color: var(--accent);
+            text-underline-offset: 3px;
+        }
+
+        .document-content strong { color: var(--text-title); }
+
+        .document-content code {
+            padding: .15rem .4rem;
+            border-radius: .4rem;
+            background: var(--code-bg);
+            color: var(--text-title);
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+            font-size: .88em;
+        }
+
+        .document-content pre {
+            margin: 1.25rem 0;
+            padding: 1rem 1.15rem;
+            overflow-x: auto;
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--accent);
+            border-radius: .7rem;
+            background: var(--code-bg);
+        }
+
+        .document-content pre code {
+            padding: 0;
+            background: transparent;
+        }
+
+        .document-content blockquote {
+            margin: 1.25rem 0;
+            padding: .85rem 1rem;
+            border-left: 3px solid var(--accent);
+            border-radius: 0 .6rem .6rem 0;
+            background: var(--quote-bg);
+            color: var(--text-muted);
+        }
+
+        .document-content table {
+            width: 100%;
+            margin: 1.5rem 0;
+            border-collapse: collapse;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            border-radius: .7rem;
+            box-shadow: var(--shadow);
+        }
+
+        .document-content th,
+        .document-content td {
+            padding: .75rem .85rem;
+            border-bottom: 1px solid var(--border);
+            text-align: left;
+        }
+
+        .document-content th {
+            background: var(--accent);
+            color: #fff;
+            font-weight: 700;
+        }
+
+        .document-content tr:last-child td { border-bottom: 0; }
+
+        .MathJax { font-size: 1.05rem !important; }
+
+        /* Footer común coa web */
+        .document-footer {
+            width: 100%;
+            margin-top: 2rem;
+            padding: 2rem 1.5rem;
+            background: var(--bg-footer);
+            color: #fff;
+        }
+
+        .footer-inner {
+            width: min(1152px, 100%);
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .footer-copy {
+            font-size: .75rem;
+            font-weight: 600;
+            opacity: .9;
+        }
+
+        .footer-source {
+            margin-top: .25rem;
+            font-size: .7rem;
+            opacity: .75;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1.25rem;
+            font-size: 1.1rem;
+        }
+
+        .footer-social a {
+            color: #fff;
+            transition: opacity .2s ease;
+        }
+
+        .footer-social a:hover { opacity: .7; }
+
+        /* A navegación superior é a mesma estrutura visual da web */
+        .site-header {
+            width: min(1152px, calc(100% - 3rem));
+            margin: 0 auto;
+            padding: 1.5rem 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 50;
+        }
+
+        .site-brand {
+            color: var(--text-title);
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: -.02em;
+            text-decoration: none;
+        }
+
+        .site-nav {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .site-nav > a,
+        .theme-control {
+            color: var(--text-title);
+            font-size: .875rem;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .site-nav > a:hover,
+        .theme-control:hover { opacity: .65; }
+
+        .header-tools {
+            display: flex;
+            align-items: center;
+            gap: .8rem;
+            margin-left: .5rem;
+            padding-left: 1rem;
+            border-left: 1px solid var(--border);
+        }
+
+        .theme-control {
+            border: 0;
+            background: transparent;
+            cursor: pointer;
+            padding: .25rem;
+        }
+
+        .language-wrap { position: relative; }
+
+        .language-button {
+            border: 0;
+            background: transparent;
+            color: var(--text-body);
+            cursor: pointer;
+            font: inherit;
+            font-size: .8rem;
+            font-weight: 700;
+        }
+
+        .language-dropdown {
+            position: absolute;
+            right: 0;
+            top: calc(100% + .6rem);
+            width: 8rem;
+            padding: .3rem 0;
+            border: 1px solid var(--border);
+            border-radius: .75rem;
+            background: var(--bg-surface);
+            box-shadow: var(--shadow);
+        }
+
+        .language-dropdown.hidden { display: none; }
+
+        .language-dropdown a {
+            display: block;
+            padding: .55rem .8rem;
+            color: var(--text-body);
+            text-decoration: none;
+            font-size: .75rem;
+            font-weight: 600;
+        }
+
+        .language-dropdown a:hover { background: var(--code-bg); }
+
+        .mobile-menu-button { display: none; }
+
+        @media (max-width: 900px) {
+            .site-nav { display: none; }
+            .mobile-menu-button {
+                display: inline-flex;
+                border: 0;
+                background: transparent;
+                color: var(--text-body);
+                font-size: 1.35rem;
+                cursor: pointer;
+            }
+            .notes-shell { width: min(900px, calc(100% - 2rem)); }
+            .site-header { width: calc(100% - 2rem); }
+        }
+
+        @media (max-width: 640px) {
+            .notes-shell { padding-top: .5rem; }
+            .document-header { padding-top: 1.5rem; }
+            .document-content { font-size: .95rem; }
+            .footer-inner { flex-direction: column; text-align: center; }
+        }
+
+        /* O navegador imprimirá o documento como PDF e non a interface da web */
+        @media print {
+            @page {
+                size: A4;
+                margin: 18mm 16mm;
+            }
+
+            body {
+                background: #fff !important;
+                color: #000 !important;
+                font-size: 11pt;
+            }
+
+            .site-header,
+            .document-actions,
+            .document-footer {
+                display: none !important;
+            }
+
+            .notes-shell {
+                width: 100%;
+                max-width: none;
+                padding: 0;
+            }
+
+            .document-header {
+                padding-top: 0;
+                margin-bottom: 1.5rem;
+            }
+
+            .document-content,
+            .document-content p,
+            .document-content li {
+                color: #000 !important;
+            }
+
+            .document-content h1,
+            .document-content h2,
+            .document-content h3,
+            .document-content h4,
+            .document-content h5,
+            .document-content h6,
+            .document-title {
+                color: #000 !important;
+                page-break-after: avoid;
+            }
+
+            .document-content pre,
+            .document-content blockquote,
+            .document-content table {
+                break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+
+<body class="theme-bg">
+
+    <script>
+        (function () {
+            if (localStorage.getItem('theme') === 'dark') {
+                document.documentElement.classList.add('dark');
+                document.body.classList.add('dark-mode');
+            }
+        })();
+    </script>
+
+    <!-- Header da web -->
+    <header class="site-header">
+        <a class="site-brand" href="{{ '/' | relative_url }}">Anxo López Rodríguez</a>
+
+        <nav class="site-nav">
+            <a href="{{ '/gl/' | relative_url }}">Inicio</a>
+            <a href="{{ '/gl/sobre-min' | relative_url }}">Sobre min</a>
+            <a href="{{ '/gl/proxectos' | relative_url }}">Proxectos</a>
+            <a href="{{ '/gl/apuntamentos' | relative_url }}">Apuntamentos</a>
+            <a href="{{ '/gl/contactme' | relative_url }}">Contacto</a>
+
+            <div class="header-tools">
+                <div class="language-wrap">
+                    <button id="lang-menu-btn" class="language-button" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa-solid fa-globe"></i>
+                        {% if page.lang == 'en' %}EN{% elsif page.lang == 'es' %}ES{% else %}GL{% endif %}
+                        <i class="fa-solid fa-chevron-down" style="font-size:.6rem"></i>
+                    </button>
+                    <div id="lang-dropdown" class="language-dropdown hidden">
+                        <a href="{{ page.trans_gl | default: '/gl/' | relative_url }}">Galego (GL)</a>
+                        <a href="{{ page.trans_es | default: '/es/' | relative_url }}">Español (ES)</a>
+                        <a href="{{ page.trans_en | default: '/en/' | relative_url }}">English (EN)</a>
+                    </div>
+                </div>
+
+                <button class="theme-control" id="theme-toggle" aria-label="Cambiar tema">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+            </div>
+        </nav>
+
+        <button id="mobile-menu-open" class="mobile-menu-button" aria-label="Abrir menú">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+    </header>
+
+    <main class="notes-shell">
+
+        <header class="document-header">
+            {% if page.year %}
+            <div class="course-info">
+                <span class="year-badge">{{ page.year }}</span>
+                {% if page.course %}<span class="course-name">{{ page.course }}</span>{% endif %}
+            </div>
+            {% endif %}
+
+            <h1 class="document-title">{{ page.title }}</h1>
+
+            {% if page.subtitle %}
+            <div class="document-subtitle">{{ page.subtitle }}</div>
+            {% endif %}
+
+            <div class="document-author">Anxo López Rodríguez</div>
+
+            {% if page.date %}
+            <div class="document-date">{{ page.date | date: "%d/%m/%Y" }}</div>
+            {% endif %}
+
+            <!-- Acción de PDF -->
+            <div class="document-actions">
+                <button class="document-action" onclick="window.print()" title="Descargar ou gardar como PDF">
+                    <i class="fa-solid fa-file-pdf"></i>
+                    <span>Descargar PDF</span>
+                </button>
+            </div>
+        </header>
+
+        <article class="document-content">
+            {{ content }}
+        </article>
+    </main>
+
+    <!-- Footer da web -->
+    <footer class="document-footer">
+        <div class="footer-inner">
+            <div>
+                <div class="footer-copy">
+                    &copy; {{ "now" | date: "%Y" | default: "2026" }} Anxo López Rodríguez. Todos os dereitos reservados.
+                </div>
+                {% if page.source %}
+                <div class="footer-source">Fonte: {{ page.source }}</div>
+                {% endif %}
+            </div>
+
+            <div class="footer-social">
+                <a href="https://bsky.app/profile/anxolo.bsky.social" target="_blank" rel="noopener" title="Bluesky"><i class="fa-brands fa-bluesky"></i></a>
+                <a href="https://x.com/anxolo_/" target="_blank" rel="noopener" title="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="https://linkedin.com/in/anxo-lopez-rodriguez" target="_blank" rel="noopener" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="https://github.com/anxolo" target="_blank" rel="noopener" title="GitHub"><i class="fa-brands fa-github"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Menú móbil -->
+    <div id="mobile-menu" class="hidden" style="
+        position:fixed; inset:0; z-index:100;
+        background:var(--bg-body); padding:1.5rem;
+        flex-direction:column;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:2rem;">
+            <a class="site-brand" href="{{ '/' | relative_url }}">Anxo López Rodríguez</a>
+            <button id="mobile-menu-close" class="mobile-menu-button" aria-label="Pechar menú">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <nav style="display:flex; flex-direction:column; gap:1.25rem;">
+            <a class="site-brand" style="font-size:1rem" href="{{ '/gl/' | relative_url }}">Inicio</a>
+            <a class="site-brand" style="font-size:1rem" href="{{ '/gl/sobre-min' | relative_url }}">Sobre min</a>
+            <a class="site-brand" style="font-size:1rem" href="{{ '/gl/proxectos' | relative_url }}">Proxectos</a>
+            <a class="site-brand" style="font-size:1rem" href="{{ '/gl/apuntamentos' | relative_url }}">Apuntamentos</a>
+            <a class="site-brand" style="font-size:1rem" href="{{ '/gl/contactme' | relative_url }}">Contacto</a>
+        </nav>
+
+        <div style="margin-top:auto; padding-top:1.5rem; border-top:1px solid var(--border);">
+            <button id="mobile-theme-toggle" class="document-action">
+                <i class="fa-solid fa-moon"></i>
+                <span>Modo Oscuro</span>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        const themeToggle = document.getElementById('theme-toggle');
+        const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
+
+        function updateThemeControls() {
+            const dark = document.body.classList.contains('dark-mode');
+
+            if (themeToggle) {
+                themeToggle.innerHTML = dark
+                    ? '<i class="fa-solid fa-sun" style="color:#facc15"></i>'
+                    : '<i class="fa-solid fa-moon"></i>';
+            }
+
+            if (mobileThemeToggle) {
+                mobileThemeToggle.innerHTML = dark
+                    ? '<i class="fa-solid fa-sun" style="color:#facc15"></i><span>Modo Claro</span>'
+                    : '<i class="fa-solid fa-moon"></i><span>Modo Oscuro</span>';
+            }
+        }
+
+        function toggleTheme() {
+            const dark = document.body.classList.toggle('dark-mode');
+            document.documentElement.classList.toggle('dark', dark);
+            localStorage.setItem('theme', dark ? 'dark' : 'light');
+            updateThemeControls();
+        }
+
+        themeToggle?.addEventListener('click', toggleTheme);
+        mobileThemeToggle?.addEventListener('click', toggleTheme);
+
+        const langMenuBtn = document.getElementById('lang-menu-btn');
+        const langDropdown = document.getElementById('lang-dropdown');
+
+        langMenuBtn?.addEventListener('click', (e) => {
+            e.stopPropagation();
+            langDropdown.classList.toggle('hidden');
+            langMenuBtn.setAttribute('aria-expanded', !langDropdown.classList.contains('hidden'));
+        });
+
+        document.addEventListener('click', () => {
+            langDropdown?.classList.add('hidden');
+        });
+
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuOpen = document.getElementById('mobile-menu-open');
+        const mobileMenuClose = document.getElementById('mobile-menu-close');
+
+        function openMobileMenu() {
+            mobileMenu.classList.remove('hidden');
+            mobileMenu.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMobileMenu() {
+            mobileMenu.classList.add('hidden');
+            mobileMenu.style.display = '';
+            document.body.style.overflow = '';
+        }
+
+        mobileMenuOpen?.addEventListener('click', openMobileMenu);
+        mobileMenuClose?.addEventListener('click', closeMobileMenu);
+
+        updateThemeControls();
+
+        document.addEventListener('keydown', function (e) {
+            if (e.ctrlKey && e.key.toLowerCase() === 'p') {
+                e.preventDefault();
+                window.print();
+            }
+        });
+
+        {% if page.numbered_sections %}
+        document.addEventListener('DOMContentLoaded', function () {
+            let sectionCounter = 0;
+            let subsectionCounter = 0;
+
+            document.querySelectorAll('.document-content h2').forEach(function (h2) {
+                sectionCounter++;
+                subsectionCounter = 0;
+                h2.textContent = sectionCounter + '. ' + h2.textContent;
+            });
+
+            document.querySelectorAll('.document-content h3').forEach(function (h3) {
+                subsectionCounter++;
+                h3.textContent = sectionCounter + '.' + subsectionCounter + '. ' + h3.textContent;
+            });
+        });
+        {% endif %}
+    </script>
+</body>
+</html>
